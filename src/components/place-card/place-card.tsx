@@ -1,4 +1,4 @@
-export function PlaceCard(): JSX.Element {
+export default function PlaceCard() {
   return (
     <article className="cities__card place-card">
       <div className="cities__image-wrapper place-card__image-wrapper">
