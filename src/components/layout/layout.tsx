@@ -1,34 +1,34 @@
-import { PropsWithChildren } from 'react';
 import Header from '../header/header';
 import Footer from '../footer/footer';
-import { Page } from '../../data';
+import { AppRoute } from '../../data';
+import { Outlet, useLocation } from 'react-router-dom';
 
 type LayoutProps = {
-  currentPage: string;
   favoritesCount: number;
-}
-
-type divClassName = {
-  [key: string]: string;
-  'main': string;
-  'offer': string;
-  'favorites': string;
-  'login': string;
-}
-
-const pageDivLayoutClassName: divClassName = {
-  'main': 'page page--gray page--main',
-  'offer': 'page',
-  'favorites': 'page',
-  'login': 'page page--gray page--login',
 };
 
-export default function Layout({currentPage, favoritesCount, children}: PropsWithChildren<LayoutProps>) {
+
+const createPageLayout = (pathname: AppRoute) => {
+  let rootClassName = '';
+
+  if (pathname === AppRoute.Root) {
+    rootClassName = ' page--gray page--main';
+  }
+  if (pathname === AppRoute.Login) {
+    rootClassName = ' page--gray page--login';
+  }
+
+  return { rootClassName };
+};
+
+export default function Layout({ favoritesCount }: LayoutProps) {
+  const { pathname } = useLocation();
+  const { rootClassName } = createPageLayout(pathname as AppRoute);
   return (
-    <div className={pageDivLayoutClassName[currentPage]}>
-      <Header currentPage={currentPage} favoritesCount={favoritesCount} />
-      {children}
-      {currentPage === Page.Favorites && <Footer />}
+    <div className={`page${rootClassName}`}>
+      <Header pathname={pathname as AppRoute} favoritesCount={favoritesCount} />
+      <Outlet />
+      {pathname as AppRoute === AppRoute.Favorites && <Footer />}
     </div>
   );
 }

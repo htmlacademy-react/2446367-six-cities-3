@@ -1,17 +1,25 @@
-import { Page } from '../../data';
+import { AppRoute } from '../../data';
+import HeaderNav from './header-nav';
+import { createHeader } from './header-util';
 
 type HeaderProps = {
-  currentPage: string;
+  pathname: AppRoute;
   favoritesCount: number;
-}
+};
 
-export default function Header({ currentPage, favoritesCount }: HeaderProps) {
+export default function Header({ pathname, favoritesCount }: HeaderProps) {
+  const { headerLinkClassName, headerOnMainPage, headerOnLoginPage } =
+    createHeader(pathname);
+
   return (
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <a className="header__logo-link header__logo-link--active">
+            <a
+              className={`header__logo-link${headerLinkClassName}`}
+              {...(!headerOnMainPage && { href: 'main.html' })}
+            >
               <img
                 className="header__logo"
                 src="img/logo.svg"
@@ -21,31 +29,7 @@ export default function Header({ currentPage, favoritesCount }: HeaderProps) {
               />
             </a>
           </div>
-          {currentPage === Page.Login ? (
-            ''
-          ) : (
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <a
-                    className="header__nav-link header__nav-link--profile"
-                    href="#"
-                  >
-                    <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                    <span className="header__user-name user__name">
-                      Oliver.conner@gmail.com
-                    </span>
-                    <span className="header__favorite-count">{favoritesCount}</span>
-                  </a>
-                </li>
-                <li className="header__nav-item">
-                  <a className="header__nav-link" href="#">
-                    <span className="header__signout">Sign out</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          )}
+          {!headerOnLoginPage && <HeaderNav favoritesCount={favoritesCount} />}
         </div>
       </div>
     </header>

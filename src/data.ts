@@ -4,10 +4,10 @@ export const Setting = {
   FavoritesCount: 10,
 } as const;
 
-// перечисление страниц приложения
-export const Page = {
-  Main: 'main',
-  Login: 'login',
-  Favorites: 'favorites',
-  Offer: 'offer',
-};
+// перечисление маршрутов страниц приложения
+export enum AppRoute {
+  Root = '/',
+  Login = '/login',
+  Favorites = '/favorites',
+  Offer = '/offer/:id',
+}
