@@ -6,7 +6,7 @@ export const createHeader = (pathname: AppRoute) => {
   let headerOnLoginPage = false;
 
   if (pathname === AppRoute.Root) {
-    headerLinkClassName = ' header__logo-link--active';
+    headerLinkClassName = 'header__logo-link--active';
     headerOnMainPage = true;
   }
 

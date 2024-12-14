@@ -4,7 +4,7 @@ export const createFavoritesPage = (favoritesCount: number) => {
 
   if (favoritesCount === 0) {
     emptyFavorites = true;
-    emptyFavoritesMainClassName = ' page__main--favorites-empty';
+    emptyFavoritesMainClassName = 'page__main--favorites-empty';
   }
 
   return {

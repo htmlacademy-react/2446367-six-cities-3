@@ -17,7 +17,7 @@ export default function Header({ pathname, favoritesCount }: HeaderProps) {
         <div className="header__wrapper">
           <div className="header__left">
             <a
-              className={`header__logo-link${headerLinkClassName}`}
+              className={`header__logo-link ${headerLinkClassName}`}
               {...(!headerOnMainPage && { href: 'main.html' })}
             >
               <img

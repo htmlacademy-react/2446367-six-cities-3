@@ -1,6 +1,6 @@
 import EmptyFavoritesPage from './empty-favorites-page';
 import NoEmptyFavoritesPage from './no-empty-favorites-page';
-import { createFavoritesPage } from './favorit-page-util';
+import { createFavoritesPage } from './favorites-page-util';
 
 type FavoritesPageProps = {
   favoritesCount: number;
