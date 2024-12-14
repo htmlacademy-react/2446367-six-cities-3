@@ -4,8 +4,9 @@ import LoginPage from '../../pages/login-page/login-page';
 import MainPage from '../../pages/main-page/main-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import Layout from '../layout/layout';
-import { AppRoute } from '../../data';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
+import PrivateRoute from '../private-route/private-route';
+import { AppRoute, AuthorizationStatus } from '../../data';
 
 type AppOffersProps = {
   offersCount: number;
@@ -32,7 +33,11 @@ export default function App({ offersCount, favoritesCount }: AppOffersProps) {
           />
           <Route
             path={AppRoute.Favorites}
-            element={<FavoritesPage favoritesCount={favoritesCount} />}
+            element={(
+              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+                <FavoritesPage favoritesCount={favoritesCount} />
+              </PrivateRoute>
+            )}
           />
           <Route
             path={AppRoute.Offer}
