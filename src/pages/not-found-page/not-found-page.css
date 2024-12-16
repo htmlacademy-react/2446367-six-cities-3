@@ -1,0 +1,36 @@
+.page__not-found {
+  padding: 100px;
+}
+
+.not-found {
+  max-width: 1144px;
+  margin: 0 auto;
+  background-image: url('/markup/img/amsterdam.jpg');
+  background-size: contain;
+}
+
+.not-found__descr {
+  margin: 0;
+  padding: 0;
+  mix-blend-mode: lighten;
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 200px;
+  line-height: 0.9;
+  color: rgba(0, 0, 0, 0.5);
+  background: #ffffff;
+}
+
+.not-found__link {
+  margin: 0;
+  padding: 0;
+  margin-top: 100px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: underline;
+  font-family: sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
