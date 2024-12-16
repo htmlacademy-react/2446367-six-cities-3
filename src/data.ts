@@ -1,8 +1,4 @@
-// определение количества предложений аренды
-export const Setting = {
-  OffersCount: 5,
-  FavoritesCount: 3,
-} as const;
+
 
 // перечисление маршрутов страниц приложения
 export enum AppRoute {
@@ -18,6 +14,3 @@ export enum AuthorizationStatus {
   NoAuth = 'NoAuth',
   Unknown = 'Unknown',
 }
-
-// переключение состояния авторизации
-export const userAuthorization = AuthorizationStatus.Auth;

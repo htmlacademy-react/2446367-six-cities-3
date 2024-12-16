@@ -1,5 +1,5 @@
 import { AuthorizationStatus } from '../../data';
-import { isUserLogged } from './header-util';
+import { isUserLogged } from '../../mocks/mock-util';
 
 type HeaderNavProps = {
   favoritesCount: number;

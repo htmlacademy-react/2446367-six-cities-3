@@ -1,4 +1,4 @@
-import { AppRoute, AuthorizationStatus } from '../../data';
+import { AppRoute } from '../../data';
 
 export const createHeader = (pathname: AppRoute) => {
   let headerLinkClassName = '';
@@ -16,5 +16,3 @@ export const createHeader = (pathname: AppRoute) => {
 
   return { headerLinkClassName, headerOnMainPage, headerOnLoginPage };
 };
-
-export const isUserLogged = (logged: AuthorizationStatus) => logged === AuthorizationStatus.Auth;

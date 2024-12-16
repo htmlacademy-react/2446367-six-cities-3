@@ -6,7 +6,8 @@ import OfferPage from '../../pages/offer-page/offer-page';
 import Layout from '../layout/layout';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
-import { AppRoute, userAuthorization } from '../../data';
+import { AppRoute } from '../../data';
+import { userAuthorization } from '../../mocks/mock-data';
 
 type AppOffersProps = {
   offersCount: number;
@@ -46,7 +47,7 @@ export default function App({ offersCount, favoritesCount }: AppOffersProps) {
           />
           <Route
             path={AppRoute.Offer}
-            element={<OfferPage />}
+            element={<OfferPage authorizationStatus={userAuthorization} />}
           />
           <Route
             path='*'
