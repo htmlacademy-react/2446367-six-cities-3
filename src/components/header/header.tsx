@@ -1,6 +1,8 @@
 import { AppRoute, AuthorizationStatus } from '../../data';
-import HeaderNav from './header-nav';
 import { createHeader } from './header-util';
+import HeaderNav from './header-nav';
+import Logo from '../logo/logo';
+import LogoLink from '../logo/logo-link';
 
 type HeaderProps = {
   pathname: AppRoute;
@@ -13,7 +15,7 @@ export default function Header({
   favoritesCount,
   authorizationStatus,
 }: HeaderProps) {
-  const { headerLinkClassName, headerOnMainPage, headerOnLoginPage } =
+  const { headerOnMainPage, headerOnLoginPage } =
     createHeader(pathname);
 
   return (
@@ -21,18 +23,7 @@ export default function Header({
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <a
-              className={`header__logo-link ${headerLinkClassName}`}
-              {...(!headerOnMainPage && { href: 'main.html' })}
-            >
-              <img
-                className="header__logo"
-                src="img/logo.svg"
-                alt="6 cities logo"
-                width="81"
-                height="41"
-              />
-            </a>
+            {headerOnMainPage ? <Logo/> : <LogoLink/>}
           </div>
           {!headerOnLoginPage && (
             <HeaderNav

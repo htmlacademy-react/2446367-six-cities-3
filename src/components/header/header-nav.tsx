@@ -1,4 +1,5 @@
-import { AuthorizationStatus } from '../../data';
+import { Link } from 'react-router-dom';
+import { AppRoute, AuthorizationStatus } from '../../data';
 import { isUserLogged } from '../../mocks/mock-util';
 
 type HeaderNavProps = {
@@ -14,7 +15,10 @@ export default function HeaderNav({
     <nav className="header__nav">
       <ul className="header__nav-list">
         <li className="header__nav-item user">
-          <a className="header__nav-link header__nav-link--profile" href="#">
+          <Link
+            className="header__nav-link header__nav-link--profile"
+            to={AppRoute.Favorites}
+          >
             <div className="header__avatar-wrapper user__avatar-wrapper"></div>
             {isUserLogged(authorizationStatus) ? (
               <>
@@ -26,7 +30,7 @@ export default function HeaderNav({
             ) : (
               <span className="header__login">Sign in</span>
             )}
-          </a>
+          </Link>
         </li>
         {isUserLogged(authorizationStatus) && (
           <li className="header__nav-item">
