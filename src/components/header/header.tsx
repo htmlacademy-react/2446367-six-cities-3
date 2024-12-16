@@ -1,13 +1,18 @@
-import { AppRoute } from '../../data';
+import { AppRoute, AuthorizationStatus } from '../../data';
 import HeaderNav from './header-nav';
 import { createHeader } from './header-util';
 
 type HeaderProps = {
   pathname: AppRoute;
   favoritesCount: number;
+  authorizationStatus: AuthorizationStatus;
 };
 
-export default function Header({ pathname, favoritesCount }: HeaderProps) {
+export default function Header({
+  pathname,
+  favoritesCount,
+  authorizationStatus,
+}: HeaderProps) {
   const { headerLinkClassName, headerOnMainPage, headerOnLoginPage } =
     createHeader(pathname);
 
@@ -29,7 +34,12 @@ export default function Header({ pathname, favoritesCount }: HeaderProps) {
               />
             </a>
           </div>
-          {!headerOnLoginPage && <HeaderNav favoritesCount={favoritesCount} />}
+          {!headerOnLoginPage && (
+            <HeaderNav
+              favoritesCount={favoritesCount}
+              authorizationStatus={authorizationStatus}
+            />
+          )}
         </div>
       </div>
     </header>

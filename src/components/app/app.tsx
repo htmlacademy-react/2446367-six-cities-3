@@ -6,7 +6,7 @@ import OfferPage from '../../pages/offer-page/offer-page';
 import Layout from '../layout/layout';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
-import { AppRoute, AuthorizationStatus } from '../../data';
+import { AppRoute, userAuthorization } from '../../data';
 
 type AppOffersProps = {
   offersCount: number;
@@ -20,7 +20,7 @@ export default function App({ offersCount, favoritesCount }: AppOffersProps) {
         <Route
           path={AppRoute.Root}
           element={
-            <Layout favoritesCount={favoritesCount} />
+            <Layout favoritesCount={favoritesCount} authorizationStatus={userAuthorization} />
           }
         >
           <Route
@@ -34,7 +34,7 @@ export default function App({ offersCount, favoritesCount }: AppOffersProps) {
           <Route
             path={AppRoute.Favorites}
             element={(
-              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+              <PrivateRoute authorizationStatus={userAuthorization}>
                 <FavoritesPage favoritesCount={favoritesCount} />
               </PrivateRoute>
             )}
