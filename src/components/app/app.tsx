@@ -29,7 +29,12 @@ export default function App({ offersCount, favoritesCount }: AppOffersProps) {
           />
           <Route
             path={AppRoute.Login}
-            element={<LoginPage />}
+            element={(
+              <PrivateRoute authorizationStatus={userAuthorization} isReverse>
+                <LoginPage />
+              </PrivateRoute>
+            )}
+            // element={<LoginPage />}
           />
           <Route
             path={AppRoute.Favorites}
