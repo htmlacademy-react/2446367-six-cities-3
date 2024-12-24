@@ -8,13 +8,15 @@ import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
 import { AppRoute } from '../../data';
 import { userAuthorization } from '../../mocks/mock-data';
+import { Offers } from '../../mocks/mock-types/offers';
 
-type AppOffersProps = {
+type AppScreenProps = {
   offersCount: number;
   favoritesCount: number;
+  mockOffers: Offers;
 };
 
-export default function App({ offersCount, favoritesCount }: AppOffersProps) {
+export default function App({ offersCount, favoritesCount, mockOffers }: AppScreenProps) {
   return (
     <BrowserRouter>
       <Routes>
@@ -26,7 +28,7 @@ export default function App({ offersCount, favoritesCount }: AppOffersProps) {
         >
           <Route
             index
-            element={<MainPage offersCount={offersCount} />}
+            element={<MainPage offersCount={offersCount} mockOffers={mockOffers} />}
           />
           <Route
             path={AppRoute.Login}
@@ -35,7 +37,6 @@ export default function App({ offersCount, favoritesCount }: AppOffersProps) {
                 <LoginPage />
               </PrivateRoute>
             )}
-            // element={<LoginPage />}
           />
           <Route
             path={AppRoute.Favorites}

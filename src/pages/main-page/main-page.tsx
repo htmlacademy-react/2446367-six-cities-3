@@ -1,12 +1,14 @@
+import { Offers } from '../../mocks/mock-types/offers';
 import EmptyMainPage from './empty-main-page';
 import { createMainPage } from './main-page-util';
 import NoEmptyMainPage from './no-empty-main-page';
 
 type MainOffersProps = {
   offersCount: number;
+  mockOffers: Offers;
 };
 
-export default function MainPage({ offersCount }: MainOffersProps) {
+export default function MainPage({ offersCount, mockOffers }: MainOffersProps) {
   const { emptyMain, emptyPageMainClassName, emptyPageContainerClassName } =
     createMainPage(offersCount);
   return (
@@ -55,7 +57,7 @@ export default function MainPage({ offersCount }: MainOffersProps) {
           {emptyMain ? (
             <EmptyMainPage />
           ) : (
-            <NoEmptyMainPage offersCount={offersCount} />
+            <NoEmptyMainPage offersCount={offersCount} mockOffers={mockOffers} />
           )}
           <div className="cities__right-section">
             {!emptyMain && <section className="cities__map map"></section>}
