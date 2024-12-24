@@ -8,12 +8,3 @@ export const Setting = {
 
 // переключение состояния авторизации
 export const userAuthorization = AuthorizationStatus.Auth;
-
-// перечисление для преобразования звезд рейтинга
-export enum WidthRating {
-  '20%' = 1,
-  '40%',
-  '60%',
-  '80%',
-  '100%',
-}

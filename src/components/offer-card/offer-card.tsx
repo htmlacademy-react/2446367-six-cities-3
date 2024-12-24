@@ -1,16 +1,12 @@
-import { WidthRating } from '../../mocks/mock-data';
-import { Offers } from '../../mocks/mock-types/offers';
-import { capitalizeFirstLetter } from '../../utils';
+import { Offer } from '../../mocks/mock-types/offers';
+import { capitalizeFirstLetter, convertStarToWidth } from '../../utils';
 
-type PlaceCardProps = {
-  mockOffers: Offers;
+type OfferCardProps = {
+  offer: Offer;
 };
 
-export default function PlaceCard({ mockOffers }: PlaceCardProps) {
-  const [offer] = mockOffers;
+export default function OfferCard({ offer }: OfferCardProps) {
   const { title, type, price, rating, previewImage } = offer;
-
-  const convertStarToWidth = (rate: number) => WidthRating[rate];
 
   return (
     <article className="cities__card place-card">

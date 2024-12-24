@@ -12,3 +12,12 @@ export enum AuthorizationStatus {
   NoAuth = 'NoAuth',
   Unknown = 'Unknown',
 }
+
+// перечисление преобразования звезд рейтинга
+export enum WidthRating {
+  '20%' = 1,
+  '40%',
+  '60%',
+  '80%',
+  '100%',
+}
