@@ -1,8 +1,9 @@
 import { AuthorizationStatus } from '../data';
+import { mockOffers } from './mock-offers';
 
 // определение количества предложений аренды
 export const Setting = {
-  OffersCount: 5,
+  OffersCount: mockOffers.length,
   FavoritesCount: 3,
 } as const;
 

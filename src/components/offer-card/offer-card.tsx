@@ -3,13 +3,29 @@ import { capitalizeFirstLetter, convertStarToWidth } from '../../utils';
 
 type OfferCardProps = {
   offer: Offer;
+  handleActiveOffer: (offer?: Offer) => void;
 };
 
-export default function OfferCard({ offer }: OfferCardProps) {
+export default function OfferCard({
+  offer,
+  handleActiveOffer,
+}: OfferCardProps) {
   const { title, type, price, rating, previewImage } = offer;
 
+  const handleActiveOn = () => {
+    handleActiveOffer(offer);
+  };
+
+  const handleActiveOff = () => {
+    handleActiveOffer();
+  };
+
   return (
-    <article className="cities__card place-card">
+    <article
+      className="cities__card place-card"
+      onMouseEnter={handleActiveOn}
+      onMouseLeave={handleActiveOff}
+    >
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
           <img
