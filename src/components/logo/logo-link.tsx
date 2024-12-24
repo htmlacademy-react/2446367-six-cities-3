@@ -4,7 +4,7 @@ import { AppRoute } from '../../data';
 export default function LogoLink() {
   return (
     <Link
-      className="header__logo-link header__logo-link--active"
+      className="header__logo-link"
       to={AppRoute.Root}
     >
       <img
