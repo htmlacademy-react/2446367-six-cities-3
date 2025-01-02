@@ -4,7 +4,7 @@ import { mockOffers } from './mock-offers';
 // определение количества предложений аренды
 export const Setting = {
   OffersCount: mockOffers.length,
-  FavoritesCount: 3,
+  FavoritesCount: mockOffers.filter((i) => i.isFavorite).length,
 } as const;
 
 // переключение состояния авторизации

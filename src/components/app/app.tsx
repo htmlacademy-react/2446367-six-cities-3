@@ -16,44 +16,53 @@ type AppScreenProps = {
   mockOffers: Offers;
 };
 
-export default function App({ offersCount, favoritesCount, mockOffers }: AppScreenProps) {
+export default function App({
+  offersCount,
+  favoritesCount,
+  mockOffers,
+}: AppScreenProps) {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Root}
           element={
-            <Layout favoritesCount={favoritesCount} authorizationStatus={userAuthorization} />
+            <Layout
+              favoritesCount={favoritesCount}
+              authorizationStatus={userAuthorization}
+            />
           }
         >
           <Route
             index
-            element={<MainPage offersCount={offersCount} mockOffers={mockOffers} />}
+            element={
+              <MainPage offersCount={offersCount} mockOffers={mockOffers} />
+            }
           />
           <Route
             path={AppRoute.Login}
-            element={(
+            element={
               <PrivateRoute authorizationStatus={userAuthorization} isReverse>
                 <LoginPage />
               </PrivateRoute>
-            )}
+            }
           />
           <Route
             path={AppRoute.Favorites}
-            element={(
+            element={
               <PrivateRoute authorizationStatus={userAuthorization}>
-                <FavoritesPage favoritesCount={favoritesCount} />
+                <FavoritesPage
+                  favoritesCount={favoritesCount}
+                  mockOffers={mockOffers}
+                />
               </PrivateRoute>
-            )}
+            }
           />
           <Route
             path={AppRoute.Offer}
             element={<OfferPage authorizationStatus={userAuthorization} />}
           />
-          <Route
-            path='*'
-            element={<NotFoundPage />}
-          />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
