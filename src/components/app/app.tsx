@@ -60,7 +60,7 @@ export default function App({
           />
           <Route
             path={AppRoute.Offer}
-            element={<OfferPage authorizationStatus={userAuthorization} />}
+            element={<OfferPage authorizationStatus={userAuthorization} mockOffers={mockOffers} />}
           />
           <Route path="*" element={<NotFoundPage />} />
         </Route>

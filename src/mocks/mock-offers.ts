@@ -34,7 +34,9 @@ export const mockOffers: Offers = [
       isPro: false,
     },
     images: [
-      'https://url-to-image/image.png',
+      'img/apartment-01.jpg',
+      'img/apartment-02.jpg',
+      'img/apartment-03.jpg',
     ],
     maxAdults: 4,
   },
@@ -71,9 +73,11 @@ export const mockOffers: Offers = [
       isPro: false,
     },
     images: [
-      'https://url-to-image/image.png',
+      'img/apartment-03.jpg',
+      'img/apartment-02.jpg',
+      'img/apartment-01.jpg',
     ],
-    maxAdults: 4,
+    maxAdults: 2,
   },
   {
     id: '6af6f711-c28d-4121-82cd-e0b462a27f02',
@@ -108,9 +112,11 @@ export const mockOffers: Offers = [
       isPro: false,
     },
     images: [
-      'https://url-to-image/image.png',
+      'img/apartment-02.jpg',
+      'img/apartment-01.jpg',
+      'img/apartment-03.jpg',
     ],
-    maxAdults: 4,
+    maxAdults: 3,
   },
   {
     id: '6af6f711-c28d-4121-82cd-e0b462a27f03',
@@ -145,8 +151,10 @@ export const mockOffers: Offers = [
       isPro: false,
     },
     images: [
-      'https://url-to-image/image.png',
+      'img/room.jpg',
+      'img/apartment-02.jpg',
+      'img/apartment-01.jpg',
     ],
-    maxAdults: 4,
+    maxAdults: 2,
   },
 ];
