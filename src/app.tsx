@@ -1,14 +1,14 @@
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
-import FavoritesPage from '../../pages/favorites-page/favorites-page';
-import LoginPage from '../../pages/login-page/login-page';
-import MainPage from '../../pages/main-page/main-page';
-import OfferPage from '../../pages/offer-page/offer-page';
-import Layout from '../layout/layout';
-import NotFoundPage from '../../pages/not-found-page/not-found-page';
-import PrivateRoute from '../private-route/private-route';
-import { AppRoute } from '../../data';
-import { userAuthorization } from '../../mocks/mock-data';
-import { Offers } from '../../mocks/mock-types/offers';
+import FavoritesPage from './pages/favorites-page/favorites-page';
+import LoginPage from './pages/login-page/login-page';
+import MainPage from './pages/main-page/main-page';
+import OfferPage from './pages/offer-page/offer-page';
+import NotFoundPage from './pages/not-found-page/not-found-page';
+import Layout from './components/layout/layout';
+import PrivateRoute from './components/private-route/private-route';
+import { AppRoute } from './utils/data';
+import { userAuthorization } from './mocks/mock-data';
+import { Offers } from './mocks/mock-types/offers';
 
 type AppScreenProps = {
   offersCount: number;

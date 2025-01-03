@@ -1,6 +1,6 @@
 import PremiumMark from '../premium-mark/premium-mark';
 import { Offer } from '../../mocks/mock-types/offers';
-import { capitalizeFirstLetter, convertStarToWidth } from '../../utils';
+import { capitalizeFirstLetter, convertStarToWidth } from '../../utils/utils';
 import { Link } from 'react-router-dom';
 
 type OfferCardProps = {

@@ -1,5 +1,5 @@
-import EmptyFavoritesPage from './empty-favorites-page';
-import NoEmptyFavoritesPage from './no-empty-favorites-page';
+import EmptyFavoritesPage from '../../components/empty-favorites-page/empty-favorites-page';
+import FilledFavoritesPage from '../../components/filled-favorites-page/filled-favorites-page';
 import { createFavoritesPage } from './favorites-page-util';
 import { Offers } from '../../mocks/mock-types/offers';
 
@@ -22,7 +22,7 @@ export default function FavoritesPage({
         {emptyFavorites ? (
           <EmptyFavoritesPage />
         ) : (
-          <NoEmptyFavoritesPage mockOffers={mockOffers} />
+          <FilledFavoritesPage mockOffers={mockOffers} />
         )}
       </div>
     </main>

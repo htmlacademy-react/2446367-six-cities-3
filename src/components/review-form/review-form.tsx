@@ -1,11 +1,11 @@
 import { Fragment, ReactEventHandler, useState } from 'react';
-import { rating } from '../../data';
+import { rating } from '../../utils/data';
 
 type ChangeReviewHandler = ReactEventHandler<
   HTMLInputElement | HTMLTextAreaElement
 >;
 
-export default function OfferReviewForm() {
+export default function ReviewForm() {
   const [review, setReview] = useState({ rating: 0, review: '' });
 
   const handleReviewChange: ChangeReviewHandler = (evt) => {

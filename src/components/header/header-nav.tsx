@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../data';
+import { AppRoute, AuthorizationStatus } from '../../utils/data';
 import { isUserLogged } from '../../mocks/mock-util';
 
 type HeaderNavProps = {

@@ -1,6 +1,6 @@
 import Header from '../header/header';
 import Footer from '../footer/footer';
-import { AppRoute, AuthorizationStatus } from '../../data';
+import { AppRoute, AuthorizationStatus } from '../../utils/data';
 import { Outlet, useLocation } from 'react-router-dom';
 
 type LayoutProps = {

@@ -1,4 +1,4 @@
-import { AppRoute } from '../../data';
+import { AppRoute } from '../../utils/data';
 
 export const createHeader = (pathname: AppRoute) => {
   const headerOnMainPage = pathname === AppRoute.Root;

@@ -1,4 +1,4 @@
-import { AppRoute, AuthorizationStatus } from '../../data';
+import { AppRoute, AuthorizationStatus } from '../../utils/data';
 import { createHeader } from './header-util';
 import HeaderNav from './header-nav';
 import Logo from '../logo/logo';

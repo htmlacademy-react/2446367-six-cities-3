@@ -1,16 +1,16 @@
-import SortingForm from '../../components/sorting-form/sorting-form';
-import OfferList from '../../components/offer-list/offer-list';
+import SortingForm from '../sorting-form/sorting-form';
+import OfferList from '../offer-list/offer-list';
 import { Offers } from '../../mocks/mock-types/offers';
 
-type NoEmptyMainProps = {
+type FilledMainPageProps = {
   offersCount: number;
   mockOffers: Offers;
 };
 
-export default function NoEmptyMainPage({
+export default function FilledMainPage({
   offersCount,
   mockOffers,
-}: NoEmptyMainProps) {
+}: FilledMainPageProps) {
   return (
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>

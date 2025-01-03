@@ -1,6 +1,6 @@
 import PremiumMark from '../premium-mark/premium-mark';
 import { Offer } from '../../mocks/mock-types/offers';
-import { convertStarToWidth, capitalizeFirstLetter } from '../../utils';
+import { convertStarToWidth, capitalizeFirstLetter } from '../../utils/utils';
 
 type FavoriteOfferCardProps = {
   favoriteOffer: Offer;

@@ -1,4 +1,4 @@
-import { AuthorizationStatus } from '../data';
+import { AuthorizationStatus } from '../utils/data';
 import { mockOffers } from './mock-offers';
 
 // определение количества предложений аренды

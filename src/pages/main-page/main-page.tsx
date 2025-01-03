@@ -1,7 +1,7 @@
+import EmptyMainPage from '../../components/empty-main-page/empty-main-page';
+import FilledMainPage from '../../components/filled-main-page/filled-main-page';
 import { Offers } from '../../mocks/mock-types/offers';
-import EmptyMainPage from './empty-main-page';
 import { createMainPage } from './main-page-util';
-import NoEmptyMainPage from './no-empty-main-page';
 
 type MainOffersProps = {
   offersCount: number;
@@ -57,7 +57,7 @@ export default function MainPage({ offersCount, mockOffers }: MainOffersProps) {
           {emptyMain ? (
             <EmptyMainPage />
           ) : (
-            <NoEmptyMainPage offersCount={offersCount} mockOffers={mockOffers} />
+            <FilledMainPage offersCount={offersCount} mockOffers={mockOffers} />
           )}
           <div className="cities__right-section">
             {!emptyMain && <section className="cities__map map"></section>}
