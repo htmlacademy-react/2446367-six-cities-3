@@ -2,6 +2,7 @@ import OfferImage from '../../components/offer-image/offer-image';
 import OfferReviewForm from './offer-review-form';
 import NotFoundPage from '../not-found-page/not-found-page';
 import OfferInsideList from '../../components/offer-inside-list/offer-inside-list';
+import PostReviewError from '../../components/error/post-review-error';
 import { useParams } from 'react-router-dom';
 import { AuthorizationStatus } from '../../data';
 import { isUserLogged } from '../../mocks/mock-util';
@@ -42,7 +43,9 @@ export default function OfferPage({
       <section className="offer">
         <div className="offer__gallery-container container">
           <div className="offer__gallery">
-            {images.map((img, i) => <OfferImage img={img} key={img[i]}/>)}
+            {images.map((img, i) => (
+              <OfferImage img={img} key={img[i]} />
+            ))}
           </div>
         </div>
         <div className="offer__container container">
@@ -156,7 +159,11 @@ export default function OfferPage({
                   </div>
                 </li>
               </ul>
-              {isUserLogged(authorizationStatus) && <OfferReviewForm />}
+              {isUserLogged(authorizationStatus) ? (
+                <OfferReviewForm />
+              ) : (
+                <PostReviewError />
+              )}
             </section>
           </div>
         </div>
