@@ -1,7 +1,7 @@
 import EmptyFavoritesPage from '../../components/empty-favorites-page/empty-favorites-page';
 import FilledFavoritesPage from '../../components/filled-favorites-page/filled-favorites-page';
-import { createFavoritesPage } from './favorites-page-util';
 import { Offers } from '../../mocks/mock-types/offers';
+import usePageLayout from '../../components/layout/use-page-layout';
 
 type FavoritesPageProps = {
   favoritesCount: number;
@@ -12,8 +12,10 @@ export default function FavoritesPage({
   favoritesCount,
   mockOffers,
 }: FavoritesPageProps) {
-  const { emptyFavorites, emptyFavoritesMainClassName } =
-    createFavoritesPage(favoritesCount);
+  const { emptyFavoritesMainClassName, emptyFavorites } = usePageLayout({
+    favoritesCount,
+  });
+
   return (
     <main
       className={`page__main page__main--favorites ${emptyFavoritesMainClassName}`}

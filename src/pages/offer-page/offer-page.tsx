@@ -43,8 +43,8 @@ export default function OfferPage({
       <section className="offer">
         <div className="offer__gallery-container container">
           <div className="offer__gallery">
-            {images.map((img, i) => (
-              <OfferImage img={img} key={img[i]} />
+            {images.map((item) => (
+              <OfferImage img={item.src} key={item.id} />
             ))}
           </div>
         </div>

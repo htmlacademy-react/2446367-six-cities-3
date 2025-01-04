@@ -1,7 +1,8 @@
+import { Goods } from '../../mocks/mock-types/offers';
 import OfferInsideItem from '../offer-inside-item/offer-inside-item';
 
 type OfferInsideListProps = {
-  goods: string[];
+  goods: Goods[];
 };
 
 export default function OfferInsideList({
@@ -9,8 +10,8 @@ export default function OfferInsideList({
 }: OfferInsideListProps) {
   return (
     <ul className="offer__inside-list">
-      {goods.map((item, i) => (
-        <OfferInsideItem item={item} key={item[i]} />
+      {goods.map((item) => (
+        <OfferInsideItem item={item.title} key={item.id} />
       ))}
     </ul>
   );

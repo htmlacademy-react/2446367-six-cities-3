@@ -26,7 +26,11 @@ export const mockOffers: Offers = [
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     bedrooms: 3,
     goods: [
-      'Heating', 'Wi-Fi', 'Kitchen', 'Fridge', 'Washing Machine'
+      {id: 0, title: 'Heating'},
+      {id: 1, title: 'Wi-Fi'},
+      {id: 2, title: 'Kitchen'},
+      {id: 3, title: 'Fridge'},
+      {id: 4, title: 'Washing Machine'},
     ],
     host: {
       name: 'Oliver Conner',
@@ -34,9 +38,9 @@ export const mockOffers: Offers = [
       isPro: false,
     },
     images: [
-      'img/apartment-01.jpg',
-      'img/apartment-02.jpg',
-      'img/apartment-03.jpg',
+      {id: 0, src: 'img/apartment-01.jpg'},
+      {id: 1, src: 'img/apartment-02.jpg'},
+      {id: 2, src: 'img/apartment-03.jpg'},
     ],
     maxAdults: 4,
   },
@@ -65,7 +69,9 @@ export const mockOffers: Offers = [
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     bedrooms: 2,
     goods: [
-      'Heating'
+      {id: 0, title: 'Heating'},
+      {id: 1, title: 'Wi-Fi'},
+      {id: 2, title: 'Kitchen'},
     ],
     host: {
       name: 'Oliver Conner',
@@ -73,9 +79,9 @@ export const mockOffers: Offers = [
       isPro: false,
     },
     images: [
-      'img/apartment-03.jpg',
-      'img/apartment-02.jpg',
-      'img/apartment-01.jpg',
+      {id: 2, src: 'img/apartment-03.jpg'},
+      {id: 1, src: 'img/apartment-02.jpg'},
+      {id: 0, src: 'img/apartment-01.jpg'},
     ],
     maxAdults: 2,
   },
@@ -104,7 +110,11 @@ export const mockOffers: Offers = [
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     bedrooms: 1,
     goods: [
-      'Heating', 'Wi-Fi', 'Fridge', 'Dishwasher'
+      {id: 0, title: 'Heating'},
+      {id: 1, title: 'Wi-Fi'},
+      {id: 2, title: 'Kitchen'},
+      {id: 3, title: 'Fridge'},
+      {id: 5, title: 'Dishwasher'},
     ],
     host: {
       name: 'Oliver Conner',
@@ -112,9 +122,9 @@ export const mockOffers: Offers = [
       isPro: false,
     },
     images: [
-      'img/apartment-02.jpg',
-      'img/apartment-01.jpg',
-      'img/apartment-03.jpg',
+      {id: 1, src: 'img/apartment-02.jpg'},
+      {id: 0, src: 'img/apartment-01.jpg'},
+      {id: 2, src: 'img/apartment-03.jpg'},
     ],
     maxAdults: 3,
   },
@@ -143,7 +153,10 @@ export const mockOffers: Offers = [
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     bedrooms: 2,
     goods: [
-      'Heating', 'Coffee machine', 'Cabel TV'
+      {id: 0, title: 'Heating'},
+      {id: 1, title: 'Wi-Fi'},
+      {id: 6, title: 'Coffee machine'},
+      {id: 7, title: 'Cabel TV'},
     ],
     host: {
       name: 'Oliver Conner',
@@ -151,9 +164,9 @@ export const mockOffers: Offers = [
       isPro: false,
     },
     images: [
-      'img/room.jpg',
-      'img/apartment-02.jpg',
-      'img/apartment-01.jpg',
+      {id: 2, src: 'img/room.jpg'},
+      {id: 1, src: 'img/apartment-02.jpg'},
+      {id: 0, src: 'img/apartment-01.jpg'},
     ],
     maxAdults: 2,
   },

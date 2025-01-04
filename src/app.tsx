@@ -29,6 +29,7 @@ export default function App({
           element={
             <Layout
               favoritesCount={favoritesCount}
+              offersCount={offersCount}
               authorizationStatus={userAuthorization}
             />
           }

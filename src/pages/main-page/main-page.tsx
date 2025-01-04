@@ -1,7 +1,7 @@
 import EmptyMainPage from '../../components/empty-main-page/empty-main-page';
 import FilledMainPage from '../../components/filled-main-page/filled-main-page';
+import usePageLayout from '../../components/layout/use-page-layout';
 import { Offers } from '../../mocks/mock-types/offers';
-import { createMainPage } from './main-page-util';
 
 type MainOffersProps = {
   offersCount: number;
@@ -10,7 +10,7 @@ type MainOffersProps = {
 
 export default function MainPage({ offersCount, mockOffers }: MainOffersProps) {
   const { emptyMain, emptyPageMainClassName, emptyPageContainerClassName } =
-    createMainPage(offersCount);
+    usePageLayout({ offersCount });
   return (
     <main className={`page__main page__main--index ${emptyPageMainClassName}`}>
       <h1 className="visually-hidden">Cities</h1>
