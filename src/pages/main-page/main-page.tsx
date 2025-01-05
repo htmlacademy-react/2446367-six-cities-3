@@ -1,16 +1,19 @@
-import EmptyMainPage from './empty-main-page';
-import { createMainPage } from './main-page-util';
-import NoEmptyMainPage from './no-empty-main-page';
+import EmptyMainPage from '../../components/empty-main-page/empty-main-page';
+import FilledMainPage from '../../components/filled-main-page/filled-main-page';
+import usePageLayout from '../../components/layout/use-page-layout';
+import { Offers } from '../../mocks/mock-types/offers';
 
 type MainOffersProps = {
   offersCount: number;
+  mockOffers: Offers;
 };
 
-export default function MainPage({ offersCount }: MainOffersProps) {
-  const { emptyMain, emptyPageMainClassName, emptyPageContainerClassName } =
-    createMainPage(offersCount);
+export default function MainPage({ offersCount, mockOffers }: MainOffersProps) {
+  const { emptyMain, emptyPageContainerClassName } = usePageLayout({
+    offersCount,
+  });
   return (
-    <main className={`page__main page__main--index ${emptyPageMainClassName}`}>
+    <>
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
         <section className="locations container">
@@ -55,13 +58,13 @@ export default function MainPage({ offersCount }: MainOffersProps) {
           {emptyMain ? (
             <EmptyMainPage />
           ) : (
-            <NoEmptyMainPage offersCount={offersCount} />
+            <FilledMainPage offersCount={offersCount} mockOffers={mockOffers} />
           )}
           <div className="cities__right-section">
             {!emptyMain && <section className="cities__map map"></section>}
           </div>
         </div>
       </div>
-    </main>
+    </>
   );
 }

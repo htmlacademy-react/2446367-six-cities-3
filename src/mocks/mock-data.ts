@@ -1,9 +1,10 @@
-import { AuthorizationStatus } from '../data';
+import { AuthorizationStatus } from '../utils/data';
+import { mockOffers } from './mock-offers';
 
 // определение количества предложений аренды
 export const Setting = {
-  OffersCount: 5,
-  FavoritesCount: 3,
+  OffersCount: mockOffers.length,
+  FavoritesCount: mockOffers.filter((i) => i.isFavorite).length,
 } as const;
 
 // переключение состояния авторизации

@@ -1,22 +1,21 @@
-import { AppRoute, AuthorizationStatus } from '../../data';
-import { createHeader } from './header-util';
+import { AuthorizationStatus } from '../../utils/data';
 import HeaderNav from './header-nav';
 import Logo from '../logo/logo';
 import LogoLink from '../logo/logo-link';
 
 type HeaderProps = {
-  pathname: AppRoute;
   favoritesCount: number;
   authorizationStatus: AuthorizationStatus;
+  headerOnMainPage: boolean;
+  headerOnLoginPage: boolean;
 };
 
 export default function Header({
-  pathname,
   favoritesCount,
   authorizationStatus,
+  headerOnMainPage,
+  headerOnLoginPage
 }: HeaderProps) {
-  const { headerOnMainPage, headerOnLoginPage } =
-    createHeader(pathname);
 
   return (
     <header className="header">
