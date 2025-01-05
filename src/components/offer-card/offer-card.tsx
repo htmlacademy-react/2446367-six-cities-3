@@ -32,7 +32,7 @@ export default function OfferCard({
       >
         {isPremium && <PremiumMark />}
         <div className="cities__image-wrapper place-card__image-wrapper">
-          <a href="#todo">
+          <a href="#">
             <img
               className="place-card__image"
               src={previewImage}

@@ -1,6 +1,6 @@
 import Header from '../header/header';
 import Footer from '../footer/footer';
-import { AppRoute, AuthorizationStatus } from '../../utils/data';
+import { AuthorizationStatus } from '../../utils/data';
 import { Outlet } from 'react-router-dom';
 import usePageLayout from './use-page-layout';
 
@@ -16,10 +16,11 @@ export default function Layout({
   authorizationStatus,
 }: LayoutProps) {
   const {
-    pathname,
     headerOnMainPage,
     headerOnLoginPage,
     rootClassName,
+    mainClassName,
+    onFavoritesPage,
   } = usePageLayout({ favoritesCount, offersCount });
 
   return (
@@ -30,8 +31,10 @@ export default function Layout({
         headerOnMainPage={headerOnMainPage}
         headerOnLoginPage={headerOnLoginPage}
       />
-      <Outlet />
-      {(pathname as AppRoute) === AppRoute.Favorites && <Footer />}
+      <main className={`page__main${mainClassName}`}>
+        <Outlet />
+      </main>
+      {onFavoritesPage && <Footer />}
     </div>
   );
 }

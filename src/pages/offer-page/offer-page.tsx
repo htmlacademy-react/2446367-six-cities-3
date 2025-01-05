@@ -39,7 +39,7 @@ export default function OfferPage({
   } = currentOffer;
 
   return (
-    <main className="page__main page__main--offer">
+    <>
       <section className="offer">
         <div className="offer__gallery-container container">
           <div className="offer__gallery">
@@ -321,6 +321,6 @@ export default function OfferPage({
           </div>
         </section>
       </div>
-    </main>
+    </>
   );
 }

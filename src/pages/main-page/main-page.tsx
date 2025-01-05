@@ -9,10 +9,11 @@ type MainOffersProps = {
 };
 
 export default function MainPage({ offersCount, mockOffers }: MainOffersProps) {
-  const { emptyMain, emptyPageMainClassName, emptyPageContainerClassName } =
-    usePageLayout({ offersCount });
+  const { emptyMain, emptyPageContainerClassName } = usePageLayout({
+    offersCount,
+  });
   return (
-    <main className={`page__main page__main--index ${emptyPageMainClassName}`}>
+    <>
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
         <section className="locations container">
@@ -64,6 +65,6 @@ export default function MainPage({ offersCount, mockOffers }: MainOffersProps) {
           </div>
         </div>
       </div>
-    </main>
+    </>
   );
 }

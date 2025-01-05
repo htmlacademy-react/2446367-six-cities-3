@@ -12,21 +12,17 @@ export default function FavoritesPage({
   favoritesCount,
   mockOffers,
 }: FavoritesPageProps) {
-  const { emptyFavoritesMainClassName, emptyFavorites } = usePageLayout({
+  const { emptyFavorites } = usePageLayout({
     favoritesCount,
   });
 
   return (
-    <main
-      className={`page__main page__main--favorites ${emptyFavoritesMainClassName}`}
-    >
-      <div className="page__favorites-container container">
-        {emptyFavorites ? (
-          <EmptyFavoritesPage />
-        ) : (
-          <FilledFavoritesPage mockOffers={mockOffers} />
-        )}
-      </div>
-    </main>
+    <div className="page__favorites-container container">
+      {emptyFavorites ? (
+        <EmptyFavoritesPage />
+      ) : (
+        <FilledFavoritesPage mockOffers={mockOffers} />
+      )}
+    </div>
   );
 }

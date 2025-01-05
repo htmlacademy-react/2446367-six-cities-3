@@ -6,47 +6,67 @@ type usePageLayoutProps = {
   offersCount?: number;
 };
 
-export default function usePageLayout({ favoritesCount, offersCount }: usePageLayoutProps) {
+export default function usePageLayout({
+  favoritesCount,
+  offersCount,
+}: usePageLayoutProps) {
   const { pathname } = useLocation();
 
   let rootClassName = '';
   let emptyFavorites = false;
-  let emptyFavoritesMainClassName = '';
-
-  const headerOnMainPage = (pathname as AppRoute) === AppRoute.Root;
-  const headerOnLoginPage = (pathname as AppRoute) === AppRoute.Login;
-
-  if (favoritesCount === 0) {
-    emptyFavorites = true;
-    emptyFavoritesMainClassName = 'page__main--favorites-empty';
-  }
-
-  if ((pathname as AppRoute) === AppRoute.Root) {
-    rootClassName = ' page--gray page--main';
-  }
-  if ((pathname as AppRoute) === AppRoute.Login) {
-    rootClassName = ' page--gray page--login';
-  }
+  let onFavoritesPage = false;
 
   let emptyMain = false;
-  let emptyPageMainClassName = '';
   let emptyPageContainerClassName = '';
 
-  if (offersCount === 0) {
-    emptyMain = true;
-    emptyPageMainClassName = 'page__main--index-empty';
-    emptyPageContainerClassName = 'cities__places-container--empty';
+  let headerOnMainPage = false;
+  let headerOnLoginPage = false;
+
+  let mainClassName = '';
+
+  switch (pathname as AppRoute) {
+    case AppRoute.Root:
+      rootClassName = ' page--gray page--main';
+      headerOnMainPage = true;
+      mainClassName = ' page__main--index';
+
+      if (offersCount === 0) {
+        emptyMain = true;
+        mainClassName = ' page__main--index page__main--index-empty';
+        emptyPageContainerClassName = ' cities__places-container--empty';
+      }
+      break;
+
+    case AppRoute.Login:
+      rootClassName = ' page--gray page--login';
+      mainClassName = ' page__main--login';
+      headerOnLoginPage = true;
+      break;
+
+    case AppRoute.Favorites:
+      mainClassName = ' page__main--favorites';
+      onFavoritesPage = true;
+
+      if (favoritesCount === 0) {
+        emptyFavorites = true;
+        mainClassName = ' page__main--favorites-empty';
+        rootClassName = ' page--favorites-empty';
+      }
+      break;
+
+    case AppRoute.Offer:
+      mainClassName = ' page__main--offer';
+      break;
   }
 
   return {
-    pathname,
     headerOnMainPage,
     headerOnLoginPage,
     rootClassName,
     emptyFavorites,
-    emptyFavoritesMainClassName,
+    onFavoritesPage,
     emptyMain,
-    emptyPageMainClassName,
     emptyPageContainerClassName,
+    mainClassName,
   };
 }
