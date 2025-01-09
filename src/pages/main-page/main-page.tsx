@@ -1,6 +1,6 @@
 import EmptyMainPage from '../../components/empty-main-page/empty-main-page';
 import FilledMainPage from '../../components/filled-main-page/filled-main-page';
-import usePageLayout from '../../components/layout/use-page-layout';
+import usePageLayout from '../../hooks/use-page-layout';
 import { Offers } from '../../mocks/mock-types/offers';
 
 type MainOffersProps = {

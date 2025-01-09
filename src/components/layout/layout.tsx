@@ -2,7 +2,7 @@ import Header from '../header/header';
 import Footer from '../footer/footer';
 import { AuthorizationStatus } from '../../utils/data';
 import { Outlet } from 'react-router-dom';
-import usePageLayout from './use-page-layout';
+import usePageLayout from '../../hooks/use-page-layout';
 
 type LayoutProps = {
   favoritesCount: number;

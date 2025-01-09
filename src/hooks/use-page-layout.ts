@@ -1,4 +1,4 @@
-import { AppRoute } from '../../utils/data';
+import { AppRoute } from '../utils/data';
 import { useLocation } from 'react-router-dom';
 
 type usePageLayoutProps = {
