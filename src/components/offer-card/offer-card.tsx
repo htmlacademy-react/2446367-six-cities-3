@@ -5,22 +5,22 @@ import { Link } from 'react-router-dom';
 
 type OfferCardProps = {
   offer: Offer;
-  handleActiveOffer: (offer?: Offer) => void;
+  onActiveOffer: (offer?: Offer) => void;
 };
 
 export default function OfferCard({
   offer,
-  handleActiveOffer,
+  onActiveOffer,
 }: OfferCardProps) {
   const { id, title, type, price, isFavorite, isPremium, rating, previewImage } =
     offer;
 
   const handleActiveOn = () => {
-    handleActiveOffer(offer);
+    onActiveOffer(offer);
   };
 
   const handleActiveOff = () => {
-    handleActiveOffer();
+    onActiveOffer();
   };
 
   return (
