@@ -1,7 +1,7 @@
 import EmptyFavoritesPage from '../../components/empty-favorites-page/empty-favorites-page';
 import FilledFavoritesPage from '../../components/filled-favorites-page/filled-favorites-page';
 import { Offers } from '../../mocks/mock-types/offers';
-import usePageLayout from '../../components/layout/use-page-layout';
+import usePageLayout from '../../hooks/use-page-layout';
 
 type FavoritesPageProps = {
   favoritesCount: number;
