@@ -4,6 +4,7 @@ import NotFoundPage from '../not-found-page/not-found-page';
 import OfferInsideList from '../../components/offer-inside-list/offer-inside-list';
 import PostReviewError from '../../components/error/post-review-error';
 import ReviewsList from '../../components/reviews-list/reviews-list';
+import Map from '../../components/map/map';
 import { useParams } from 'react-router-dom';
 import { AuthorizationStatus } from '../../utils/data';
 import { isUserLogged } from '../../mocks/mock-util';
@@ -11,6 +12,7 @@ import { Offer, Offers } from '../../mocks/mock-types/offers';
 import { capitalizeFirstLetter, getOfferRating } from '../../utils/utils';
 import { Reviews } from '../../mocks/mock-types/reviews';
 import { Review } from '../../mocks/mock-types/reviews';
+import NearPlacesList from '../../components/near-places-list/near-places-list';
 
 type OfferPageProps = {
   authorizationStatus: AuthorizationStatus;
@@ -25,6 +27,13 @@ export default function OfferPage({
 }: OfferPageProps) {
   const { id } = useParams();
   const currentOffer = mockOffers.find((offer: Offer) => offer.id === id);
+
+  const nearOffers = mockOffers.filter(
+    (offer: Offer) =>
+      currentOffer?.city.name === offer.city.name &&
+      currentOffer.id !== offer.id,
+  );
+
   const currentReviews = mockReviews.filter(
     (review: Review) => review.id === id,
   );
@@ -32,8 +41,6 @@ export default function OfferPage({
   if (!currentOffer) {
     return <NotFoundPage />;
   }
-
-  const { offerRating, starRating } = getOfferRating(currentReviews);
 
   const {
     title,
@@ -46,6 +53,8 @@ export default function OfferPage({
     images,
     maxAdults,
   } = currentOffer;
+
+  const { offerRating, starRating } = getOfferRating(currentReviews);
 
   return (
     <>
@@ -146,7 +155,7 @@ export default function OfferPage({
             </section>
           </div>
         </div>
-        <section className="offer__map map"></section>
+        <Map className="offer__map" mockOffers={nearOffers} />
       </section>
       <div className="container">
         <section className="near-places places">
@@ -154,7 +163,8 @@ export default function OfferPage({
             Other places in the neighbourhood
           </h2>
           <div className="near-places__list places__list">
-            <article className="near-places__card place-card">
+            <NearPlacesList nearOffers={nearOffers} />
+            {/* <article className="near-places__card place-card">
               <div className="near-places__image-wrapper place-card__image-wrapper">
                 <a href="#">
                   <img
@@ -296,7 +306,7 @@ export default function OfferPage({
                 </h2>
                 <p className="place-card__type">Apartment</p>
               </div>
-            </article>
+            </article> */}
           </div>
         </section>
       </div>

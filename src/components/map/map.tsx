@@ -4,8 +4,9 @@ import { Offer, Offers } from '../../mocks/mock-types/offers';
 import { useEffect, useRef } from 'react';
 
 type MapProps = {
+  className?: string;
   mockOffers: Offers;
-  activeOffer: Offer | undefined;
+  activeOffer?: Offer | undefined;
 };
 
 const defaultCustomIcon = new Icon({
@@ -22,7 +23,7 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40],
 });
 
-export default function Map({ mockOffers, activeOffer }: MapProps) {
+export default function Map({ mockOffers, activeOffer, className }: MapProps) {
 
   const offer = mockOffers[0];
   const { city } = offer;
@@ -54,5 +55,5 @@ export default function Map({ mockOffers, activeOffer }: MapProps) {
     }
   }, [activeOffer, map, mockOffers, offer]);
 
-  return <section className="cities__map map" ref={mapRef} />;
+  return <section className={`map ${className}`} ref={mapRef} />;
 }
