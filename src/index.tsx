@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './app';
 import { Setting } from './mocks/mock-data';
 import { mockOffers } from './mocks/mock-offers';
+import { mockReviews } from './mocks/mock-reviews';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -14,6 +15,7 @@ root.render(
       offersCount = {Setting.OffersCount}
       favoritesCount={Setting.FavoritesCount}
       mockOffers={mockOffers}
+      mockReviews={mockReviews}
     />
   </React.StrictMode>
 );

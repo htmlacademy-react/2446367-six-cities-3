@@ -3,27 +3,37 @@ import ReviewForm from '../../components/review-form/review-form';
 import NotFoundPage from '../not-found-page/not-found-page';
 import OfferInsideList from '../../components/offer-inside-list/offer-inside-list';
 import PostReviewError from '../../components/error/post-review-error';
+import ReviewsList from '../../components/reviews-list/reviews-list';
 import { useParams } from 'react-router-dom';
 import { AuthorizationStatus } from '../../utils/data';
 import { isUserLogged } from '../../mocks/mock-util';
 import { Offer, Offers } from '../../mocks/mock-types/offers';
-import { capitalizeFirstLetter, convertStarToWidth } from '../../utils/utils';
+import { capitalizeFirstLetter, getOfferRating } from '../../utils/utils';
+import { Reviews } from '../../mocks/mock-types/reviews';
+import { Review } from '../../mocks/mock-types/reviews';
 
 type OfferPageProps = {
   authorizationStatus: AuthorizationStatus;
   mockOffers: Offers;
+  mockReviews: Reviews;
 };
 
 export default function OfferPage({
   authorizationStatus,
   mockOffers,
+  mockReviews,
 }: OfferPageProps) {
   const { id } = useParams();
   const currentOffer = mockOffers.find((offer: Offer) => offer.id === id);
+  const currentReviews = mockReviews.filter(
+    (review: Review) => review.id === id,
+  );
 
   if (!currentOffer) {
     return <NotFoundPage />;
   }
+
+  const { offerRating, starRating } = getOfferRating(currentReviews);
 
   const {
     title,
@@ -31,7 +41,6 @@ export default function OfferPage({
     price,
     isFavorite,
     isPremium,
-    rating,
     bedrooms,
     goods,
     images,
@@ -69,11 +78,11 @@ export default function OfferPage({
             </div>
             <div className="offer__rating rating">
               <div className="offer__stars rating__stars">
-                <span style={{ width: convertStarToWidth(rating) }}></span>
+                <span style={{ width: starRating }}></span>
                 <span className="visually-hidden">Rating</span>
               </div>
               <span className="offer__rating-value rating__value">
-                {rating}
+                {offerRating}
               </span>
             </div>
             <ul className="offer__features">
@@ -125,40 +134,10 @@ export default function OfferPage({
             </div>
             <section className="offer__reviews reviews">
               <h2 className="reviews__title">
-                Reviews &middot; <span className="reviews__amount">1</span>
+                Reviews &middot;{' '}
+                <span className="reviews__amount">{currentReviews.length}</span>
               </h2>
-              <ul className="reviews__list">
-                <li className="reviews__item">
-                  <div className="reviews__user user">
-                    <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                      <img
-                        className="reviews__avatar user__avatar"
-                        src="img/avatar-max.jpg"
-                        width="54"
-                        height="54"
-                        alt="Reviews avatar"
-                      />
-                    </div>
-                    <span className="reviews__user-name">Max</span>
-                  </div>
-                  <div className="reviews__info">
-                    <div className="reviews__rating rating">
-                      <div className="reviews__stars rating__stars">
-                        <span style={{ width: '80%' }}></span>
-                        <span className="visually-hidden">Rating</span>
-                      </div>
-                    </div>
-                    <p className="reviews__text">
-                      A quiet cozy and picturesque that hides behind a a river
-                      by the unique lightness of Amsterdam. The building is
-                      green and from 18th century.
-                    </p>
-                    <time className="reviews__time" dateTime="2019-04-24">
-                      April 2019
-                    </time>
-                  </div>
-                </li>
-              </ul>
+              <ReviewsList currentReviews={currentReviews} />
               {isUserLogged(authorizationStatus) ? (
                 <ReviewForm />
               ) : (
