@@ -33,15 +33,15 @@ export default function Map({ mockOffers, activeOffer }: MapProps) {
   useEffect(() => {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
-      mockOffers.forEach((item) => {
+      mockOffers.forEach(({id, location}) => {
         const marker = new Marker({
-          lat: item.location.latitude,
-          lng: item.location.longitude,
+          lat: location.latitude,
+          lng: location.longitude,
         });
 
         marker
           .setIcon(
-            (activeOffer !== undefined && activeOffer.id === item.id)
+            (activeOffer !== undefined && activeOffer.id === id)
               ? currentCustomIcon
               : defaultCustomIcon
           )

@@ -30,3 +30,13 @@ export const rating = [
   { value: 2, label: 'badly' },
   { value: 1, label: 'terribly' },
 ];
+
+// массив наименований городов
+export const cities = [
+  { id: 0, title: 'Paris' },
+  { id: 1, title: 'Cologne' },
+  { id: 2, title: 'Brussels' },
+  { id: 3, title: 'Amsterdam' },
+  { id: 4, title: 'Hamburg' },
+  { id: 5, title: 'Dusseldorf' },
+];
