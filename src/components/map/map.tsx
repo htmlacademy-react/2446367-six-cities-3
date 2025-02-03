@@ -10,21 +10,18 @@ type MapProps = {
 };
 
 const defaultCustomIcon = new Icon({
-  iconUrl:
-    'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg',
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
+  iconUrl: '/public/img/pin.svg',
+  iconSize: [28, 40],
+  iconAnchor: [14, 40],
 });
 
 const currentCustomIcon = new Icon({
-  iconUrl:
-    'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg',
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
+  iconUrl: '/public/img/pin-active.svg',
+  iconSize: [28, 40],
+  iconAnchor: [14, 40],
 });
 
 export default function Map({ mockOffers, activeOffer, className }: MapProps) {
-
   const offer = mockOffers[0];
   const { city } = offer;
 
@@ -34,7 +31,7 @@ export default function Map({ mockOffers, activeOffer, className }: MapProps) {
   useEffect(() => {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
-      mockOffers.forEach(({id, location}) => {
+      mockOffers.forEach(({ id, location }) => {
         const marker = new Marker({
           lat: location.latitude,
           lng: location.longitude,
@@ -42,9 +39,9 @@ export default function Map({ mockOffers, activeOffer, className }: MapProps) {
 
         marker
           .setIcon(
-            (activeOffer !== undefined && activeOffer.id === id)
+            activeOffer !== undefined && activeOffer.id === id
               ? currentCustomIcon
-              : defaultCustomIcon
+              : defaultCustomIcon,
           )
           .addTo(markerLayer);
 

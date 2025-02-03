@@ -2,6 +2,7 @@ import PremiumMark from '../premium-mark/premium-mark';
 import { Offer } from '../../mocks/mock-types/offers';
 import { capitalizeFirstLetter, convertStarToWidth } from '../../utils/utils';
 import { Link } from 'react-router-dom';
+import { AppRoute } from '../../utils/data';
 
 type OfferCardProps = {
   offer: Offer;
@@ -43,7 +44,7 @@ export default function OfferCard({
       <div
         className={`${pageClassName}__image-wrapper place-card__image-wrapper`}
       >
-        <Link to={`offer/${id}`}>
+        <Link to={`${AppRoute.Offer.replace('/:id', '')}/${id}`}>
           <img
             className="place-card__image"
             src={previewImage}
@@ -76,7 +77,7 @@ export default function OfferCard({
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={`${AppRoute.Offer.replace('/:id', '')}/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{capitalizeFirstLetter(type)}</p>
       </div>
