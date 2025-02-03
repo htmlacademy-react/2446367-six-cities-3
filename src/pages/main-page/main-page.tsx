@@ -46,7 +46,11 @@ export default function MainPage({ offersCount, mockOffers }: MainOffersProps) {
           )}
           <div className="cities__right-section">
             {!emptyMain && (
-              <Map mockOffers={mockOffers} activeOffer={activeOffer} />
+              <Map
+                className="cities__map"
+                mockOffers={mockOffers}
+                activeOffer={activeOffer}
+              />
             )}
           </div>
         </div>

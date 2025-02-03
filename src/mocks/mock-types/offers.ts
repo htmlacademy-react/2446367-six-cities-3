@@ -15,16 +15,6 @@ export type City = {
   location: Location;
 };
 
-export type Goods = {
-  id: number;
-  title: string;
-}
-
-export type Images = {
-  id: number;
-  src: string;
-}
-
 export type Offer = {
   id: string;
   title: string;
@@ -38,9 +28,9 @@ export type Offer = {
   previewImage: string;
   description: string;
   bedrooms: number;
-  goods: Goods[];
+  goods: string[];
   host: Host;
-  images: Images[];
+  images: string[];
   maxAdults: number;
 };
 

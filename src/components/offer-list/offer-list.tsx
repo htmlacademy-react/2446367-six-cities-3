@@ -12,6 +12,7 @@ export default function OfferList({ mockOffers, onActiveOffer }: OfferListProps)
       {mockOffers.map((offer) => (
         <OfferCard
           offer={offer}
+          pageClassName='cities'
           key={offer.id}
           onActiveOffer={onActiveOffer}
         />

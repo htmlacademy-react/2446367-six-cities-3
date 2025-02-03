@@ -9,17 +9,20 @@ import PrivateRoute from './components/private-route/private-route';
 import { AppRoute } from './utils/data';
 import { userAuthorization } from './mocks/mock-data';
 import { Offers } from './mocks/mock-types/offers';
+import { Reviews } from './mocks/mock-types/reviews';
 
 type AppScreenProps = {
   offersCount: number;
   favoritesCount: number;
   mockOffers: Offers;
+  mockReviews: Reviews;
 };
 
 export default function App({
   offersCount,
   favoritesCount,
   mockOffers,
+  mockReviews,
 }: AppScreenProps) {
   return (
     <BrowserRouter>
@@ -61,7 +64,7 @@ export default function App({
           />
           <Route
             path={AppRoute.Offer}
-            element={<OfferPage authorizationStatus={userAuthorization} mockOffers={mockOffers} />}
+            element={<OfferPage authorizationStatus={userAuthorization} mockOffers={mockOffers} mockReviews={mockReviews} />}
           />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
