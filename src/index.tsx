@@ -14,7 +14,6 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <App
-        offersCount={Setting.OffersCount}
         favoritesCount={Setting.FavoritesCount}
         mockReviews={mockReviews}
       />
