@@ -8,24 +8,24 @@ import Map from '../../components/map/map';
 import { useParams } from 'react-router-dom';
 import { AuthorizationStatus } from '../../utils/data';
 import { isUserLogged } from '../../mocks/mock-util';
-import { Offer, Offers } from '../../mocks/mock-types/offers';
+import { Offer } from '../../mocks/mock-types/offers';
 import { capitalizeFirstLetter, getOfferRating } from '../../utils/utils';
 import { Reviews } from '../../mocks/mock-types/reviews';
 import { Review } from '../../mocks/mock-types/reviews';
 import NearPlacesList from '../../components/near-places-list/near-places-list';
+import { useAppSelector } from '../../hooks/store';
 
 type OfferPageProps = {
   authorizationStatus: AuthorizationStatus;
-  mockOffers: Offers;
   mockReviews: Reviews;
 };
 
 export default function OfferPage({
   authorizationStatus,
-  mockOffers,
   mockReviews,
 }: OfferPageProps) {
   const { id } = useParams();
+  const mockOffers = useAppSelector((state) => state.mockOffers);
   const currentOffer = mockOffers.find((offer: Offer) => offer.id === id);
 
   const nearOffers = mockOffers.filter(

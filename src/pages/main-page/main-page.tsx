@@ -1,17 +1,20 @@
 import { useState } from 'react';
-import { Offer, Offers } from '../../mocks/mock-types/offers';
+import { Offer } from '../../mocks/mock-types/offers';
 import EmptyMainPage from '../../components/empty-main-page/empty-main-page';
 import FilledMainPage from '../../components/filled-main-page/filled-main-page';
 import usePageLayout from '../../hooks/use-page-layout';
 import Map from '../../components/map/map';
 import LocationsList from '../../components/locations-list/locations-list';
+import { useAppSelector } from '../../hooks/store';
 
 type MainOffersProps = {
   offersCount: number;
-  mockOffers: Offers;
 };
 
-export default function MainPage({ offersCount, mockOffers }: MainOffersProps) {
+export default function MainPage({ offersCount }: MainOffersProps) {
+  const mockOffers = useAppSelector((state) => state.mockOffers);
+
+
   const { emptyMain, emptyPageContainerClassName } = usePageLayout({
     offersCount,
   });

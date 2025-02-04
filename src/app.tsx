@@ -8,20 +8,17 @@ import Layout from './components/layout/layout';
 import PrivateRoute from './components/private-route/private-route';
 import { AppRoute } from './utils/data';
 import { userAuthorization } from './mocks/mock-data';
-import { Offers } from './mocks/mock-types/offers';
 import { Reviews } from './mocks/mock-types/reviews';
 
 type AppScreenProps = {
   offersCount: number;
   favoritesCount: number;
-  mockOffers: Offers;
   mockReviews: Reviews;
 };
 
 export default function App({
   offersCount,
   favoritesCount,
-  mockOffers,
   mockReviews,
 }: AppScreenProps) {
   return (
@@ -40,7 +37,7 @@ export default function App({
           <Route
             index
             element={
-              <MainPage offersCount={offersCount} mockOffers={mockOffers} />
+              <MainPage offersCount={offersCount} />
             }
           />
           <Route
@@ -57,14 +54,14 @@ export default function App({
               <PrivateRoute authorizationStatus={userAuthorization}>
                 <FavoritesPage
                   favoritesCount={favoritesCount}
-                  mockOffers={mockOffers}
+                  // mockOffers={mockOffers}
                 />
               </PrivateRoute>
             }
           />
           <Route
             path={AppRoute.Offer}
-            element={<OfferPage authorizationStatus={userAuthorization} mockOffers={mockOffers} mockReviews={mockReviews} />}
+            element={<OfferPage authorizationStatus={userAuthorization} mockReviews={mockReviews} />}
           />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
