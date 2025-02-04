@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react';
 
 type MapProps = {
   className?: string;
-  mockOffers: Offers;
+  currentOffers: Offers;
   activeOffer?: Offer | undefined;
 };
 
@@ -21,9 +21,8 @@ const currentCustomIcon = new Icon({
   iconAnchor: [14, 40],
 });
 
-export default function Map({ mockOffers, activeOffer, className }: MapProps) {
-  const offer = mockOffers[0];
-  const { city } = offer;
+export default function Map({ currentOffers, activeOffer, className }: MapProps) {
+  const { city } = currentOffers[0];
 
   const mapRef = useRef<HTMLDivElement>(null);
   const map = useMap(mapRef, city);
@@ -31,7 +30,7 @@ export default function Map({ mockOffers, activeOffer, className }: MapProps) {
   useEffect(() => {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
-      mockOffers.forEach(({ id, location }) => {
+      currentOffers.forEach(({ id, location }) => {
         const marker = new Marker({
           lat: location.latitude,
           lng: location.longitude,
@@ -50,7 +49,7 @@ export default function Map({ mockOffers, activeOffer, className }: MapProps) {
         };
       });
     }
-  }, [activeOffer, map, mockOffers, offer]);
+  }, [activeOffer, map, currentOffers]);
 
   return <section className={`map ${className}`} ref={mapRef} />;
 }

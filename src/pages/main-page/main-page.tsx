@@ -7,16 +7,16 @@ import Map from '../../components/map/map';
 import LocationsList from '../../components/locations-list/locations-list';
 import { useAppSelector } from '../../hooks/store';
 
-type MainOffersProps = {
-  offersCount: number;
-};
-
-export default function MainPage({ offersCount }: MainOffersProps) {
+export default function MainPage() {
   const mockOffers = useAppSelector((state) => state.mockOffers);
+  const currentCity = useAppSelector((state) => state.city);
 
+  const currentOffers = mockOffers.filter(
+    (offer) => offer.city.name === currentCity,
+  );
 
   const { emptyMain, emptyPageContainerClassName } = usePageLayout({
-    offersCount,
+    currentOffers,
   });
 
   const [activeOffer, setActiveOffer] = useState<Offer | undefined>(undefined);
@@ -39,11 +39,10 @@ export default function MainPage({ offersCount }: MainOffersProps) {
           className={`cities__places-container container ${emptyPageContainerClassName}`}
         >
           {emptyMain ? (
-            <EmptyMainPage />
+            <EmptyMainPage currentCity={currentCity} />
           ) : (
             <FilledMainPage
-              offersCount={offersCount}
-              mockOffers={mockOffers}
+              currentOffers={currentOffers}
               onActiveOffer={handleActiveOffer}
             />
           )}
@@ -51,7 +50,7 @@ export default function MainPage({ offersCount }: MainOffersProps) {
             {!emptyMain && (
               <Map
                 className="cities__map"
-                mockOffers={mockOffers}
+                currentOffers={currentOffers}
                 activeOffer={activeOffer}
               />
             )}

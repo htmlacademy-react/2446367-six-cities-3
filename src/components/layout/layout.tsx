@@ -6,13 +6,11 @@ import usePageLayout from '../../hooks/use-page-layout';
 
 type LayoutProps = {
   favoritesCount: number;
-  offersCount: number;
   authorizationStatus: AuthorizationStatus;
 };
 
 export default function Layout({
   favoritesCount,
-  offersCount,
   authorizationStatus,
 }: LayoutProps) {
   const {
@@ -21,7 +19,7 @@ export default function Layout({
     rootClassName,
     mainClassName,
     onFavoritesPage,
-  } = usePageLayout({ favoritesCount, offersCount });
+  } = usePageLayout({ favoritesCount });
 
   return (
     <div className={`page${rootClassName}`}>

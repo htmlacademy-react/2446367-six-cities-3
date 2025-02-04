@@ -12,12 +12,14 @@ export const getOfferRating = (reviews: Reviews) => {
   let offerRating = 0;
   let starRating = '';
 
-  reviews.map(({ rating }) => {
-    offerRating += rating;
-  });
+  if (reviews.length !== 0) {
+    reviews.map(({ rating }) => {
+      offerRating += rating;
+    });
 
-  offerRating = Math.round(offerRating / reviews.length);
-  starRating = convertStarToWidth(offerRating);
+    offerRating = Math.round(offerRating / reviews.length);
+    starRating = convertStarToWidth(offerRating);
+  }
 
   return { offerRating, starRating };
 };

@@ -155,7 +155,7 @@ export default function OfferPage({
             </section>
           </div>
         </div>
-        <Map className="offer__map" mockOffers={nearOffers} />
+        <Map className="offer__map" currentOffers={nearOffers} />
       </section>
       <div className="container">
         <section className="near-places places">

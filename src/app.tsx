@@ -11,16 +11,11 @@ import { userAuthorization } from './mocks/mock-data';
 import { Reviews } from './mocks/mock-types/reviews';
 
 type AppScreenProps = {
-  offersCount: number;
   favoritesCount: number;
   mockReviews: Reviews;
 };
 
-export default function App({
-  offersCount,
-  favoritesCount,
-  mockReviews,
-}: AppScreenProps) {
+export default function App({ favoritesCount, mockReviews }: AppScreenProps) {
   return (
     <BrowserRouter>
       <Routes>
@@ -29,17 +24,11 @@ export default function App({
           element={
             <Layout
               favoritesCount={favoritesCount}
-              offersCount={offersCount}
               authorizationStatus={userAuthorization}
             />
           }
         >
-          <Route
-            index
-            element={
-              <MainPage offersCount={offersCount} />
-            }
-          />
+          <Route index element={<MainPage />} />
           <Route
             path={AppRoute.Login}
             element={
@@ -52,16 +41,18 @@ export default function App({
             path={AppRoute.Favorites}
             element={
               <PrivateRoute authorizationStatus={userAuthorization}>
-                <FavoritesPage
-                  favoritesCount={favoritesCount}
-                  // mockOffers={mockOffers}
-                />
+                <FavoritesPage favoritesCount={favoritesCount} />
               </PrivateRoute>
             }
           />
           <Route
             path={AppRoute.Offer}
-            element={<OfferPage authorizationStatus={userAuthorization} mockReviews={mockReviews} />}
+            element={
+              <OfferPage
+                authorizationStatus={userAuthorization}
+                mockReviews={mockReviews}
+              />
+            }
           />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
