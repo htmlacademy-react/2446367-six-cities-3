@@ -1,19 +1,22 @@
 import { useState } from 'react';
-import { Offer, Offers } from '../../mocks/mock-types/offers';
+import { Offer } from '../../mocks/mock-types/offers';
 import EmptyMainPage from '../../components/empty-main-page/empty-main-page';
 import FilledMainPage from '../../components/filled-main-page/filled-main-page';
 import usePageLayout from '../../hooks/use-page-layout';
 import Map from '../../components/map/map';
 import LocationsList from '../../components/locations-list/locations-list';
+import { useAppSelector } from '../../hooks/store';
 
-type MainOffersProps = {
-  offersCount: number;
-  mockOffers: Offers;
-};
+export default function MainPage() {
+  const mockOffers = useAppSelector((state) => state.mockOffers);
+  const currentCity = useAppSelector((state) => state.city);
 
-export default function MainPage({ offersCount, mockOffers }: MainOffersProps) {
+  const currentOffers = mockOffers.filter(
+    (offer) => offer.city.name === currentCity,
+  );
+
   const { emptyMain, emptyPageContainerClassName } = usePageLayout({
-    offersCount,
+    currentOffers,
   });
 
   const [activeOffer, setActiveOffer] = useState<Offer | undefined>(undefined);
@@ -36,11 +39,10 @@ export default function MainPage({ offersCount, mockOffers }: MainOffersProps) {
           className={`cities__places-container container ${emptyPageContainerClassName}`}
         >
           {emptyMain ? (
-            <EmptyMainPage />
+            <EmptyMainPage currentCity={currentCity} />
           ) : (
             <FilledMainPage
-              offersCount={offersCount}
-              mockOffers={mockOffers}
+              currentOffers={currentOffers}
               onActiveOffer={handleActiveOffer}
             />
           )}
@@ -48,7 +50,7 @@ export default function MainPage({ offersCount, mockOffers }: MainOffersProps) {
             {!emptyMain && (
               <Map
                 className="cities__map"
-                mockOffers={mockOffers}
+                currentOffers={currentOffers}
                 activeOffer={activeOffer}
               />
             )}

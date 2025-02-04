@@ -1,14 +1,15 @@
 import { AppRoute } from '../utils/data';
 import { useLocation } from 'react-router-dom';
+import { Offers } from '../mocks/mock-types/offers';
 
 type usePageLayoutProps = {
   favoritesCount?: number;
-  offersCount?: number;
+  currentOffers?: Offers;
 };
 
 export default function usePageLayout({
   favoritesCount,
-  offersCount,
+  currentOffers,
 }: usePageLayoutProps) {
   const { pathname } = useLocation();
 
@@ -30,7 +31,7 @@ export default function usePageLayout({
       headerOnMainPage = true;
       mainClassName = ' page__main--index';
 
-      if (offersCount === 0) {
+      if (currentOffers?.length === 0) {
         emptyMain = true;
         mainClassName = ' page__main--index page__main--index-empty';
         emptyPageContainerClassName = ' cities__places-container--empty';

@@ -1,17 +1,14 @@
 import EmptyFavoritesPage from '../../components/empty-favorites-page/empty-favorites-page';
 import FilledFavoritesPage from '../../components/filled-favorites-page/filled-favorites-page';
-import { Offers } from '../../mocks/mock-types/offers';
 import usePageLayout from '../../hooks/use-page-layout';
+import { useAppSelector } from '../../hooks/store';
 
 type FavoritesPageProps = {
   favoritesCount: number;
-  mockOffers: Offers;
 };
 
-export default function FavoritesPage({
-  favoritesCount,
-  mockOffers,
-}: FavoritesPageProps) {
+export default function FavoritesPage({ favoritesCount }: FavoritesPageProps) {
+  const mockOffers = useAppSelector((state) => state.mockOffers);
   const { emptyFavorites } = usePageLayout({
     favoritesCount,
   });

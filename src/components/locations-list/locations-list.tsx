@@ -1,18 +1,27 @@
-import { useState } from 'react';
-import { cities } from '../../utils/data';
+import { CITIES } from '../../utils/data';
+import { useAppDispatch, useAppSelector } from '../../hooks/store';
+import { setCity } from '../../store/reducer';
 
 export default function LocationsList() {
-  const [location, setLocation] = useState('Amsterdam');
+  const currentCity = useAppSelector((state) => state.city);
+  const dispatch = useAppDispatch();
 
   return (
     <ul className="locations__list tabs__list">
-      {cities.map(({ id, title }) => (
-        <li className="locations__item" key={id} onClick={() => setLocation(title)}>
+      {CITIES.map(({ id, name }) => (
+        <li
+          className="locations__item"
+          key={id}
+          onClick={(evt) => {
+            evt.preventDefault();
+            dispatch(setCity(name));
+          }}
+        >
           <a
-            className={`locations__item-link tabs__item ${title === location ? 'tabs__item--active' : ''}`}
-            {...(title === location ? {} : { href: '#' })}
+            className={`locations__item-link tabs__item ${name === currentCity ? 'tabs__item--active' : ''}`}
+            {...(name === currentCity ? {} : { href: '#' })}
           >
-            <span>{title}</span>
+            <span>{name}</span>
           </a>
         </li>
       ))}
