@@ -1,6 +1,6 @@
 import { CITIES } from '../../utils/data';
 import { useAppDispatch, useAppSelector } from '../../hooks/store';
-import { setCity } from '../../store/reducer';
+import { offersActions } from '../../store/slices/offers';
 
 export default function LocationsList() {
   const currentCity = useAppSelector((state) => state.city);
@@ -14,7 +14,7 @@ export default function LocationsList() {
           key={id}
           onClick={(evt) => {
             evt.preventDefault();
-            dispatch(setCity(name));
+            dispatch(offersActions.setCity(name));
           }}
         >
           <a
