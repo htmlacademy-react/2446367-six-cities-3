@@ -1,15 +1,18 @@
-import { useState } from 'react';
-import { Offer } from '../../mocks/mock-types/offers';
-import EmptyMainPage from '../../components/empty-main-page/empty-main-page';
-import FilledMainPage from '../../components/filled-main-page/filled-main-page';
 import usePageLayout from '../../hooks/use-page-layout';
-import Map from '../../components/map/map';
-import LocationsList from '../../components/locations-list/locations-list';
+import { useState } from 'react';
 import { useAppSelector } from '../../hooks/store';
 
+import EmptyMainPage from '../../components/empty-main-page/empty-main-page';
+import FilledMainPage from '../../components/filled-main-page/filled-main-page';
+import Map from '../../components/map/map';
+import LocationsList from '../../components/locations-list/locations-list';
+
+import { Offer } from '../../mocks/mock-types/offers';
+import { selectCity, selectOffers } from '../../store/selectors/offers';
+
 export default function MainPage() {
-  const mockOffers = useAppSelector((state) => state.mockOffers);
-  const currentCity = useAppSelector((state) => state.city);
+  const mockOffers = useAppSelector(selectOffers);
+  const currentCity = useAppSelector(selectCity);
 
   const currentOffers = mockOffers.filter(
     (offer) => offer.city.name === currentCity,
