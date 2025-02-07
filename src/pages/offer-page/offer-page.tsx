@@ -15,7 +15,7 @@ import { isUserLogged } from '../../mocks/mock-util';
 import { Offer } from '../../mocks/mock-types/offers';
 import { capitalizeFirstLetter, getOfferRating } from '../../utils/utils';
 import { Review, Reviews } from '../../mocks/mock-types/reviews';
-import { selectOffers } from '../../store/selectors/offers';
+import { offersSelectors } from '../../store/slices/offers';
 
 type OfferPageProps = {
   authorizationStatus: AuthorizationStatus;
@@ -27,7 +27,7 @@ export default function OfferPage({
   mockReviews,
 }: OfferPageProps) {
   const { id } = useParams();
-  const mockOffers = useAppSelector(selectOffers);
+  const mockOffers = useAppSelector(offersSelectors.offers);
   const currentOffer = mockOffers.find((offer: Offer) => offer.id === id);
 
   const nearOffers = mockOffers.filter(

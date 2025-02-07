@@ -8,11 +8,11 @@ import Map from '../../components/map/map';
 import LocationsList from '../../components/locations-list/locations-list';
 
 import { Offer } from '../../mocks/mock-types/offers';
-import { selectCity, selectOffers } from '../../store/selectors/offers';
+import { offersSelectors } from '../../store/slices/offers';
 
 export default function MainPage() {
-  const mockOffers = useAppSelector(selectOffers);
-  const currentCity = useAppSelector(selectCity);
+  const mockOffers = useAppSelector(offersSelectors.offers);
+  const currentCity = useAppSelector(offersSelectors.city);
 
   const currentOffers = mockOffers.filter(
     (offer) => offer.city.name === currentCity,

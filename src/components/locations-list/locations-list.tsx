@@ -1,11 +1,11 @@
 import { useAppDispatch, useAppSelector } from '../../hooks/store';
 
 import { offersActions } from '../../store/slices/offers';
-import { selectCity } from '../../store/selectors/offers';
+import { offersSelectors } from '../../store/slices/offers';
 import { CITIES } from '../../utils/data';
 
 export default function LocationsList() {
-  const currentCity = useAppSelector(selectCity);
+  const currentCity = useAppSelector(offersSelectors.city);
   const dispatch = useAppDispatch();
 
   return (
