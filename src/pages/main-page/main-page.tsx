@@ -11,12 +11,8 @@ import { Offer } from '../../mocks/mock-types/offers';
 import { offersSelectors } from '../../store/slices/offers';
 
 export default function MainPage() {
-  const mockOffers = useAppSelector(offersSelectors.offers);
   const currentCity = useAppSelector(offersSelectors.city);
-
-  const currentOffers = mockOffers.filter(
-    (offer) => offer.city.name === currentCity,
-  );
+  const currentOffers = useAppSelector(offersSelectors.cityOffers);
 
   const { emptyMain, emptyPageContainerClassName } = usePageLayout({
     currentOffers,

@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit';
 
 import { Offers } from '../../mocks/mock-types/offers';
 import { mockOffers } from '../../mocks/mock-offers';
@@ -25,8 +25,15 @@ export const offersSlice = createSlice({
   selectors: {
     city: (state: OffersState) => state.city,
     offers: (state: OffersState) => state.mockOffers,
-  }
+  },
 });
 
 export const offersActions = offersSlice.actions;
-export const offersSelectors = offersSlice.selectors;
+export const offersSelectors = {
+  ...offersSlice.selectors,
+  cityOffers: createSelector(
+    offersSlice.selectors.offers,
+    offersSlice.selectors.city,
+    (allOffers, city) => allOffers.filter((offer) => offer.city.name === city),
+  ),
+};
