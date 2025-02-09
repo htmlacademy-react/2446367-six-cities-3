@@ -1,12 +1,16 @@
-import { Icon, Marker, layerGroup } from 'leaflet';
 import useMap from '../../hooks/use-map';
-import { Offer, Offers } from '../../mocks/mock-types/offers';
+import { useAppSelector } from '../../hooks/store';
 import { useEffect, useRef } from 'react';
+
+import { Icon, Marker, layerGroup } from 'leaflet';
+import { Offers } from '../../mocks/mock-types/offers';
+import { offersSelectors } from '../../store/slices/offers';
+import { CITIES, CityName } from '../../utils/data';
 
 type MapProps = {
   className?: string;
   currentOffers: Offers;
-  activeOffer?: Offer | undefined;
+  currentCity: CityName;
 };
 
 const defaultCustomIcon = new Icon({
@@ -21,15 +25,17 @@ const currentCustomIcon = new Icon({
   iconAnchor: [14, 40],
 });
 
-export default function Map({ currentOffers, activeOffer, className }: MapProps) {
-  const { city } = currentOffers[0];
+export default function Map({ currentOffers, currentCity, className }: MapProps) {
+  const activeOffer = useAppSelector(offersSelectors.activeId);
+  const cityLocation = CITIES.find((item) => item.name === currentCity)!.location;
 
   const mapRef = useRef<HTMLDivElement>(null);
-  const map = useMap(mapRef, city);
+  const map = useMap(mapRef, cityLocation);
 
   useEffect(() => {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
+
       currentOffers.forEach(({ id, location }) => {
         const marker = new Marker({
           lat: location.latitude,
@@ -38,7 +44,7 @@ export default function Map({ currentOffers, activeOffer, className }: MapProps)
 
         marker
           .setIcon(
-            activeOffer !== undefined && activeOffer.id === id
+            activeOffer !== undefined && activeOffer === id
               ? currentCustomIcon
               : defaultCustomIcon,
           )

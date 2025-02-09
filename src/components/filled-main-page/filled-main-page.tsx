@@ -1,30 +1,36 @@
-import { useAppSelector } from '../../hooks/store';
-
 import SortingForm from '../sorting-form/sorting-form';
 import OfferList from '../offer-list/offer-list';
 
-import { Offer, Offers } from '../../mocks/mock-types/offers';
-import { offersSelectors } from '../../store/slices/offers';
+import { Offers } from '../../mocks/mock-types/offers';
+import { MouseEventHandler } from 'react';
+import { CityName } from '../../utils/data';
 
 type FilledMainPageProps = {
   currentOffers: Offers;
-  onActiveOffer: (offer?: Offer) => void;
+  currentCity: CityName;
+  handleActiveOn: MouseEventHandler<HTMLElement>;
+  handleActiveOff: MouseEventHandler<HTMLElement>;
 };
 
 export default function FilledMainPage({
   currentOffers,
-  onActiveOffer,
+  currentCity,
+  handleActiveOn,
+  handleActiveOff,
 }: FilledMainPageProps) {
-  const currentCity = useAppSelector(offersSelectors.city);
-
   return (
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
       <b className="places__found">
-        {currentOffers.length} place{currentOffers.length > 1 && 's'} to stay in {currentCity}
+        {currentOffers.length} place{currentOffers.length > 1 && 's'} to stay in{' '}
+        {currentCity}
       </b>
       <SortingForm />
-      <OfferList currentOffers={currentOffers} onActiveOffer={onActiveOffer} />
+      <OfferList
+        currentOffers={currentOffers}
+        handleActiveOn={handleActiveOn}
+        handleActiveOff={handleActiveOff}
+      />
     </section>
   );
 }

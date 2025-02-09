@@ -1,14 +1,13 @@
 import usePageLayout from '../../hooks/use-page-layout';
-import { useState } from 'react';
-import { useAppSelector } from '../../hooks/store';
+import { useActionCreators, useAppSelector } from '../../hooks/store';
 
 import EmptyMainPage from '../../components/empty-main-page/empty-main-page';
 import FilledMainPage from '../../components/filled-main-page/filled-main-page';
 import Map from '../../components/map/map';
 import LocationsList from '../../components/locations-list/locations-list';
 
-import { Offer } from '../../mocks/mock-types/offers';
-import { offersSelectors } from '../../store/slices/offers';
+import { offersActions, offersSelectors } from '../../store/slices/offers';
+import { MouseEvent } from 'react';
 
 export default function MainPage() {
   const currentCity = useAppSelector(offersSelectors.city);
@@ -18,11 +17,16 @@ export default function MainPage() {
     currentOffers,
   });
 
-  const [activeOffer, setActiveOffer] = useState<Offer | undefined>(undefined);
-  const handleActiveOffer = (offer?: Offer) => {
-    setActiveOffer(offer || undefined);
+  const { setActiveId } = useActionCreators(offersActions);
 
-    return activeOffer;
+  const handleActiveOn = (evt: MouseEvent<HTMLElement>) => {
+    const target = evt.currentTarget as HTMLElement;
+    const id = target.dataset.id;
+    setActiveId(id);
+  };
+
+  const handleActiveOff = () => {
+    setActiveId(undefined);
   };
 
   return (
@@ -42,16 +46,14 @@ export default function MainPage() {
           ) : (
             <FilledMainPage
               currentOffers={currentOffers}
-              onActiveOffer={handleActiveOffer}
+              currentCity={currentCity}
+              handleActiveOn={handleActiveOn}
+              handleActiveOff={handleActiveOff}
             />
           )}
           <div className="cities__right-section">
             {!emptyMain && (
-              <Map
-                className="cities__map"
-                currentOffers={currentOffers}
-                activeOffer={activeOffer}
-              />
+              <Map className="cities__map" currentCity={currentCity} currentOffers={currentOffers} />
             )}
           </div>
         </div>

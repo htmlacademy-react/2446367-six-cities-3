@@ -28,6 +28,9 @@ export default function OfferPage({
 }: OfferPageProps) {
   const { id } = useParams();
   const mockOffers = useAppSelector(offersSelectors.offers);
+  const currentCity = useAppSelector(offersSelectors.city);
+  const currentOffers = useAppSelector(offersSelectors.cityOffers);
+
   const currentOffer = mockOffers.find((offer: Offer) => offer.id === id);
 
   const nearOffers = mockOffers.filter(
@@ -157,7 +160,7 @@ export default function OfferPage({
             </section>
           </div>
         </div>
-        <Map className="offer__map" currentOffers={nearOffers} />
+        <Map className="offer__map" currentCity={currentCity} currentOffers={currentOffers} />
       </section>
       <div className="container">
         <section className="near-places places">

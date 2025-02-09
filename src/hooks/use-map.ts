@@ -1,11 +1,12 @@
-import { Map, TileLayer } from 'leaflet';
 import { useState, MutableRefObject, useRef, useEffect } from 'react';
-import { City } from '../mocks/mock-types/offers';
+
 import 'leaflet/dist/leaflet.css';
+import { Map, TileLayer } from 'leaflet';
+import { Location } from '../mocks/mock-types/offers';
 
 export default function useMap(
   mapRef: MutableRefObject<HTMLElement | null>,
-  city: City,
+  cityLocation: Location,
 ): Map | null {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef<boolean>(false);
@@ -14,10 +15,10 @@ export default function useMap(
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = new Map(mapRef.current, {
         center: {
-          lat: city.location.latitude,
-          lng: city.location.longitude,
+          lat: cityLocation.latitude,
+          lng: cityLocation.longitude,
         },
-        zoom: city.location.zoom,
+        zoom: cityLocation.zoom,
       });
 
       const layer = new TileLayer(
@@ -33,7 +34,7 @@ export default function useMap(
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [mapRef, city]);
+  }, [mapRef, cityLocation]);
 
   return map;
 }
