@@ -3,10 +3,11 @@ import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit';
 import { Offer, Offers } from '../../mocks/mock-types/offers';
 import { mockOffers } from '../../mocks/mock-offers';
 import { CITIES, CityName } from '../../utils/data';
+import { RootState } from '../../types/store';
 
 type OffersState = {
   city: CityName;
-  activeId?: Offer['id'];
+  activeId: Offer['id'] | undefined;
   mockOffers: Offers;
 };
 
@@ -27,19 +28,22 @@ export const offersSlice = createSlice({
       state.activeId = action.payload;
     },
   },
-  selectors: {
-    city: (state: OffersState) => state.city,
-    activeId: (state: OffersState) => state.activeId,
-    offers: (state: OffersState) => state.mockOffers,
-  },
 });
 
-export const offersActions = offersSlice.actions;
+export const selectCity = (state: RootState) => state.offers.city;
+export const selectActiveId = (state: RootState) => state.offers.activeId;
+export const selectOffers = (state: RootState) => state.offers.mockOffers;
+
+export const selectCityOffers = createSelector(
+  [selectOffers, selectCity],
+  (allOffers, city) => allOffers.filter((offer) => offer.city.name === city),
+);
+
 export const offersSelectors = {
-  ...offersSlice.selectors,
-  cityOffers: createSelector(
-    offersSlice.selectors.offers,
-    offersSlice.selectors.city,
-    (allOffers, city) => allOffers.filter((offer) => offer.city.name === city),
-  ),
+  city: selectCity,
+  offers: selectOffers,
+  activeId: selectActiveId,
+  cityOffers: selectCityOffers,
 };
+
+export const offersActions = offersSlice.actions;
