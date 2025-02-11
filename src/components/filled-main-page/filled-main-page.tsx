@@ -1,27 +1,65 @@
+import { useState } from 'react';
+import { useActionCreators } from '../../hooks/store';
+
 import SortingForm from '../sorting-form/sorting-form';
 import OfferList from '../offer-list/offer-list';
-import { Offer, Offers } from '../../mocks/mock-types/offers';
-import { useAppSelector } from '../../hooks/store';
+
+import { Offers } from '../../mocks/mock-types/offers';
+import { CityName } from '../../utils/data';
+import { SortOption } from '../sorting-form/data';
+import { offersActions } from '../../store/slices/offers';
+import { MouseEvent } from 'react';
 
 type FilledMainPageProps = {
   currentOffers: Offers;
-  onActiveOffer: (offer?: Offer) => void;
+  currentCity: CityName;
 };
 
 export default function FilledMainPage({
   currentOffers,
-  onActiveOffer,
+  currentCity,
 }: FilledMainPageProps) {
-  const currentCity = useAppSelector((state) => state.city);
+  const { setActiveId } = useActionCreators(offersActions);
+
+  const [activeSort, setActiveSort] = useState(SortOption.Popular);
+
+  const handleActiveOn = (evt: MouseEvent<HTMLElement>) => {
+    const target = evt.currentTarget as HTMLElement;
+    const id = target.dataset.id;
+    setActiveId(id);
+  };
+
+  const handleActiveOff = () => {
+    setActiveId(undefined);
+  };
+
+  let sortedOffers = currentOffers;
+
+  if (activeSort === SortOption.PriceLowToHigh) {
+    sortedOffers = [...currentOffers].sort((a, b) => a.price - b.price);
+  }
+
+  if (activeSort === SortOption.PriceHighToLow) {
+    sortedOffers = [...currentOffers].sort((a, b) => b.price - a.price);
+  }
+
+  if (activeSort === SortOption.TopRatedFirst) {
+    sortedOffers = [...currentOffers].sort((a, b) => b.rating - a.rating);
+  }
 
   return (
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
       <b className="places__found">
-        {currentOffers.length} places to stay in {currentCity}
+        {currentOffers.length} place{currentOffers.length > 1 && 's'} to stay in{' '}
+        {currentCity}
       </b>
-      <SortingForm />
-      <OfferList currentOffers={currentOffers} onActiveOffer={onActiveOffer} />
+      <SortingForm current={activeSort} setter={setActiveSort} />
+      <OfferList
+        currentOffers={sortedOffers}
+        handleActiveOn={handleActiveOn}
+        handleActiveOff={handleActiveOff}
+      />
     </section>
   );
 }

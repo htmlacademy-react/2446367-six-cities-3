@@ -1,19 +1,21 @@
+import { useParams } from 'react-router-dom';
+import { useAppSelector } from '../../hooks/store';
+
 import OfferImage from '../../components/offer-image/offer-image';
 import ReviewForm from '../../components/review-form/review-form';
 import NotFoundPage from '../not-found-page/not-found-page';
 import OfferInsideList from '../../components/offer-inside-list/offer-inside-list';
 import PostReviewError from '../../components/error/post-review-error';
 import ReviewsList from '../../components/reviews-list/reviews-list';
+import NearPlacesList from '../../components/near-places-list/near-places-list';
 import Map from '../../components/map/map';
-import { useParams } from 'react-router-dom';
+
 import { AuthorizationStatus } from '../../utils/data';
 import { isUserLogged } from '../../mocks/mock-util';
 import { Offer } from '../../mocks/mock-types/offers';
 import { capitalizeFirstLetter, getOfferRating } from '../../utils/utils';
-import { Reviews } from '../../mocks/mock-types/reviews';
-import { Review } from '../../mocks/mock-types/reviews';
-import NearPlacesList from '../../components/near-places-list/near-places-list';
-import { useAppSelector } from '../../hooks/store';
+import { Review, Reviews } from '../../mocks/mock-types/reviews';
+import { offersSelectors } from '../../store/slices/offers';
 
 type OfferPageProps = {
   authorizationStatus: AuthorizationStatus;
@@ -25,7 +27,10 @@ export default function OfferPage({
   mockReviews,
 }: OfferPageProps) {
   const { id } = useParams();
-  const mockOffers = useAppSelector((state) => state.mockOffers);
+  const mockOffers = useAppSelector(offersSelectors.offers);
+  const currentCity = useAppSelector(offersSelectors.city);
+  const currentOffers = useAppSelector(offersSelectors.cityOffers);
+
   const currentOffer = mockOffers.find((offer: Offer) => offer.id === id);
 
   const nearOffers = mockOffers.filter(
@@ -155,7 +160,7 @@ export default function OfferPage({
             </section>
           </div>
         </div>
-        <Map className="offer__map" currentOffers={nearOffers} />
+        <Map className="offer__map" currentCity={currentCity} currentOffers={currentOffers} />
       </section>
       <div className="container">
         <section className="near-places places">

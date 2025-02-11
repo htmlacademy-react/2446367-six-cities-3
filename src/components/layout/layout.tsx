@@ -1,8 +1,12 @@
+import usePageLayout from '../../hooks/use-page-layout';
+import { useAppSelector } from '../../hooks/store';
+
 import Header from '../header/header';
 import Footer from '../footer/footer';
-import { AuthorizationStatus } from '../../utils/data';
+
 import { Outlet } from 'react-router-dom';
-import usePageLayout from '../../hooks/use-page-layout';
+import { AuthorizationStatus } from '../../utils/data';
+import { offersSelectors } from '../../store/slices/offers';
 
 type LayoutProps = {
   favoritesCount: number;
@@ -13,13 +17,14 @@ export default function Layout({
   favoritesCount,
   authorizationStatus,
 }: LayoutProps) {
+  const currentOffers = useAppSelector(offersSelectors.cityOffers);
   const {
     headerOnMainPage,
     headerOnLoginPage,
     rootClassName,
     mainClassName,
     onFavoritesPage,
-  } = usePageLayout({ favoritesCount });
+  } = usePageLayout({ favoritesCount, currentOffers });
 
   return (
     <div className={`page${rootClassName}`}>

@@ -1,30 +1,20 @@
-import { useState } from 'react';
-import { Offer } from '../../mocks/mock-types/offers';
-import EmptyMainPage from '../../components/empty-main-page/empty-main-page';
-import FilledMainPage from '../../components/filled-main-page/filled-main-page';
 import usePageLayout from '../../hooks/use-page-layout';
-import Map from '../../components/map/map';
-import LocationsList from '../../components/locations-list/locations-list';
 import { useAppSelector } from '../../hooks/store';
 
-export default function MainPage() {
-  const mockOffers = useAppSelector((state) => state.mockOffers);
-  const currentCity = useAppSelector((state) => state.city);
+import EmptyMainPage from '../../components/empty-main-page/empty-main-page';
+import FilledMainPage from '../../components/filled-main-page/filled-main-page';
+import Map from '../../components/map/map';
+import LocationsList from '../../components/locations-list/locations-list';
 
-  const currentOffers = mockOffers.filter(
-    (offer) => offer.city.name === currentCity,
-  );
+import { offersSelectors } from '../../store/slices/offers';
+
+export default function MainPage() {
+  const currentCity = useAppSelector(offersSelectors.city);
+  const currentOffers = useAppSelector(offersSelectors.cityOffers);
 
   const { emptyMain, emptyPageContainerClassName } = usePageLayout({
     currentOffers,
   });
-
-  const [activeOffer, setActiveOffer] = useState<Offer | undefined>(undefined);
-  const handleActiveOffer = (offer?: Offer) => {
-    setActiveOffer(offer || undefined);
-
-    return activeOffer;
-  };
 
   return (
     <>
@@ -43,15 +33,15 @@ export default function MainPage() {
           ) : (
             <FilledMainPage
               currentOffers={currentOffers}
-              onActiveOffer={handleActiveOffer}
+              currentCity={currentCity}
             />
           )}
           <div className="cities__right-section">
             {!emptyMain && (
               <Map
                 className="cities__map"
+                currentCity={currentCity}
                 currentOffers={currentOffers}
-                activeOffer={activeOffer}
               />
             )}
           </div>

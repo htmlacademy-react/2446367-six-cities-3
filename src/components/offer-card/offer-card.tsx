@@ -3,17 +3,20 @@ import { Offer } from '../../mocks/mock-types/offers';
 import { capitalizeFirstLetter, convertStarToWidth } from '../../utils/utils';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../utils/data';
+import { MouseEventHandler } from 'react';
 
 type OfferCardProps = {
   offer: Offer;
   pageClassName: string;
-  onActiveOffer?: (offer?: Offer) => void;
+  handleActiveOn?: MouseEventHandler<HTMLElement>;
+  handleActiveOff?: MouseEventHandler<HTMLElement>;
 };
 
 export default function OfferCard({
   offer,
   pageClassName,
-  onActiveOffer,
+  handleActiveOn,
+  handleActiveOff,
 }: OfferCardProps) {
   const {
     id,
@@ -26,19 +29,12 @@ export default function OfferCard({
     previewImage,
   } = offer;
 
-  const handleActiveOn = () => {
-    onActiveOffer?.(offer);
-  };
-
-  const handleActiveOff = () => {
-    onActiveOffer?.();
-  };
-
   return (
     <article
       className={`${pageClassName}__card place-card`}
       onMouseEnter={handleActiveOn}
       onMouseLeave={handleActiveOff}
+      data-id={id}
     >
       {isPremium && <PremiumMark />}
       <div

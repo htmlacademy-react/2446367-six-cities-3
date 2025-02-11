@@ -33,12 +33,44 @@ export const rating = [
 
 // массив наименований городов
 export const CITIES = [
-  { id: 'paris', name: 'Paris' },
-  { id: 'cologne', name: 'Cologne' },
-  { id: 'brussels', name: 'Brussels' },
-  { id: 'amsterdam', name: 'Amsterdam' },
-  { id: 'hamburg', name: 'Hamburg' },
-  { id: 'dusseldorf', name: 'Dusseldorf' },
+  {
+    id: 'paris',
+    location: {
+      latitude: 48.85661,
+      longitude: 2.351499,
+      zoom: 13,
+    },
+    name: 'Paris',
+  },
+  {
+    id: 'cologne',
+    location: { latitude: 50.938361, longitude: 6.959974, zoom: 13 },
+    name: 'Cologne',
+  },
+  {
+    id: 'brussels',
+    location: { latitude: 50.846557, longitude: 4.351697, zoom: 13 },
+    name: 'Brussels',
+  },
+  {
+    id: 'amsterdam',
+    location: {
+      latitude: 52.35514938496378,
+      longitude: 4.673877537499948,
+      zoom: 8,
+    },
+    name: 'Amsterdam',
+  },
+  {
+    id: 'hamburg',
+    location: { latitude: 53.550341, longitude: 10.000654, zoom: 13 },
+    name: 'Hamburg',
+  },
+  {
+    id: 'dusseldorf',
+    location: { latitude: 51.225402, longitude: 6.776314, zoom: 13 },
+    name: 'Dusseldorf',
+  },
 ] as const;
 
 export type CityName = (typeof CITIES)[number]['name'];

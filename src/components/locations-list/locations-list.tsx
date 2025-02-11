@@ -1,10 +1,12 @@
+import { useActionCreators, useAppSelector } from '../../hooks/store';
+
+import { offersActions } from '../../store/slices/offers';
+import { offersSelectors } from '../../store/slices/offers';
 import { CITIES } from '../../utils/data';
-import { useAppDispatch, useAppSelector } from '../../hooks/store';
-import { setCity } from '../../store/reducer';
 
 export default function LocationsList() {
-  const currentCity = useAppSelector((state) => state.city);
-  const dispatch = useAppDispatch();
+  const currentCity = useAppSelector(offersSelectors.city);
+  const { setCity } = useActionCreators(offersActions);
 
   return (
     <ul className="locations__list tabs__list">
@@ -14,7 +16,7 @@ export default function LocationsList() {
           key={id}
           onClick={(evt) => {
             evt.preventDefault();
-            dispatch(setCity(name));
+            setCity(name);
           }}
         >
           <a

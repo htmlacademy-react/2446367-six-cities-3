@@ -4,7 +4,7 @@ import { Offers } from '../mocks/mock-types/offers';
 
 type usePageLayoutProps = {
   favoritesCount?: number;
-  currentOffers?: Offers;
+  currentOffers: Offers;
 };
 
 export default function usePageLayout({
@@ -31,7 +31,7 @@ export default function usePageLayout({
       headerOnMainPage = true;
       mainClassName = ' page__main--index';
 
-      if (currentOffers?.length === 0) {
+      if (currentOffers.length === 0) {
         emptyMain = true;
         mainClassName = ' page__main--index page__main--index-empty';
         emptyPageContainerClassName = ' cities__places-container--empty';

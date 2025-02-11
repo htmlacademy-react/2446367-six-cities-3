@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { Review } from '../../mocks/mock-types/reviews';
 import { convertStarToWidth, getUserName } from '../../utils/utils';
 
@@ -35,7 +36,7 @@ export default function ReviewsItem({ review }: ReviewsItemProps) {
         </div>
         <p className="reviews__text">{comment}</p>
         <time className="reviews__time" dateTime={date}>
-          {date}
+          {format(date, 'LLLL y')}
         </time>
       </div>
     </li>
