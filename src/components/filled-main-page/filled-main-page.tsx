@@ -4,10 +4,13 @@ import OfferList from '../offer-list/offer-list';
 import { Offers } from '../../mocks/mock-types/offers';
 import { MouseEventHandler } from 'react';
 import { CityName } from '../../utils/data';
+import { SortOption } from '../sorting-form/data';
 
 type FilledMainPageProps = {
   currentOffers: Offers;
   currentCity: CityName;
+  current: SortOption;
+  setter: (option: SortOption) => void;
   handleActiveOn: MouseEventHandler<HTMLElement>;
   handleActiveOff: MouseEventHandler<HTMLElement>;
 };
@@ -15,6 +18,8 @@ type FilledMainPageProps = {
 export default function FilledMainPage({
   currentOffers,
   currentCity,
+  current,
+  setter,
   handleActiveOn,
   handleActiveOff,
 }: FilledMainPageProps) {
@@ -25,7 +30,7 @@ export default function FilledMainPage({
         {currentOffers.length} place{currentOffers.length > 1 && 's'} to stay in{' '}
         {currentCity}
       </b>
-      <SortingForm />
+      <SortingForm current={current} setter={setter} />
       <OfferList
         currentOffers={currentOffers}
         handleActiveOn={handleActiveOn}
