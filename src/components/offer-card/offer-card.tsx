@@ -8,8 +8,8 @@ import { MouseEventHandler } from 'react';
 type OfferCardProps = {
   offer: Offer;
   pageClassName: string;
-  handleActiveOn: MouseEventHandler<HTMLElement>;
-  handleActiveOff: MouseEventHandler<HTMLElement>;
+  handleActiveOn?: MouseEventHandler<HTMLElement>;
+  handleActiveOff?: MouseEventHandler<HTMLElement>;
 };
 
 export default function OfferCard({
