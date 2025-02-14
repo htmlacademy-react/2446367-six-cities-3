@@ -14,7 +14,7 @@ export type ServerOffer = {
   type: string;
 }
 
-export type fullOffer = ServerOffer & {
+export type FullOffer = ServerOffer & {
   bedrooms: number;
   description: string;
   goods: string[];
