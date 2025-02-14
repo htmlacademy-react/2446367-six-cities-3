@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './app';
 import { Setting } from './mocks/mock-data';
-import { mockReviews } from './mocks/mock-reviews';
 import { Provider } from 'react-redux';
 import { store } from './store';
 
@@ -15,7 +14,6 @@ root.render(
     <Provider store={store}>
       <App
         favoritesCount={Setting.FavoritesCount}
-        mockReviews={mockReviews}
       />
     </Provider>
   </React.StrictMode>,

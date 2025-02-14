@@ -1,8 +1,9 @@
-import { Offers } from '../../mocks/mock-types/offers';
+import type { ServerOffer } from '../../types/offer';
+
 import OfferCard from '../offer-card/offer-card';
 
 type NearPlacesListProps = {
-  nearOffers: Offers;
+  nearOffers: ServerOffer[];
 };
 
 export default function NearPlacesList({ nearOffers }: NearPlacesListProps) {

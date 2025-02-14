@@ -47,7 +47,7 @@ export const selectNearby = (state: RootState) => state.offer.nearby;
 export const selectOffer = (state: RootState) => state.offer.info;
 export const selectStatus = (state: RootState) => state.offer.status;
 
-export const offerSelectors = {
+export const offerSelector = {
   nearby: selectNearby,
   offer: selectOffer,
   status: selectStatus,

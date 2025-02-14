@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useAppSelector } from '../../hooks/store';
+import { useActionCreators, useAppSelector } from '../../hooks/store';
 
 import OfferImage from '../../components/offer-image/offer-image';
 import ReviewForm from '../../components/review-form/review-form';
@@ -10,56 +10,60 @@ import ReviewsList from '../../components/reviews-list/reviews-list';
 import NearPlacesList from '../../components/near-places-list/near-places-list';
 import Map from '../../components/map/map';
 
-import { AuthorizationStatus } from '../../utils/data';
+import { AuthorizationStatus, RequestStatus } from '../../utils/data';
 import { isUserLogged } from '../../mocks/mock-util';
-import { Offer } from '../../mocks/mock-types/offers';
-import { capitalizeFirstLetter, getOfferRating } from '../../utils/utils';
-import { Review, Reviews } from '../../mocks/mock-types/reviews';
-import { offersSelectors } from '../../store/slices/offers';
+import { capitalizeFirstLetter } from '../../utils/utils';
+import { offerActions, offerSelector } from '../../store/slices/offer';
+import { reviewsActions } from '../../store/slices/review';
+import { useEffect } from 'react';
 
 type OfferPageProps = {
   authorizationStatus: AuthorizationStatus;
-  mockReviews: Reviews;
 };
 
-export default function OfferPage({
-  authorizationStatus,
-  mockReviews,
-}: OfferPageProps) {
+export default function OfferPage({ authorizationStatus }: OfferPageProps) {
   const { id } = useParams();
-  const mockOffers = useAppSelector(offersSelectors.offers);
-  const currentCity = useAppSelector(offersSelectors.city);
-  const currentOffers = useAppSelector(offersSelectors.cityOffers);
 
-  const currentOffer = mockOffers.find((offer: Offer) => offer.id === id);
+  const offerPage = useAppSelector(offerSelector.offer);
+  const status = useAppSelector(offerSelector.status);
+  const nearbyOffers = useAppSelector(offerSelector.nearby);
+  const reviews = useAppSelector((state) => state.reviews.items);
+  const { fetchNearBy, fetchOffer } = useActionCreators(offerActions);
+  const { fetchComments } = useActionCreators(reviewsActions);
 
-  const nearOffers = mockOffers.filter(
-    (offer: Offer) =>
-      currentOffer?.city.name === offer.city.name &&
-      currentOffer.id !== offer.id,
-  );
+  useEffect(() => {
+    Promise.all([
+      fetchOffer(id as string),
+      fetchNearBy(id as string),
+      fetchComments(id as string),
+    ]);
+  }, [fetchOffer, fetchNearBy, fetchComments, id]);
 
-  const currentReviews = mockReviews.filter(
-    (review: Review) => review.id === id,
-  );
+  if (status === RequestStatus.Loading) {
+    return <div>Loading...</div>;
+  }
 
-  if (!currentOffer) {
+  if (status === RequestStatus.Failed || !offerPage) {
     return <NotFoundPage />;
   }
 
   const {
-    title,
-    type,
-    price,
+    bedrooms,
+    description,
+    city,
+    goods,
+    host,
+    images,
     isFavorite,
     isPremium,
-    bedrooms,
-    goods,
-    images,
     maxAdults,
-  } = currentOffer;
+    price,
+    rating,
+    title,
+    type,
+  } = offerPage;
 
-  const { offerRating, starRating } = getOfferRating(currentReviews);
+  const { avatarUrl, isPro, name } = host;
 
   return (
     <>
@@ -92,11 +96,11 @@ export default function OfferPage({
             </div>
             <div className="offer__rating rating">
               <div className="offer__stars rating__stars">
-                <span style={{ width: starRating }}></span>
+                <span style={{ width: `${Math.round(rating) * 20}%` }}></span>
                 <span className="visually-hidden">Rating</span>
               </div>
               <span className="offer__rating-value rating__value">
-                {offerRating}
+                {rating}
               </span>
             </div>
             <ul className="offer__features">
@@ -121,23 +125,21 @@ export default function OfferPage({
             <div className="offer__host">
               <h2 className="offer__host-title">Meet the host</h2>
               <div className="offer__host-user user">
-                <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
+                <div className='offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper'>
                   <img
                     className="offer__avatar user__avatar"
-                    src="img/avatar-angelina.jpg"
+                    src={avatarUrl}
                     width="74"
                     height="74"
                     alt="Host avatar"
                   />
                 </div>
-                <span className="offer__user-name">Angelina</span>
-                <span className="offer__user-status">Pro</span>
+                <span className="offer__user-name">{name}</span>
+                {isPro && <span className="offer__user-status">Pro</span>}
               </div>
               <div className="offer__description">
                 <p className="offer__text">
-                  A quiet cozy and picturesque that hides behind a a river by
-                  the unique lightness of Amsterdam. The building is green and
-                  from 18th century.
+                  {description}
                 </p>
                 <p className="offer__text">
                   An independent House, strategically located between Rembrand
@@ -149,9 +151,9 @@ export default function OfferPage({
             <section className="offer__reviews reviews">
               <h2 className="reviews__title">
                 Reviews &middot;{' '}
-                <span className="reviews__amount">{currentReviews.length}</span>
+                <span className="reviews__amount">{reviews.length}</span>
               </h2>
-              <ReviewsList currentReviews={currentReviews} />
+              <ReviewsList currentReviews={reviews} />
               {isUserLogged(authorizationStatus) ? (
                 <ReviewForm />
               ) : (
@@ -160,7 +162,11 @@ export default function OfferPage({
             </section>
           </div>
         </div>
-        <Map className="offer__map" currentCity={currentCity} currentOffers={currentOffers} />
+        <Map
+          className="offer__map"
+          currentCity={city.name}
+          currentOffers={[...nearbyOffers, offerPage]}
+        />
       </section>
       <div className="container">
         <section className="near-places places">
@@ -168,7 +174,7 @@ export default function OfferPage({
             Other places in the neighbourhood
           </h2>
           <div className="near-places__list places__list">
-            <NearPlacesList nearOffers={nearOffers} />
+            <NearPlacesList nearOffers={nearbyOffers} />
           </div>
         </section>
       </div>
