@@ -9,6 +9,9 @@ import PrivateRoute from './components/private-route/private-route';
 import { AppRoute } from './utils/data';
 import { userAuthorization } from './mocks/mock-data';
 import { Reviews } from './mocks/mock-types/reviews';
+import { useAppDispatch } from './hooks/store';
+import { useEffect } from 'react';
+import { fetchAllOffers } from './store/thunks/offers';
 
 type AppScreenProps = {
   favoritesCount: number;
@@ -16,6 +19,11 @@ type AppScreenProps = {
 };
 
 export default function App({ favoritesCount, mockReviews }: AppScreenProps) {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllOffers());
+  }, [dispatch]);
   return (
     <BrowserRouter>
       <Routes>

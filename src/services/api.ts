@@ -3,7 +3,7 @@ import axios from 'axios';
 import { getToken } from './token';
 
 const enum Default {
-  BaseUrl = 'https://15.design.htmlacademy.pro/six-sities',
+  BaseUrl = 'https://15.design.htmlacademy.pro/six-cities',
   Timeout = 5000,
 }
 

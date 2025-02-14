@@ -4,14 +4,14 @@ import { useActionCreators } from '../../hooks/store';
 import SortingForm from '../sorting-form/sorting-form';
 import OfferList from '../offer-list/offer-list';
 
-import { Offers } from '../../mocks/mock-types/offers';
-import { CityName } from '../../utils/data';
+import { CityName } from '../../types/city';
 import { SortOption } from '../sorting-form/data';
 import { offersActions } from '../../store/slices/offers';
 import { MouseEvent } from 'react';
+import { ServerOffer } from '../../types/offer';
 
 type FilledMainPageProps = {
-  currentOffers: Offers;
+  currentOffers: ServerOffer[];
   currentCity: CityName;
 };
 

@@ -13,6 +13,14 @@ export enum AuthorizationStatus {
   Unknown = 'Unknown',
 }
 
+export const Endpoint = {
+  Comments: '/comments',
+  Favorite: '/favorite',
+  Login: '/login',
+  Logout: '/logout',
+  Offers: '/offers',
+};
+
 // перечисление преобразования звезд рейтинга
 export enum WidthRating {
   '20%' = 1,
@@ -73,4 +81,9 @@ export const CITIES = [
   },
 ] as const;
 
-export type CityName = (typeof CITIES)[number]['name'];
+export const enum RequestStatus {
+  Idle,
+  Loading,
+  Success,
+  Failed,
+}
