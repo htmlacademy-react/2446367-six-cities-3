@@ -1,5 +1,5 @@
 import PremiumMark from '../premium-mark/premium-mark';
-import { capitalizeFirstLetter, convertStarToWidth } from '../../utils/utils';
+import { capitalizeFirstLetter } from '../../utils/utils';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../utils/data';
 import { MouseEventHandler } from 'react';
@@ -68,7 +68,7 @@ export default function OfferCard({
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: convertStarToWidth(rating) }}></span>
+            <span style={{ width: `${Math.round(rating) * 20}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

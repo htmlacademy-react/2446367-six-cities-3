@@ -101,7 +101,7 @@ export default function OfferPage({ authorizationStatus }: OfferPageProps) {
                 <span className="visually-hidden">Rating</span>
               </div>
               <span className="offer__rating-value rating__value">
-                {rating}
+                {Math.round(rating)}
               </span>
             </div>
             <ul className="offer__features">
