@@ -1,5 +1,5 @@
 import { Fragment, ReactEventHandler, useState } from 'react';
-import { rating } from '../../utils/data';
+import { rating } from '../../../utils/data';
 
 type ChangeReviewHandler = ReactEventHandler<
   HTMLInputElement | HTMLTextAreaElement

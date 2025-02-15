@@ -1,13 +1,4 @@
-import FavoriteOfferCard from '../favorite-offer-card/favorite-offer-card';
-import { ServerOffer } from '../../types/offer';
-
-type FavoriteOfferListProps = {
-  mockOffers: ServerOffer[];
-};
-
-export default function FavoriteOfferList({
-  mockOffers,
-}: FavoriteOfferListProps) {
+export default function FavoriteOfferList() {
   return (
     <ul className="favorites__list">
       <li className="favorites__locations-items">
@@ -19,9 +10,7 @@ export default function FavoriteOfferList({
           </div>
         </div>
         <div className="favorites__places">
-          {mockOffers.map((offer) => (
-            offer.isFavorite && <FavoriteOfferCard favoriteOffer={offer} key={offer.id} />
-          ))}
+
         </div>
       </li>
     </ul>

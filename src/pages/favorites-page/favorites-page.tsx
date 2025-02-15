@@ -1,7 +1,9 @@
-import EmptyFavoritesPage from '../../components/empty-favorites-page/empty-favorites-page';
-import FilledFavoritesPage from '../../components/filled-favorites-page/filled-favorites-page';
-import usePageLayout from '../../hooks/use-page-layout';
 import { useAppSelector } from '../../hooks/store';
+import usePageLayout from '../../hooks/use-page-layout';
+
+import EmptyFavoritesPage from './components/empty-favorites-page';
+import FilledFavoritesPage from './components/filled-favorites-page';
+
 import { offersSelector } from '../../store/slices/offers';
 
 type FavoritesPageProps = {
@@ -9,7 +11,6 @@ type FavoritesPageProps = {
 };
 
 export default function FavoritesPage({ favoritesCount }: FavoritesPageProps) {
-  const mockOffers = useAppSelector(offersSelector.offers);
   const currentOffers = useAppSelector(offersSelector.cityOffers);
   const { emptyFavorites } = usePageLayout({
     favoritesCount,
@@ -21,7 +22,7 @@ export default function FavoritesPage({ favoritesCount }: FavoritesPageProps) {
       {emptyFavorites ? (
         <EmptyFavoritesPage />
       ) : (
-        <FilledFavoritesPage mockOffers={mockOffers} />
+        <FilledFavoritesPage />
       )}
     </div>
   );

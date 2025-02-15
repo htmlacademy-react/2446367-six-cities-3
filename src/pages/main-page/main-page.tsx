@@ -1,24 +1,23 @@
 import usePageLayout from '../../hooks/use-page-layout';
 import { useAppSelector } from '../../hooks/store';
 
-import EmptyMainPage from '../../components/empty-main-page/empty-main-page';
-import FilledMainPage from '../../components/filled-main-page/filled-main-page';
+import EmptyMainPage from './components/empty-main-page';
+import FilledMainPage from './components/filled-main-page';
 import Map from '../../components/map/map';
-import LocationsList from '../../components/locations-list/locations-list';
+import LocationsList from './components/locations-list';
+import Spinner from '../../components/spinner/spinner';
 
 import { offersSelector } from '../../store/slices/offers';
 import { RequestStatus } from '../../utils/data';
-import Spinner from '../../components/spinner/spinner';
 
 export default function MainPage() {
   const currentCity = useAppSelector(offersSelector.city);
   const currentOffers = useAppSelector(offersSelector.cityOffers);
+  const status = useAppSelector(offersSelector.status);
 
   const { emptyMain, emptyPageContainerClassName } = usePageLayout({
     currentOffers,
   });
-
-  const status = useAppSelector(offersSelector.status);
 
   if (status === RequestStatus.Loading) {
     return <Spinner />;

@@ -1,4 +1,4 @@
-import { CityName } from '../../types/city';
+import type { CityName } from '../../../types/city';
 
 type EmptyMainPageProps = {
   currentCity: CityName;
