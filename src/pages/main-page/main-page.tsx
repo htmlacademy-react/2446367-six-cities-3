@@ -6,19 +6,19 @@ import FilledMainPage from '../../components/filled-main-page/filled-main-page';
 import Map from '../../components/map/map';
 import LocationsList from '../../components/locations-list/locations-list';
 
-import { offersSelectors } from '../../store/slices/offers';
+import { offersSelector } from '../../store/slices/offers';
 import { RequestStatus } from '../../utils/data';
 import Spinner from '../../components/spinner/spinner';
 
 export default function MainPage() {
-  const currentCity = useAppSelector(offersSelectors.city);
-  const currentOffers = useAppSelector(offersSelectors.cityOffers);
+  const currentCity = useAppSelector(offersSelector.city);
+  const currentOffers = useAppSelector(offersSelector.cityOffers);
 
   const { emptyMain, emptyPageContainerClassName } = usePageLayout({
     currentOffers,
   });
 
-  const status = useAppSelector(offersSelectors.status);
+  const status = useAppSelector(offersSelector.status);
 
   if (status === RequestStatus.Loading) {
     return <Spinner />;

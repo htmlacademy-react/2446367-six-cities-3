@@ -46,17 +46,17 @@ export const offersSlice = createSlice({
   },
 });
 
-export const selectCity = (state: RootState) => state.offers.city;
-export const selectActiveId = (state: RootState) => state.offers.activeId;
-export const selectOffers = (state: RootState) => state.offers.offers;
-export const selectStatus = (state: RootState) => state.offers.status;
+const selectCity = (state: RootState) => state.offers.city;
+const selectActiveId = (state: RootState) => state.offers.activeId;
+const selectOffers = (state: RootState) => state.offers.offers;
+const selectStatus = (state: RootState) => state.offers.status;
 
 export const selectCityOffers = createSelector(
   [selectOffers, selectCity],
   (allOffers, city) => allOffers.filter((offer) => offer.city.name === city),
 );
 
-export const offersSelectors = {
+export const offersSelector = {
   city: selectCity,
   offers: selectOffers,
   activeId: selectActiveId,

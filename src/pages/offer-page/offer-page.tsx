@@ -15,7 +15,7 @@ import { AuthorizationStatus, RequestStatus } from '../../utils/data';
 import { isUserLogged } from '../../mocks/mock-util';
 import { capitalizeFirstLetter } from '../../utils/utils';
 import { offerActions, offerSelector } from '../../store/slices/offer';
-import { reviewsActions } from '../../store/slices/review';
+import { reviewsActions, reviewsSelector } from '../../store/slices/review';
 import { useEffect } from 'react';
 
 type OfferPageProps = {
@@ -28,7 +28,7 @@ export default function OfferPage({ authorizationStatus }: OfferPageProps) {
   const offerPage = useAppSelector(offerSelector.offer);
   const status = useAppSelector(offerSelector.status);
   const nearbyOffers = useAppSelector(offerSelector.nearby);
-  const reviews = useAppSelector((state) => state.reviews.items);
+  const reviews = useAppSelector(reviewsSelector.items);
   const { fetchNearBy, fetchOffer } = useActionCreators(offerActions);
   const { fetchComments } = useActionCreators(reviewsActions);
 

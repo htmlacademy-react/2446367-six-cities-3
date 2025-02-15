@@ -43,9 +43,9 @@ export const offerSlice = createSlice({
   },
 });
 
-export const selectNearby = (state: RootState) => state.offer.nearby;
-export const selectOffer = (state: RootState) => state.offer.info;
-export const selectStatus = (state: RootState) => state.offer.status;
+const selectNearby = (state: RootState) => state.offer.nearby;
+const selectOffer = (state: RootState) => state.offer.info;
+const selectStatus = (state: RootState) => state.offer.status;
 
 export const offerSelector = {
   nearby: selectNearby,
