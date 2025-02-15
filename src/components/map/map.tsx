@@ -3,7 +3,7 @@ import { useAppSelector } from '../../hooks/store';
 import { useEffect, useRef } from 'react';
 
 import { Icon, Marker, layerGroup } from 'leaflet';
-import { offersSelectors } from '../../store/slices/offers';
+import { offersSelector } from '../../store/slices/offers';
 import { CITIES} from '../../utils/data';
 import { CityName } from '../../types/city';
 import { ServerOffer } from '../../types/offer';
@@ -27,7 +27,7 @@ const currentCustomIcon = new Icon({
 });
 
 export default function Map({ currentOffers, currentCity, className }: MapProps) {
-  const activeOffer = useAppSelector(offersSelectors.activeId);
+  const activeOffer = useAppSelector(offersSelector.activeId);
   const cityLocation = CITIES.find((item) => item.name === currentCity)!.location;
 
   const mapRef = useRef<HTMLDivElement>(null);
@@ -35,6 +35,7 @@ export default function Map({ currentOffers, currentCity, className }: MapProps)
 
   useEffect(() => {
     if (map) {
+
       const markerLayer = layerGroup().addTo(map);
 
       currentOffers.forEach(({ id, location }) => {

@@ -1,11 +1,10 @@
-import { useActionCreators, useAppSelector } from '../../hooks/store';
+import { useActionCreators, useAppSelector } from '../../../hooks/store';
 
-import { offersActions } from '../../store/slices/offers';
-import { offersSelectors } from '../../store/slices/offers';
-import { CITIES } from '../../utils/data';
+import { offersActions, offersSelector } from '../../../store/slices/offers';
+import { CITIES } from '../../../utils/data';
 
 export default function LocationsList() {
-  const currentCity = useAppSelector(offersSelectors.city);
+  const currentCity = useAppSelector(offersSelector.city);
   const { setCity } = useActionCreators(offersActions);
 
   return (

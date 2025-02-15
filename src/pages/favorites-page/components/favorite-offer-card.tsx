@@ -1,6 +1,8 @@
-import PremiumMark from '../premium-mark/premium-mark';
-import { convertStarToWidth, capitalizeFirstLetter } from '../../utils/utils';
-import { ServerOffer } from '../../types/offer';
+import type { ServerOffer } from '../../../types/offer';
+
+import PremiumMark from '../../../components/premium-mark/premium-mark';
+
+import { convertStarToWidth, capitalizeFirstLetter } from '../../../utils/utils';
 
 type FavoriteOfferCardProps = {
   favoriteOffer: ServerOffer;

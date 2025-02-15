@@ -1,4 +1,4 @@
-const AUTH_TOKEN_KEY = 'six-sities';
+const AUTH_TOKEN_KEY = 'six-cities-token';
 
 export type Token = string;
 

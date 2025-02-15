@@ -1,34 +1,28 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useActionCreators, useAppSelector } from '../../hooks/store';
 
-import OfferImage from '../../components/offer-image/offer-image';
-import ReviewForm from '../../components/review-form/review-form';
 import NotFoundPage from '../not-found-page/not-found-page';
-import OfferInsideList from '../../components/offer-inside-list/offer-inside-list';
-import PostReviewError from '../../components/error/post-review-error';
-import ReviewsList from '../../components/reviews-list/reviews-list';
-import NearPlacesList from '../../components/near-places-list/near-places-list';
 import Map from '../../components/map/map';
 import Spinner from '../../components/spinner/spinner';
+import Goods from './components/goods';
+import Gallery from './components/gallery';
+import Nearby from './components/nearby';
+import Host from './components/host';
+import Reviews from './components/reviews';
 
-import { AuthorizationStatus, RequestStatus } from '../../utils/data';
-import { isUserLogged } from '../../mocks/mock-util';
+import { RequestStatus } from '../../utils/data';
 import { capitalizeFirstLetter } from '../../utils/utils';
 import { offerActions, offerSelector } from '../../store/slices/offer';
-import { reviewsActions } from '../../store/slices/review';
-import { useEffect } from 'react';
+import { reviewsActions, reviewsSelector } from '../../store/slices/review';
 
-type OfferPageProps = {
-  authorizationStatus: AuthorizationStatus;
-};
-
-export default function OfferPage({ authorizationStatus }: OfferPageProps) {
+export default function OfferPage() {
   const { id } = useParams();
 
-  const offerPage = useAppSelector(offerSelector.offer);
+  const offer = useAppSelector(offerSelector.offer);
   const status = useAppSelector(offerSelector.status);
   const nearbyOffers = useAppSelector(offerSelector.nearby);
-  const reviews = useAppSelector((state) => state.reviews.items);
+  const reviews = useAppSelector(reviewsSelector.items);
   const { fetchNearBy, fetchOffer } = useActionCreators(offerActions);
   const { fetchComments } = useActionCreators(reviewsActions);
 
@@ -44,7 +38,7 @@ export default function OfferPage({ authorizationStatus }: OfferPageProps) {
     return <Spinner />;
   }
 
-  if (status === RequestStatus.Failed || !offerPage) {
+  if (status === RequestStatus.Failed || !offer) {
     return <NotFoundPage />;
   }
 
@@ -62,19 +56,13 @@ export default function OfferPage({ authorizationStatus }: OfferPageProps) {
     rating,
     title,
     type,
-  } = offerPage;
-
-  const { avatarUrl, isPro, name } = host;
+  } = offer;
 
   return (
     <>
       <section className="offer">
         <div className="offer__gallery-container container">
-          <div className="offer__gallery">
-            {images.map((item) => (
-              <OfferImage img={item} key={item} />
-            ))}
-          </div>
+          <Gallery images={images} />
         </div>
         <div className="offer__container container">
           <div className="offer__wrapper">
@@ -119,63 +107,19 @@ export default function OfferPage({ authorizationStatus }: OfferPageProps) {
               <b className="offer__price-value">&euro;{price}</b>
               <span className="offer__price-text">&nbsp;night</span>
             </div>
-            <div className="offer__inside">
-              <h2 className="offer__inside-title">What&apos;s inside</h2>
-              <OfferInsideList goods={goods} />
-            </div>
-            <div className="offer__host">
-              <h2 className="offer__host-title">Meet the host</h2>
-              <div className="offer__host-user user">
-                <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
-                  <img
-                    className="offer__avatar user__avatar"
-                    src={avatarUrl}
-                    width="74"
-                    height="74"
-                    alt="Host avatar"
-                  />
-                </div>
-                <span className="offer__user-name">{name}</span>
-                {isPro && <span className="offer__user-status">Pro</span>}
-              </div>
-              <div className="offer__description">
-                <p className="offer__text">{description}</p>
-                <p className="offer__text">
-                  An independent House, strategically located between Rembrand
-                  Square and National Opera, but where the bustle of the city
-                  comes to rest in this alley flowery and colorful.
-                </p>
-              </div>
-            </div>
-            <section className="offer__reviews reviews">
-              <h2 className="reviews__title">
-                Reviews &middot;{' '}
-                <span className="reviews__amount">{reviews.length}</span>
-              </h2>
-              <ReviewsList currentReviews={reviews} />
-              {isUserLogged(authorizationStatus) ? (
-                <ReviewForm />
-              ) : (
-                <PostReviewError />
-              )}
-            </section>
+            <Goods goods={goods} />
+            <Host description={description} host={host} />
+            <Reviews currentReviews={reviews} />
           </div>
         </div>
         <Map
           className="offer__map"
           currentCity={city.name}
-          currentOffers={[...nearbyOffers, offerPage]}
+          currentOffers={[...nearbyOffers, offer]}
         />
       </section>
       <div className="container">
-        <section className="near-places places">
-          <h2 className="near-places__title">
-            Other places in the neighbourhood
-          </h2>
-          <div className="near-places__list places__list">
-            <NearPlacesList nearOffers={nearbyOffers} />
-          </div>
-        </section>
+        <Nearby nearOffers={nearbyOffers} />
       </div>
     </>
   );

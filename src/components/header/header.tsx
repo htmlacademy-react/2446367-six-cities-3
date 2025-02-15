@@ -1,18 +1,15 @@
-import { AuthorizationStatus } from '../../utils/data';
 import HeaderNav from './header-nav';
 import Logo from '../logo/logo';
 import LogoLink from '../logo/logo-link';
 
 type HeaderProps = {
   favoritesCount: number;
-  authorizationStatus: AuthorizationStatus;
   headerOnMainPage: boolean;
   headerOnLoginPage: boolean;
 };
 
 export default function Header({
   favoritesCount,
-  authorizationStatus,
   headerOnMainPage,
   headerOnLoginPage
 }: HeaderProps) {
@@ -27,7 +24,6 @@ export default function Header({
           {!headerOnLoginPage && (
             <HeaderNav
               favoritesCount={favoritesCount}
-              authorizationStatus={authorizationStatus}
             />
           )}
         </div>

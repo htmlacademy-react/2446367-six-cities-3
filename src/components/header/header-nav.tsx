@@ -1,16 +1,17 @@
 import { Link } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../utils/data';
-import { isUserLogged } from '../../mocks/mock-util';
+import { AppRoute } from '../../utils/data';
+import { useAuth } from '../../hooks/user-authorization';
+import { useActionCreators, useAppSelector } from '../../hooks/store';
+import { userActions, userSelector } from '../../store/slices/user';
 
 type HeaderNavProps = {
   favoritesCount: number;
-  authorizationStatus: AuthorizationStatus;
 };
 
-export default function HeaderNav({
-  favoritesCount,
-  authorizationStatus,
-}: HeaderNavProps) {
+export default function HeaderNav({ favoritesCount }: HeaderNavProps) {
+  const isAuthorized = useAuth();
+  const user = useAppSelector(userSelector.info);
+  const { logout } = useActionCreators(userActions);
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">
@@ -20,10 +21,10 @@ export default function HeaderNav({
             to={AppRoute.Favorites}
           >
             <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-            {isUserLogged(authorizationStatus) ? (
+            {isAuthorized ? (
               <>
                 <span className="header__user-name user__name">
-                  Oliver.conner@gmail.com
+                  {user?.email}
                 </span>
                 <span className="header__favorite-count">{favoritesCount}</span>
               </>
@@ -32,11 +33,17 @@ export default function HeaderNav({
             )}
           </Link>
         </li>
-        {isUserLogged(authorizationStatus) && (
+        {isAuthorized && (
           <li className="header__nav-item">
-            <a className="header__nav-link" href="#">
+            <Link
+              className="header__nav-link"
+              onClick={() => {
+                logout();
+              }}
+              to="#"
+            >
               <span className="header__signout">Sign out</span>
-            </a>
+            </Link>
           </li>
         )}
       </ul>

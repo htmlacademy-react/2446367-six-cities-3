@@ -1,12 +1,14 @@
 import { format } from 'date-fns';
-import { Review } from '../../mocks/mock-types/reviews';
-import { convertStarToWidth, getUserName } from '../../utils/utils';
 
-type ReviewsItemProps = {
+import type { Review } from '../../../types/review';
+
+import { convertStarToWidth, getUserName } from '../../../utils/utils';
+
+type ReviewItemProps = {
   review: Review;
 };
 
-export default function ReviewsItem({ review }: ReviewsItemProps) {
+export default function ReviewItem({ review }: ReviewItemProps) {
   const {
     date,
     user: { avatarUrl, name },

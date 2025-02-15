@@ -1,14 +1,15 @@
 import { useState } from 'react';
-import { useActionCreators } from '../../hooks/store';
+import { useActionCreators } from '../../../hooks/store';
 
-import SortingForm from '../sorting-form/sorting-form';
-import OfferList from '../offer-list/offer-list';
+import type { MouseEvent } from 'react';
+import type { CityName } from '../../../types/city';
+import type { ServerOffer } from '../../../types/offer';
 
-import { CityName } from '../../types/city';
-import { SortOption } from '../sorting-form/data';
-import { offersActions } from '../../store/slices/offers';
-import { MouseEvent } from 'react';
-import { ServerOffer } from '../../types/offer';
+import SortingForm from '../../../components/sorting-form/sorting-form';
+import OfferList from '../../../components/offer-list/offer-list';
+
+import { SortOption } from '../../../components/sorting-form/data';
+import { offersActions } from '../../../store/slices/offers';
 
 type FilledMainPageProps = {
   currentOffers: ServerOffer[];
