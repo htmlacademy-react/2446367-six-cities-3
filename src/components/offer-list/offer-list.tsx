@@ -1,10 +1,10 @@
 import OfferCard from '../offer-card/offer-card';
 
-import { Offers } from '../../mocks/mock-types/offers';
 import { MouseEventHandler } from 'react';
+import { ServerOffer } from '../../types/offer';
 
 type OfferListProps = {
-  currentOffers: Offers;
+  currentOffers: ServerOffer[];
   handleActiveOn: MouseEventHandler<HTMLElement>;
   handleActiveOff: MouseEventHandler<HTMLElement>;
 };

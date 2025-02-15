@@ -1,10 +1,10 @@
 import { AppRoute } from '../utils/data';
 import { useLocation } from 'react-router-dom';
-import { Offers } from '../mocks/mock-types/offers';
+import { ServerOffer } from '../types/offer';
 
 type usePageLayoutProps = {
   favoritesCount?: number;
-  currentOffers: Offers;
+  currentOffers: ServerOffer[];
 };
 
 export default function usePageLayout({

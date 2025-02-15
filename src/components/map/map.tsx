@@ -3,13 +3,14 @@ import { useAppSelector } from '../../hooks/store';
 import { useEffect, useRef } from 'react';
 
 import { Icon, Marker, layerGroup } from 'leaflet';
-import { Offers } from '../../mocks/mock-types/offers';
 import { offersSelectors } from '../../store/slices/offers';
-import { CITIES, CityName } from '../../utils/data';
+import { CITIES} from '../../utils/data';
+import { CityName } from '../../types/city';
+import { ServerOffer } from '../../types/offer';
 
 type MapProps = {
   className?: string;
-  currentOffers: Offers;
+  currentOffers: ServerOffer[];
   currentCity: CityName;
 };
 

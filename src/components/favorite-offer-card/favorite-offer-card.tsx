@@ -1,9 +1,9 @@
 import PremiumMark from '../premium-mark/premium-mark';
-import { Offer } from '../../mocks/mock-types/offers';
 import { convertStarToWidth, capitalizeFirstLetter } from '../../utils/utils';
+import { ServerOffer } from '../../types/offer';
 
 type FavoriteOfferCardProps = {
-  favoriteOffer: Offer;
+  favoriteOffer: ServerOffer;
 };
 
 export default function FavoriteOfferCard({

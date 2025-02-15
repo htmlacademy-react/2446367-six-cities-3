@@ -1,8 +1,8 @@
 import FavoriteOfferCard from '../favorite-offer-card/favorite-offer-card';
-import { Offers } from '../../mocks/mock-types/offers';
+import { ServerOffer } from '../../types/offer';
 
 type FavoriteOfferListProps = {
-  mockOffers: Offers;
+  mockOffers: ServerOffer[];
 };
 
 export default function FavoriteOfferList({
