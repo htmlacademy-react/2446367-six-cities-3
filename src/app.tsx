@@ -5,12 +5,13 @@ import MainPage from './pages/main-page/main-page';
 import OfferPage from './pages/offer-page/offer-page';
 import NotFoundPage from './pages/not-found-page/not-found-page';
 import Layout from './components/layout/layout';
-import PrivateRoute from './components/private-route/private-route';
 import { AppRoute } from './utils/data';
-import { userAuthorization } from './mocks/mock-data';
-import { useAppDispatch } from './hooks/store';
+import { useActionCreators, useAppDispatch } from './hooks/store';
 import { useEffect } from 'react';
 import { fetchAllOffers } from './store/thunks/offers';
+import { userActions } from './store/slices/user';
+import { getToken } from './services/token';
+import ProtectedRoute from './components/private-route/private-route';
 
 type AppScreenProps = {
   favoritesCount: number;
@@ -18,10 +19,19 @@ type AppScreenProps = {
 
 export default function App({ favoritesCount }: AppScreenProps) {
   const dispatch = useAppDispatch();
+  const { checkAuth } = useActionCreators(userActions);
 
   useEffect(() => {
     dispatch(fetchAllOffers());
   }, [dispatch]);
+
+  const token = getToken();
+  useEffect(() => {
+    if (token) {
+      checkAuth();
+    }
+  }, [token, checkAuth]);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -30,7 +40,6 @@ export default function App({ favoritesCount }: AppScreenProps) {
           element={
             <Layout
               favoritesCount={favoritesCount}
-              authorizationStatus={userAuthorization}
             />
           }
         >
@@ -38,27 +47,20 @@ export default function App({ favoritesCount }: AppScreenProps) {
           <Route
             path={AppRoute.Login}
             element={
-              <PrivateRoute authorizationStatus={userAuthorization} isReverse>
+              <ProtectedRoute onlyUnAuth>
                 <LoginPage />
-              </PrivateRoute>
+              </ProtectedRoute>
             }
           />
           <Route
             path={AppRoute.Favorites}
             element={
-              <PrivateRoute authorizationStatus={userAuthorization}>
+              <ProtectedRoute>
                 <FavoritesPage favoritesCount={favoritesCount} />
-              </PrivateRoute>
+              </ProtectedRoute>
             }
           />
-          <Route
-            path={AppRoute.Offer}
-            element={
-              <OfferPage
-                authorizationStatus={userAuthorization}
-              />
-            }
-          />
+          <Route path={AppRoute.Offer} element={<OfferPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

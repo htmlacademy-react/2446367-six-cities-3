@@ -1,29 +1,26 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useAuth } from '../../hooks/user-authorization';
 import { useActionCreators, useAppSelector } from '../../hooks/store';
 
 import OfferImage from '../../components/offer-image/offer-image';
 import ReviewForm from '../../components/review-form/review-form';
 import NotFoundPage from '../not-found-page/not-found-page';
 import OfferInsideList from '../../components/offer-inside-list/offer-inside-list';
-import PostReviewError from '../../components/error/post-review-error';
+import PostReviewError from '../../components/errors/post-review-error';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import NearPlacesList from '../../components/near-places-list/near-places-list';
 import Map from '../../components/map/map';
 import Spinner from '../../components/spinner/spinner';
 
-import { AuthorizationStatus, RequestStatus } from '../../utils/data';
-import { isUserLogged } from '../../mocks/mock-util';
+import { RequestStatus } from '../../utils/data';
 import { capitalizeFirstLetter } from '../../utils/utils';
 import { offerActions, offerSelector } from '../../store/slices/offer';
 import { reviewsActions, reviewsSelector } from '../../store/slices/review';
-import { useEffect } from 'react';
 
-type OfferPageProps = {
-  authorizationStatus: AuthorizationStatus;
-};
-
-export default function OfferPage({ authorizationStatus }: OfferPageProps) {
+export default function OfferPage() {
   const { id } = useParams();
+  const isAuthorized = useAuth();
 
   const offerPage = useAppSelector(offerSelector.offer);
   const status = useAppSelector(offerSelector.status);
@@ -153,11 +150,7 @@ export default function OfferPage({ authorizationStatus }: OfferPageProps) {
                 <span className="reviews__amount">{reviews.length}</span>
               </h2>
               <ReviewsList currentReviews={reviews} />
-              {isUserLogged(authorizationStatus) ? (
-                <ReviewForm />
-              ) : (
-                <PostReviewError />
-              )}
+              {isAuthorized ? <ReviewForm /> : <PostReviewError />}
             </section>
           </div>
         </div>
