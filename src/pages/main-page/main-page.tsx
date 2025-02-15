@@ -8,6 +8,7 @@ import LocationsList from '../../components/locations-list/locations-list';
 
 import { offersSelectors } from '../../store/slices/offers';
 import { RequestStatus } from '../../utils/data';
+import Spinner from '../../components/spinner/spinner';
 
 export default function MainPage() {
   const currentCity = useAppSelector(offersSelectors.city);
@@ -20,7 +21,7 @@ export default function MainPage() {
   const status = useAppSelector(offersSelectors.status);
 
   if (status === RequestStatus.Loading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   return (

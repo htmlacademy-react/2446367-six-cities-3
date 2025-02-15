@@ -9,6 +9,7 @@ import PostReviewError from '../../components/error/post-review-error';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import NearPlacesList from '../../components/near-places-list/near-places-list';
 import Map from '../../components/map/map';
+import Spinner from '../../components/spinner/spinner';
 
 import { AuthorizationStatus, RequestStatus } from '../../utils/data';
 import { isUserLogged } from '../../mocks/mock-util';
@@ -40,7 +41,7 @@ export default function OfferPage({ authorizationStatus }: OfferPageProps) {
   }, [fetchOffer, fetchNearBy, fetchComments, id]);
 
   if (status === RequestStatus.Loading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (status === RequestStatus.Failed || !offerPage) {
@@ -125,7 +126,7 @@ export default function OfferPage({ authorizationStatus }: OfferPageProps) {
             <div className="offer__host">
               <h2 className="offer__host-title">Meet the host</h2>
               <div className="offer__host-user user">
-                <div className='offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper'>
+                <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
                   <img
                     className="offer__avatar user__avatar"
                     src={avatarUrl}
@@ -138,9 +139,7 @@ export default function OfferPage({ authorizationStatus }: OfferPageProps) {
                 {isPro && <span className="offer__user-status">Pro</span>}
               </div>
               <div className="offer__description">
-                <p className="offer__text">
-                  {description}
-                </p>
+                <p className="offer__text">{description}</p>
                 <p className="offer__text">
                   An independent House, strategically located between Rembrand
                   Square and National Opera, but where the bustle of the city
