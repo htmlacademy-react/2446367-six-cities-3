@@ -1,4 +1,4 @@
-import type { CityName } from '../../utils/data';
+import { CityName } from '../../types/city';
 
 type EmptyMainPageProps = {
   currentCity: CityName;
