@@ -1,6 +1,5 @@
-import HeaderNav from './header-nav';
-import Logo from '../logo/logo';
-import LogoLink from '../logo/logo-link';
+import Logo from './components/logo';
+import Navigation from './components/navigation';
 
 type HeaderProps = {
   favoritesCount: number;
@@ -11,21 +10,16 @@ type HeaderProps = {
 export default function Header({
   favoritesCount,
   headerOnMainPage,
-  headerOnLoginPage
+  headerOnLoginPage,
 }: HeaderProps) {
-
   return (
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            {headerOnMainPage ? <Logo/> : <LogoLink/>}
+            <Logo isLink={headerOnMainPage} />
           </div>
-          {!headerOnLoginPage && (
-            <HeaderNav
-              favoritesCount={favoritesCount}
-            />
-          )}
+          {!headerOnLoginPage && <Navigation favoritesCount={favoritesCount} />}
         </div>
       </div>
     </header>

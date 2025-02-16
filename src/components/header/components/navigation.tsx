@@ -1,14 +1,15 @@
-import { Link } from 'react-router-dom';
-import { AppRoute } from '../../utils/data';
-import { useAuth } from '../../hooks/user-authorization';
-import { useActionCreators, useAppSelector } from '../../hooks/store';
-import { userActions, userSelector } from '../../store/slices/user';
+import { useAuth } from '../../../hooks/user-authorization';
+import { userActions, userSelector } from '../../../store/slices/user';
+import { useActionCreators, useAppSelector } from '../../../hooks/store';
 
-type HeaderNavProps = {
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../../utils/data';
+
+type NavigationProps = {
   favoritesCount: number;
 };
 
-export default function HeaderNav({ favoritesCount }: HeaderNavProps) {
+export default function Navigation({ favoritesCount }: NavigationProps) {
   const isAuthorized = useAuth();
   const user = useAppSelector(userSelector.info);
   const { logout } = useActionCreators(userActions);
