@@ -109,7 +109,7 @@ export default function OfferPage() {
             </div>
             <Goods goods={goods} />
             <Host description={description} host={host} />
-            <Reviews currentReviews={reviews} />
+            <Reviews currentReviews={reviews} offerID={id as string} />
           </div>
         </div>
         <Map

@@ -8,9 +8,10 @@ import PostReviewError from '../../../components/errors/post-review-error';
 
 type ReviewsProps = {
   currentReviews: Review[];
+  offerID: string;
 };
 
-export default function Reviews({ currentReviews }: ReviewsProps) {
+export default function Reviews({ currentReviews, offerID }: ReviewsProps) {
   const isAuthorized = useAuth();
   return (
     <section className="offer__reviews reviews">
@@ -23,7 +24,7 @@ export default function Reviews({ currentReviews }: ReviewsProps) {
           <ReviewItem review={review} key={review.date} />
         ))}
       </ul>
-      {isAuthorized ? <ReviewForm /> : <PostReviewError />}
+      {isAuthorized ? <ReviewForm offerID={offerID} /> : <PostReviewError />}
     </section>
   );
 }
