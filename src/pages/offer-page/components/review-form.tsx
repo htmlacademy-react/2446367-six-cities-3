@@ -1,7 +1,9 @@
-import { FormEvent, Fragment, ReactEventHandler, useState } from 'react';
-import { rating } from '../../../utils/data';
 import { useActionCreators } from '../../../hooks/store';
-import { commentsThunks } from '../../../store/thunks/comments';
+
+import { FormEvent, Fragment, ReactEventHandler, useState } from 'react';
+
+import { rating } from '../../../utils/data';
+import { reviewsActions } from '../../../store/slices/review';
 
 type ReviewFormProps = {
   offerID: string;
@@ -12,7 +14,7 @@ type ChangeReviewHandler = ReactEventHandler<
 >;
 
 export default function ReviewForm({ offerID }: ReviewFormProps) {
-  const { postComment } = useActionCreators(commentsThunks);
+  const { postComment } = useActionCreators(reviewsActions);
   const [comment, setComment] = useState({ comment: '', rating: 0 });
 
   const handleReviewChange: ChangeReviewHandler = (evt) => {
