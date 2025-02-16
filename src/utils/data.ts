@@ -87,3 +87,8 @@ export const enum RequestStatus {
   Success,
   Failed,
 }
+
+export const enum FavoriteStatus {
+  Removed,
+  Added,
+}
