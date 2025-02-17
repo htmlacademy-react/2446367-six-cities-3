@@ -3,13 +3,13 @@ import { useLocation } from 'react-router-dom';
 import { ServerOffer } from '../types/offer';
 
 type usePageLayoutProps = {
-  favoritesCount?: number;
-  currentOffers: ServerOffer[];
+  favorites?: ServerOffer[];
+  offers?: ServerOffer[];
 };
 
 export default function usePageLayout({
-  favoritesCount,
-  currentOffers,
+  favorites,
+  offers,
 }: usePageLayoutProps) {
   const { pathname } = useLocation();
 
@@ -30,7 +30,7 @@ export default function usePageLayout({
       layoutState.headerOnMainPage = true;
       layoutState.mainClassName = ' page__main--index';
 
-      if (currentOffers.length === 0) {
+      if (offers?.length === 0) {
         layoutState.emptyMain = true;
         layoutState.mainClassName =
           ' page__main--index page__main--index-empty';
@@ -49,7 +49,7 @@ export default function usePageLayout({
       layoutState.mainClassName = ' page__main--favorites';
       layoutState.onFavoritesPage = true;
 
-      if (favoritesCount === 0) {
+      if (favorites?.length === 0) {
         layoutState.emptyFavorites = true;
         layoutState.mainClassName = ' page__main--favorites-empty';
         layoutState.rootClassName = ' page--favorites-empty';

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import useBoolean from '../../hooks/boolean';
 
-import { SORT_OPTIONS, SortOption } from './data';
+import { SORT_OPTIONS, SortOption } from '../../utils/data';
 import classNames from 'classnames';
 
 type SortingFormProps = {

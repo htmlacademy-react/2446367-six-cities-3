@@ -10,9 +10,9 @@ import Gallery from './components/gallery';
 import Nearby from './components/nearby';
 import Host from './components/host';
 import Reviews from './components/reviews';
+import Features from './components/features';
 
 import { RequestStatus } from '../../utils/data';
-import { capitalizeFirstLetter } from '../../utils/utils';
 import { offerActions, offerSelector } from '../../store/slices/offer';
 import { reviewsActions, reviewsSelector } from '../../store/slices/review';
 
@@ -92,30 +92,20 @@ export default function OfferPage() {
                 {Math.round(rating)}
               </span>
             </div>
-            <ul className="offer__features">
-              <li className="offer__feature offer__feature--entire">
-                {capitalizeFirstLetter(type)}
-              </li>
-              <li className="offer__feature offer__feature--bedrooms">
-                {bedrooms} Bedrooms
-              </li>
-              <li className="offer__feature offer__feature--adults">
-                Max {maxAdults} adults
-              </li>
-            </ul>
+            <Features type={type} bedrooms={bedrooms} maxAdults={maxAdults} />
             <div className="offer__price">
               <b className="offer__price-value">&euro;{price}</b>
               <span className="offer__price-text">&nbsp;night</span>
             </div>
             <Goods goods={goods} />
             <Host description={description} host={host} />
-            <Reviews currentReviews={reviews} />
+            <Reviews currentReviews={reviews} offerID={id as string} />
           </div>
         </div>
         <Map
           className="offer__map"
-          currentCity={city.name}
-          currentOffers={[...nearbyOffers, offer]}
+          city={city.name}
+          offers={[...nearbyOffers, offer]}
         />
       </section>
       <div className="container">

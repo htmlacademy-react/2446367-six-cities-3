@@ -1,8 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { User } from '../../types/user';
+
+import type { RootState } from '../../types/store';
+import type { User } from '../../types/user';
+
 import { AuthorizationStatus, RequestStatus } from '../../utils/data';
 import { checkAuth, login, logout } from '../thunks/user';
-import { RootState } from '../../types/store';
 
 type UserSlice = {
   info: User | null;

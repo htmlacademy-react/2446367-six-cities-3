@@ -1,17 +1,16 @@
+import { useAuth } from '../../../hooks/user-authorization';
+import { userActions, userSelector } from '../../../store/slices/user';
+import { useActionCreators, useAppSelector } from '../../../hooks/store';
+import useFavoriteCount from '../../../hooks/use-favorite-count';
+
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../utils/data';
-import { useAuth } from '../../hooks/user-authorization';
-import { useActionCreators, useAppSelector } from '../../hooks/store';
-import { userActions, userSelector } from '../../store/slices/user';
+import { AppRoute } from '../../../utils/data';
 
-type HeaderNavProps = {
-  favoritesCount: number;
-};
-
-export default function HeaderNav({ favoritesCount }: HeaderNavProps) {
+export default function LoggedNav() {
   const isAuthorized = useAuth();
   const user = useAppSelector(userSelector.info);
   const { logout } = useActionCreators(userActions);
+  const favoritesCount = useFavoriteCount();
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">

@@ -4,10 +4,14 @@ import { Link } from 'react-router-dom';
 import { AppRoute } from '../../utils/data';
 import { MouseEventHandler } from 'react';
 import { ServerOffer } from '../../types/offer';
+import FavoriteButton from '../favorite-button/favorite-button';
 
 type OfferCardProps = {
   offer: ServerOffer;
   pageClassName: string;
+  imageWrapperClassName?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   handleActiveOn?: MouseEventHandler<HTMLElement>;
   handleActiveOff?: MouseEventHandler<HTMLElement>;
 };
@@ -15,6 +19,9 @@ type OfferCardProps = {
 export default function OfferCard({
   offer,
   pageClassName,
+  imageWrapperClassName = `${pageClassName}__image-wrapper place-card__image-wrapper`,
+  imageWidth = 260,
+  imageHeight = 200,
   handleActiveOn,
   handleActiveOff,
 }: OfferCardProps) {
@@ -37,15 +44,13 @@ export default function OfferCard({
       data-id={id}
     >
       {isPremium && <PremiumMark />}
-      <div
-        className={`${pageClassName}__image-wrapper place-card__image-wrapper`}
-      >
+      <div className={imageWrapperClassName}>
         <Link to={`${AppRoute.Offer.replace('/:id', '')}/${id}`}>
           <img
             className="place-card__image"
             src={previewImage}
-            width="260"
-            height="200"
+            width={imageWidth}
+            height={imageHeight}
             alt="Place image"
           />
         </Link>
@@ -56,15 +61,11 @@ export default function OfferCard({
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button
-            className={`place-card__bookmark-button ${isFavorite && 'place-card__bookmark-button--active'} button`}
-            type="button"
-          >
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+          <FavoriteButton
+            className="place-card"
+            offerID={id}
+            isFavorite={isFavorite}
+          />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
@@ -73,7 +74,9 @@ export default function OfferCard({
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`${AppRoute.Offer.replace('/:id', '')}/${id}`}>{title}</Link>
+          <Link to={`${AppRoute.Offer.replace('/:id', '')}/${id}`}>
+            {title}
+          </Link>
         </h2>
         <p className="place-card__type">{capitalizeFirstLetter(type)}</p>
       </div>

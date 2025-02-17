@@ -8,18 +8,18 @@ import type { ServerOffer } from '../../../types/offer';
 import SortingForm from '../../../components/sorting-form/sorting-form';
 import OfferList from '../../../components/offer-list/offer-list';
 
-import { SortOption } from '../../../components/sorting-form/data';
+import { SortOption } from '../../../utils/data';
 import { offersActions } from '../../../store/slices/offers';
 
-type FilledMainPageProps = {
-  currentOffers: ServerOffer[];
-  currentCity: CityName;
+type FilledMainSectionProps = {
+  offers: ServerOffer[];
+  city: CityName;
 };
 
-export default function FilledMainPage({
-  currentOffers,
-  currentCity,
-}: FilledMainPageProps) {
+export default function FilledMainSection({
+  offers,
+  city,
+}: FilledMainSectionProps) {
   const { setActiveId } = useActionCreators(offersActions);
 
   const [activeSort, setActiveSort] = useState(SortOption.Popular);
@@ -34,30 +34,30 @@ export default function FilledMainPage({
     setActiveId(undefined);
   };
 
-  let sortedOffers = currentOffers;
+  let sortedOffers = offers;
 
   if (activeSort === SortOption.PriceLowToHigh) {
-    sortedOffers = [...currentOffers].sort((a, b) => a.price - b.price);
+    sortedOffers = [...offers].sort((a, b) => a.price - b.price);
   }
 
   if (activeSort === SortOption.PriceHighToLow) {
-    sortedOffers = [...currentOffers].sort((a, b) => b.price - a.price);
+    sortedOffers = [...offers].sort((a, b) => b.price - a.price);
   }
 
   if (activeSort === SortOption.TopRatedFirst) {
-    sortedOffers = [...currentOffers].sort((a, b) => b.rating - a.rating);
+    sortedOffers = [...offers].sort((a, b) => b.rating - a.rating);
   }
 
   return (
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
       <b className="places__found">
-        {currentOffers.length} place{currentOffers.length > 1 && 's'} to stay in{' '}
-        {currentCity}
+        {offers.length} place{offers.length > 1 && 's'} to stay in{' '}
+        {city}
       </b>
       <SortingForm current={activeSort} setter={setActiveSort} />
       <OfferList
-        currentOffers={sortedOffers}
+        offers={sortedOffers}
         handleActiveOn={handleActiveOn}
         handleActiveOff={handleActiveOff}
       />

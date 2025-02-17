@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { FullOffer, ServerOffer } from '../../types/offer';
+
+import type { RootState } from '../../types/store';
+import type { FullOffer, ServerOffer } from '../../types/offer';
+
 import { RequestStatus } from '../../utils/data';
 import { fetchNearBy, fetchOffer } from '../thunks/offers';
-import { RootState } from '../../types/store';
 
 type OfferSlice = {
   info: FullOffer | null;

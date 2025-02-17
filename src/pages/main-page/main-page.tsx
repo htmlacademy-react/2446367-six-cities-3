@@ -1,8 +1,8 @@
 import usePageLayout from '../../hooks/use-page-layout';
 import { useAppSelector } from '../../hooks/store';
 
-import EmptyMainPage from './components/empty-main-page';
-import FilledMainPage from './components/filled-main-page';
+import EmptyMainSection from './components/empty-main-section';
+import FilledMainSection from './components/filled-main-section';
 import Map from '../../components/map/map';
 import LocationsList from './components/locations-list';
 import Spinner from '../../components/spinner/spinner';
@@ -11,12 +11,12 @@ import { offersSelector } from '../../store/slices/offers';
 import { RequestStatus } from '../../utils/data';
 
 export default function MainPage() {
-  const currentCity = useAppSelector(offersSelector.city);
-  const currentOffers = useAppSelector(offersSelector.cityOffers);
+  const city = useAppSelector(offersSelector.city);
+  const offers = useAppSelector(offersSelector.cityOffers);
   const status = useAppSelector(offersSelector.status);
 
   const { emptyMain, emptyPageContainerClassName } = usePageLayout({
-    currentOffers,
+    offers,
   });
 
   if (status === RequestStatus.Loading) {
@@ -36,19 +36,16 @@ export default function MainPage() {
           className={`cities__places-container container ${emptyPageContainerClassName}`}
         >
           {emptyMain ? (
-            <EmptyMainPage currentCity={currentCity} />
+            <EmptyMainSection city={city} />
           ) : (
-            <FilledMainPage
-              currentOffers={currentOffers}
-              currentCity={currentCity}
-            />
+            <FilledMainSection offers={offers} city={city} />
           )}
           <div className="cities__right-section">
             {!emptyMain && (
               <Map
                 className="cities__map"
-                currentCity={currentCity}
-                currentOffers={currentOffers}
+                city={city}
+                offers={offers}
               />
             )}
           </div>
