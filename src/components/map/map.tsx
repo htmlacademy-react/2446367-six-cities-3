@@ -28,6 +28,7 @@ const currentCustomIcon = new Icon({
 
 export default function Map({ offers, city, className }: MapProps) {
   const activeOffer = useAppSelector(offersSelector.activeId);
+
   const cityLocation = CITIES.find((item) => item.name === city)!.location;
 
   const mapRef = useRef<HTMLDivElement>(null);

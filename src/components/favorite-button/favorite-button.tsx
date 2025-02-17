@@ -1,6 +1,7 @@
 import { useActionCreators } from '../../hooks/store';
 import { useAuth } from '../../hooks/user-authorization';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 import classNames from 'classnames';
 
@@ -20,18 +21,21 @@ const enum Default {
 
 export default function FavoriteButton({
   className = 'place-card',
-  isFavorite = false,
+  isFavorite: isFavoriteProp = false,
   offerID,
   width = 18,
 }: FavoriteButtonProps) {
+  const [isFavorite, setIsFavorite] = useState(isFavoriteProp);
   const isAuthorized = useAuth();
   const navigate = useNavigate();
 
-  const favoriteLabel = `${isFavorite ? 'In' : 'To'} bookmarks`;
+  const isActiveButton = isAuthorized && isFavorite;
+
+  const favoriteLabel = `${isFavoriteProp ? 'In' : 'To'} bookmarks`;
   const buttonClass = `${className}__bookmark-button`;
   const favoriteClass = classNames(
     buttonClass,
-    { [`${buttonClass}--active`]: isFavorite },
+    { [`${buttonClass}--active`]: isActiveButton },
     'button',
   );
 
@@ -48,6 +52,8 @@ export default function FavoriteButton({
       offerID,
       status: Number(!isFavorite),
     });
+
+    setIsFavorite((prev) => !prev);
   }
 
   return (
