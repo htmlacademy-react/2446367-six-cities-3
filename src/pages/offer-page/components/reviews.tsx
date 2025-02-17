@@ -21,7 +21,7 @@ export default function Reviews({ currentReviews, offerID }: ReviewsProps) {
       </h2>
       <ul className="reviews__list">
         {currentReviews.map((review) => (
-          <ReviewItem review={review} key={review.date} />
+          <ReviewItem review={review} key={review.id} />
         ))}
       </ul>
       {isAuthorized ? <ReviewForm offerID={offerID} /> : <PostReviewError />}
