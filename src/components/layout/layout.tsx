@@ -7,26 +7,19 @@ import Footer from '../footer/footer';
 import { Outlet } from 'react-router-dom';
 import { offersSelector } from '../../store/slices/offers';
 
-type LayoutProps = {
-  favoritesCount: number;
-};
-
-export default function Layout({
-  favoritesCount,
-}: LayoutProps) {
-  const currentOffers = useAppSelector(offersSelector.cityOffers);
+export default function Layout() {
+  const offers = useAppSelector(offersSelector.cityOffers);
   const {
     headerOnMainPage,
     headerOnLoginPage,
     rootClassName,
     mainClassName,
     onFavoritesPage,
-  } = usePageLayout({ favoritesCount, currentOffers });
+  } = usePageLayout({ offers });
 
   return (
     <div className={`page${rootClassName}`}>
       <Header
-        favoritesCount={favoritesCount}
         headerOnMainPage={headerOnMainPage}
         headerOnLoginPage={headerOnLoginPage}
       />

@@ -81,6 +81,7 @@ export const CITIES = [
   },
 ] as const;
 
+// перечисления статусов
 export const enum RequestStatus {
   Idle,
   Loading,
@@ -91,4 +92,19 @@ export const enum RequestStatus {
 export const enum FavoriteStatus {
   Removed,
   Added,
+}
+
+// опции сортировки
+export const SORT_OPTIONS = [
+  'Popular',
+  'Price: low to high',
+  'Price: high to low',
+  'Top rated first',
+] as const;
+
+export const enum SortOption {
+  Popular,
+  PriceLowToHigh,
+  PriceHighToLow,
+  TopRatedFirst,
 }

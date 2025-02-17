@@ -1,29 +1,27 @@
+import { useEffect } from 'react';
+import { useActionCreators } from './hooks/store';
+
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import FavoritesPage from './pages/favorites-page/favorites-page';
 import LoginPage from './pages/login-page/login-page';
 import MainPage from './pages/main-page/main-page';
 import OfferPage from './pages/offer-page/offer-page';
 import NotFoundPage from './pages/not-found-page/not-found-page';
+import ProtectedRoute from './components/private-route/private-route';
 import Layout from './components/layout/layout';
+
 import { AppRoute } from './utils/data';
-import { useActionCreators, useAppDispatch } from './hooks/store';
-import { useEffect } from 'react';
-import { fetchAllOffers } from './store/thunks/offers';
 import { userActions } from './store/slices/user';
 import { getToken } from './services/token';
-import ProtectedRoute from './components/private-route/private-route';
+import { offersActions } from './store/slices/offers';
 
-type AppScreenProps = {
-  favoritesCount: number;
-};
-
-export default function App({ favoritesCount }: AppScreenProps) {
-  const dispatch = useAppDispatch();
+export default function App() {
+  const { fetchAllOffers } = useActionCreators(offersActions);
   const { checkAuth } = useActionCreators(userActions);
 
   useEffect(() => {
-    dispatch(fetchAllOffers());
-  }, [dispatch]);
+    fetchAllOffers().unwrap();
+  }, [fetchAllOffers]);
 
   const token = getToken();
   useEffect(() => {
@@ -35,14 +33,7 @@ export default function App({ favoritesCount }: AppScreenProps) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path={AppRoute.Root}
-          element={
-            <Layout
-              favoritesCount={favoritesCount}
-            />
-          }
-        >
+        <Route path={AppRoute.Root} element={<Layout />}>
           <Route index element={<MainPage />} />
           <Route
             path={AppRoute.Login}
@@ -56,7 +47,7 @@ export default function App({ favoritesCount }: AppScreenProps) {
             path={AppRoute.Favorites}
             element={
               <ProtectedRoute>
-                <FavoritesPage favoritesCount={favoritesCount} />
+                <FavoritesPage />
               </ProtectedRoute>
             }
           />

@@ -1,6 +1,6 @@
-import type { User } from '../../types/user';
-
 import { createAppAsyncThunk } from '../../hooks/store';
+
+import type { User } from '../../types/user';
 
 import { Endpoint } from '../../utils/data';
 import { dropToken, saveToken } from '../../services/token';

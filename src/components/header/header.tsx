@@ -1,14 +1,12 @@
 import Logo from './components/logo';
-import Navigation from './components/navigation';
+import LoggedNav from './components/logged-nav';
 
 type HeaderProps = {
-  favoritesCount: number;
   headerOnMainPage: boolean;
   headerOnLoginPage: boolean;
 };
 
 export default function Header({
-  favoritesCount,
   headerOnMainPage,
   headerOnLoginPage,
 }: HeaderProps) {
@@ -19,7 +17,7 @@ export default function Header({
           <div className="header__left">
             <Logo isLink={headerOnMainPage} />
           </div>
-          {!headerOnLoginPage && <Navigation favoritesCount={favoritesCount} />}
+          {!headerOnLoginPage && <LoggedNav />}
         </div>
       </div>
     </header>

@@ -1,5 +1,6 @@
+import type { Review } from '../types/review';
+
 import { WidthRating } from './data';
-import { Review } from '../types/review';
 
 export const capitalizeFirstLetter = (str: string) =>
   str[0].toUpperCase() + str.slice(1);

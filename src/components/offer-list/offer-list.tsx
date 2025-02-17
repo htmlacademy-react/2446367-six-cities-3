@@ -1,18 +1,18 @@
+import type { MouseEventHandler } from 'react';
+import type { ServerOffer } from '../../types/offer';
+
 import OfferCard from '../offer-card/offer-card';
 
-import { MouseEventHandler } from 'react';
-import { ServerOffer } from '../../types/offer';
-
 type OfferListProps = {
-  currentOffers: ServerOffer[];
+  offers: ServerOffer[];
   handleActiveOn: MouseEventHandler<HTMLElement>;
   handleActiveOff: MouseEventHandler<HTMLElement>;
 };
 
-export default function OfferList({ currentOffers, handleActiveOn, handleActiveOff }: OfferListProps) {
+export default function OfferList({ offers, handleActiveOn, handleActiveOff }: OfferListProps) {
   return (
     <div className="cities__places-list places__list tabs__content">
-      {currentOffers.map((offer) => (
+      {offers.map((offer) => (
         <OfferCard
           offer={offer}
           pageClassName='cities'

@@ -1,10 +1,10 @@
 import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit';
 
-import { Offer } from '../../mocks/mock-types/offers';
+import type { RootState } from '../../types/store';
+import type { CityName } from '../../types/city';
+import type { FullOffer, ServerOffer } from '../../types/offer';
+
 import { CITIES, RequestStatus } from '../../utils/data';
-import { RootState } from '../../types/store';
-import { FullOffer, ServerOffer } from '../../types/offer';
-import { CityName } from '../../types/city';
 import { fetchAllOffers } from '../thunks/offers';
 
 type OffersSlice = {
@@ -40,7 +40,7 @@ export const offersSlice = createSlice({
     setCity: (state, action: PayloadAction<CityName>) => {
       state.city = action.payload;
     },
-    setActiveId: (state, action: PayloadAction<Offer['id'] | undefined>) => {
+    setActiveId: (state, action: PayloadAction<FullOffer['id'] | undefined>) => {
       state.activeId = action.payload;
     },
   },
@@ -64,4 +64,4 @@ export const offersSelector = {
   status: selectStatus,
 };
 
-export const offersActions = offersSlice.actions;
+export const offersActions = { ...offersSlice.actions, fetchAllOffers };

@@ -1,6 +1,8 @@
-import { FullOffer, ServerOffer } from '../../types/offer';
-import { Endpoint } from '../../utils/data';
 import { createAppAsyncThunk } from '../../hooks/store';
+
+import type { FullOffer, ServerOffer } from '../../types/offer';
+
+import { Endpoint } from '../../utils/data';
 
 export const fetchAllOffers = createAppAsyncThunk<ServerOffer[], void>(
   'fetchOffers/all',

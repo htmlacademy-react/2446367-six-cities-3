@@ -10,8 +10,8 @@ import { ServerOffer } from '../../types/offer';
 
 type MapProps = {
   className?: string;
-  currentOffers: ServerOffer[];
-  currentCity: CityName;
+  offers: ServerOffer[];
+  city: CityName;
 };
 
 const defaultCustomIcon = new Icon({
@@ -26,9 +26,9 @@ const currentCustomIcon = new Icon({
   iconAnchor: [14, 40],
 });
 
-export default function Map({ currentOffers, currentCity, className }: MapProps) {
+export default function Map({ offers, city, className }: MapProps) {
   const activeOffer = useAppSelector(offersSelector.activeId);
-  const cityLocation = CITIES.find((item) => item.name === currentCity)!.location;
+  const cityLocation = CITIES.find((item) => item.name === city)!.location;
 
   const mapRef = useRef<HTMLDivElement>(null);
   const map = useMap(mapRef, cityLocation);
@@ -38,7 +38,7 @@ export default function Map({ currentOffers, currentCity, className }: MapProps)
 
       const markerLayer = layerGroup().addTo(map);
 
-      currentOffers.forEach(({ id, location }) => {
+      offers.forEach(({ id, location }) => {
         const marker = new Marker({
           lat: location.latitude,
           lng: location.longitude,
@@ -57,7 +57,7 @@ export default function Map({ currentOffers, currentCity, className }: MapProps)
         };
       });
     }
-  }, [activeOffer, map, currentOffers]);
+  }, [activeOffer, map, offers]);
 
   return <section className={`map ${className}`} ref={mapRef} />;
 }
