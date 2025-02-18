@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { AppRoute } from '../../utils/data';
 import { MouseEventHandler } from 'react';
 import { ServerOffer } from '../../types/offer';
-import FavoriteButton from '../favorite-button/favorite-button';
+import { FavoriteButton } from '../favorite-button/favorite-button';
 
 type OfferCardProps = {
   offer: ServerOffer;

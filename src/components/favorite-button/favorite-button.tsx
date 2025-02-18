@@ -1,14 +1,14 @@
 import { useActionCreators } from '../../hooks/store';
 import { useAuth } from '../../hooks/user-authorization';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 
 import classNames from 'classnames';
 
 import { favoritesActions } from '../../store/slices/favorites';
 import { AppRoute } from '../../utils/data';
 
-type FavoriteButtonProps = {
+type BaseFavoriteButtonProps = {
   className: 'offer' | 'place-card';
   isFavorite?: boolean;
   offerID: string;
@@ -19,12 +19,12 @@ const enum Default {
   HeightCoefficient = 18 / 17,
 }
 
-export default function FavoriteButton({
+export function BaseFavoriteButton({
   className = 'place-card',
   isFavorite: isFavoriteProp = false,
   offerID,
   width = 18,
-}: FavoriteButtonProps) {
+}: BaseFavoriteButtonProps) {
   const [isFavorite, setIsFavorite] = useState(isFavoriteProp);
   const isAuthorized = useAuth();
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ export default function FavoriteButton({
 
   const { changeFavorite } = useActionCreators(favoritesActions);
 
-  function handleClick() {
+  const handleClick = useCallback(() => {
     if (!isAuthorized) {
       return navigate(AppRoute.Login);
     }
@@ -54,7 +54,7 @@ export default function FavoriteButton({
     });
 
     setIsFavorite((prev) => !prev);
-  }
+  }, [changeFavorite, isAuthorized, isFavorite, navigate, offerID]);
 
   return (
     <button className={favoriteClass} onClick={handleClick} type="button">
@@ -69,3 +69,5 @@ export default function FavoriteButton({
     </button>
   );
 }
+
+export const FavoriteButton = memo(BaseFavoriteButton);
