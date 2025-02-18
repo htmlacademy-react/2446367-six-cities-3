@@ -1,20 +1,18 @@
 import { useAppSelector } from '../../hooks/store';
-import usePageLayout from '../../hooks/use-page-layout';
+import { selectFavorites } from '../../store/selectors/favorites';
 
-import EmptyFavoritesSection from './components/empty-favorites-section';
-import FilledFavoritesSection from './components/filled-favorites-page';
+import { EmptyFavoritesSection } from './components/empty-favorites-section';
+import { FilledFavoritesSection } from './components/filled-favorites-section';
 
-import { favoritesSelector } from '../../store/slices/favorites';
+export function FavoritesPage() {
+  const favorites = useAppSelector(selectFavorites);
+  const favoritesLength = favorites.length;
 
-export default function FavoritesPage() {
-  const favorites = useAppSelector(favoritesSelector.favorites);
-  const { emptyFavorites } = usePageLayout({
-    favorites,
-  });
+  const isEmpty = favoritesLength === 0;
 
   return (
     <div className="page__favorites-container container">
-      {emptyFavorites ? (
+      {isEmpty ? (
         <EmptyFavoritesSection />
       ) : (
         <FilledFavoritesSection favorites={favorites} />

@@ -1,11 +1,13 @@
-import { FullOffer } from '../../../types/offer';
+import { memo } from 'react';
+
+import type { FullOffer } from '../../../types/offer';
 
 type HostProps = {
   description: string;
   host: FullOffer['host'];
 };
 
-export default function Host({ description, host }: HostProps) {
+function BaseHost({ description, host }: HostProps) {
   return (
     <div className="offer__host">
       <h2 className="offer__host-title">Meet the host</h2>
@@ -30,3 +32,5 @@ export default function Host({ description, host }: HostProps) {
     </div>
   );
 }
+
+export const Host = memo(BaseHost);

@@ -1,12 +1,16 @@
 import { useEffect } from 'react';
 import { useActionCreators, useAppSelector } from './store';
 
-import { favoritesActions, favoritesSelector } from '../store/slices/favorites';
+import { favoritesActions } from '../store/slices/favorites';
 import { RequestStatus } from '../utils/data';
+import {
+  selectFavorites,
+  selectFavoriteStatus,
+} from '../store/selectors/favorites';
 
-export default function useFavoriteCount() {
-  const status = useAppSelector(favoritesSelector.status);
-  const count = useAppSelector(favoritesSelector.favorites).length;
+export function useFavoriteCount() {
+  const status = useAppSelector(selectFavoriteStatus);
+  const count = useAppSelector(selectFavorites).length;
   const { fetchFavorites } = useActionCreators(favoritesActions);
 
   useEffect(() => {

@@ -1,6 +1,5 @@
-import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import type { RootState } from '../../types/store';
 import type { CityName } from '../../types/city';
 import type { FullOffer, ServerOffer } from '../../types/offer';
 
@@ -40,28 +39,13 @@ export const offersSlice = createSlice({
     setCity: (state, action: PayloadAction<CityName>) => {
       state.city = action.payload;
     },
-    setActiveId: (state, action: PayloadAction<FullOffer['id'] | undefined>) => {
+    setActiveId: (
+      state,
+      action: PayloadAction<FullOffer['id'] | undefined>,
+    ) => {
       state.activeId = action.payload;
     },
   },
 });
-
-const selectCity = (state: RootState) => state.offers.city;
-const selectActiveId = (state: RootState) => state.offers.activeId;
-const selectOffers = (state: RootState) => state.offers.offers;
-const selectStatus = (state: RootState) => state.offers.status;
-
-export const selectCityOffers = createSelector(
-  [selectOffers, selectCity],
-  (allOffers, city) => allOffers.filter((offer) => offer.city.name === city),
-);
-
-export const offersSelector = {
-  city: selectCity,
-  offers: selectOffers,
-  activeId: selectActiveId,
-  cityOffers: selectCityOffers,
-  status: selectStatus,
-};
 
 export const offersActions = { ...offersSlice.actions, fetchAllOffers };

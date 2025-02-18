@@ -1,8 +1,10 @@
+import { memo } from 'react';
+
 type GoodsProps = {
   goods: string[];
 };
 
-export default function Goods({ goods }: GoodsProps) {
+function BaseGoods({ goods }: GoodsProps) {
   return (
     <div className="offer__inside">
       <h2 className="offer__inside-title">What&apos;s inside</h2>
@@ -16,3 +18,5 @@ export default function Goods({ goods }: GoodsProps) {
     </div>
   );
 }
+
+export const Goods = memo(BaseGoods);

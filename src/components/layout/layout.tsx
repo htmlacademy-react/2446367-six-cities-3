@@ -1,21 +1,26 @@
-import usePageLayout from '../../hooks/use-page-layout';
+import { usePageLayout } from '../../hooks/use-page-layout';
 import { useAppSelector } from '../../hooks/store';
 
-import Header from '../header/header';
-import Footer from '../footer/footer';
+import { Header } from '../header/header';
+import { Footer } from '../footer/footer';
 
 import { Outlet } from 'react-router-dom';
-import { offersSelector } from '../../store/slices/offers';
+import { useFavoriteCount } from '../../hooks/use-favorite-count';
+import { selectCityOffers } from '../../store/selectors/offers';
 
-export default function Layout() {
-  const offers = useAppSelector(offersSelector.cityOffers);
+function BaseLayout() {
+  const offers = useAppSelector(selectCityOffers);
+  const offersLength = offers.length;
+
+  const favoritesLength = useFavoriteCount();
+
   const {
     headerOnMainPage,
     headerOnLoginPage,
     rootClassName,
     mainClassName,
     onFavoritesPage,
-  } = usePageLayout({ offers });
+  } = usePageLayout({ offersLength, favoritesLength });
 
   return (
     <div className={`page${rootClassName}`}>
@@ -30,3 +35,5 @@ export default function Layout() {
     </div>
   );
 }
+
+export const Layout = BaseLayout;

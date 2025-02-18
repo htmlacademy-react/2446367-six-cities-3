@@ -43,11 +43,7 @@ export const rating = [
 export const CITIES = [
   {
     id: 'paris',
-    location: {
-      latitude: 48.85661,
-      longitude: 2.351499,
-      zoom: 13,
-    },
+    location: { latitude: 48.85661, longitude: 2.351499, zoom: 13 },
     name: 'Paris',
   },
   {
@@ -62,11 +58,7 @@ export const CITIES = [
   },
   {
     id: 'amsterdam',
-    location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
-      zoom: 8,
-    },
+    location: { latitude: 52.37454, longitude: 4.897976, zoom: 13 },
     name: 'Amsterdam',
   },
   {

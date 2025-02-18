@@ -1,6 +1,11 @@
 import { useActionCreators } from '../../../hooks/store';
-
-import { FormEvent, Fragment, ReactEventHandler, useState } from 'react';
+import {
+  FormEvent,
+  Fragment,
+  ReactEventHandler,
+  useCallback,
+  useState,
+} from 'react';
 
 import { rating } from '../../../utils/data';
 import { reviewsActions } from '../../../store/slices/review';
@@ -13,32 +18,38 @@ type ChangeReviewHandler = ReactEventHandler<
   HTMLInputElement | HTMLTextAreaElement
 >;
 
-export default function ReviewForm({ offerID }: ReviewFormProps) {
+export function ReviewForm({ offerID }: ReviewFormProps) {
   const { postComment } = useActionCreators(reviewsActions);
   const [comment, setComment] = useState({ comment: '', rating: 0 });
 
-  const handleReviewChange: ChangeReviewHandler = (evt) => {
-    const { name, value } = evt.currentTarget;
-    setComment({
-      ...comment,
-      [name]: name === 'rating' ? Number(value) : value,
-    });
-  };
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (comment.comment.length >= 50 && comment.rating !== 0) {
-      postComment({
-        body: {
-          comment: comment.comment,
-          rating: Number(comment.rating),
-        },
-        offerID,
-      }).then(() => {
-        setComment({ rating: 0, comment: '' });
+  const handleReviewChange = useCallback<ChangeReviewHandler>(
+    (evt) => {
+      const { name, value } = evt.currentTarget;
+      setComment({
+        ...comment,
+        [name]: name === 'rating' ? Number(value) : value,
       });
-    }
-  };
+    },
+    [comment],
+  );
+
+  const handleSubmit = useCallback(
+    (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      if (comment.comment.length >= 50 && comment.rating !== 0) {
+        postComment({
+          body: {
+            comment: comment.comment,
+            rating: Number(comment.rating),
+          },
+          offerID,
+        }).then(() => {
+          setComment({ rating: 0, comment: '' });
+        });
+      }
+    },
+    [comment, offerID, postComment],
+  );
 
   return (
     <form

@@ -1,10 +1,12 @@
-import PremiumMark from '../premium-mark/premium-mark';
-import { capitalizeFirstLetter } from '../../utils/utils';
+import { memo, MouseEventHandler } from 'react';
+
+import type { ServerOffer } from '../../types/offer';
 import { Link } from 'react-router-dom';
+import { PremiumMark } from '../premium-mark/premium-mark';
+import { FavoriteButton } from '../favorite-button/favorite-button';
+
+import { capitalizeFirstLetter } from '../../utils/utils';
 import { AppRoute } from '../../utils/data';
-import { MouseEventHandler } from 'react';
-import { ServerOffer } from '../../types/offer';
-import FavoriteButton from '../favorite-button/favorite-button';
 
 type OfferCardProps = {
   offer: ServerOffer;
@@ -16,7 +18,7 @@ type OfferCardProps = {
   handleActiveOff?: MouseEventHandler<HTMLElement>;
 };
 
-export default function OfferCard({
+function BaseOfferCard({
   offer,
   pageClassName,
   imageWrapperClassName = `${pageClassName}__image-wrapper place-card__image-wrapper`,
@@ -83,3 +85,5 @@ export default function OfferCard({
     </article>
   );
 }
+
+export const OfferCard = memo(BaseOfferCard);

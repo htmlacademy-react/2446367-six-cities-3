@@ -2,27 +2,35 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useActionCreators, useAppSelector } from '../../hooks/store';
 
-import NotFoundPage from '../not-found-page/not-found-page';
-import Map from '../../components/map/map';
-import Spinner from '../../components/spinner/spinner';
-import Goods from './components/goods';
-import Gallery from './components/gallery';
-import Nearby from './components/nearby';
-import Host from './components/host';
-import Reviews from './components/reviews';
-import Features from './components/features';
+import { NotFoundPage } from '../not-found-page/not-found-page';
+import { Map } from '../../components/map/map';
+import { Spinner } from '../../components/spinner/spinner';
+import { Goods } from './components/goods';
+import { Gallery } from './components/gallery';
+import { Nearby } from './components/nearby';
+import { Host } from './components/host';
+import { Reviews } from './components/reviews';
+import { Features } from './components/features';
 
 import { RequestStatus } from '../../utils/data';
-import { offerActions, offerSelector } from '../../store/slices/offer';
-import { reviewsActions, reviewsSelector } from '../../store/slices/review';
+import { offerActions } from '../../store/slices/offer';
+import { reviewsActions } from '../../store/slices/review';
+import { FavoriteButton } from '../../components/favorite-button/favorite-button';
+import {
+  selectNearby,
+  selectOffer,
+  selectOfferStatus,
+} from '../../store/selectors/offer';
+import { selectReviews } from '../../store/selectors/review';
 
-export default function OfferPage() {
+export function OfferPage() {
   const { id } = useParams();
 
-  const offer = useAppSelector(offerSelector.offer);
-  const status = useAppSelector(offerSelector.status);
-  const nearbyOffers = useAppSelector(offerSelector.nearby);
-  const reviews = useAppSelector(reviewsSelector.items);
+  const offer = useAppSelector(selectOffer);
+  const status = useAppSelector(selectOfferStatus);
+  const nearbyOffers = useAppSelector(selectNearby);
+  const reviews = useAppSelector(selectReviews);
+
   const { fetchNearBy, fetchOffer } = useActionCreators(offerActions);
   const { fetchComments } = useActionCreators(reviewsActions);
 
@@ -73,15 +81,12 @@ export default function OfferPage() {
             )}
             <div className="offer__name-wrapper">
               <h1 className="offer__name">{title}</h1>
-              <button
-                className={`offer__bookmark-button ${isFavorite && 'offer__bookmark-button--active'} button`}
-                type="button"
-              >
-                <svg className="offer__bookmark-icon" width="31" height="33">
-                  <use xlinkHref="#icon-bookmark"></use>
-                </svg>
-                <span className="visually-hidden">To bookmarks</span>
-              </button>
+              <FavoriteButton
+                className="offer"
+                offerID={id as string}
+                isFavorite={isFavorite}
+                width={31}
+              />
             </div>
             <div className="offer__rating rating">
               <div className="offer__stars rating__stars">

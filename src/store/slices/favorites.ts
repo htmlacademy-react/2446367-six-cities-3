@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import type { ServerOffer } from '../../types/offer';
-import type { RootState } from '../../types/store';
 
 import { RequestStatus, FavoriteStatus } from '../../utils/data';
 import { changeFavorite, fetchFavorites } from '../thunks/favorites';
@@ -51,14 +50,6 @@ export const favoritesSlice = createSlice({
   name: 'favorites',
   reducers: {},
 });
-
-const selectFavoriteStatus = (state: RootState) => state.favorites.status;
-const selectFavorites = (state: RootState) => state.favorites.items;
-
-export const favoritesSelector = {
-  status: selectFavoriteStatus,
-  favorites: selectFavorites,
-};
 
 export const favoritesActions = {
   ...favoritesSlice.actions,

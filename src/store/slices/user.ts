@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import type { RootState } from '../../types/store';
 import type { User } from '../../types/user';
 
 import { AuthorizationStatus, RequestStatus } from '../../utils/data';
@@ -51,16 +50,5 @@ export const userSlice = createSlice({
   name: 'user',
   reducers: {},
 });
-
-const selectUser = (state: RootState) => state.user.info;
-const selectUserRequestStatus = (state: RootState) =>
-  state.user.requestStatus;
-const selectUserStatus = (state: RootState) => state.user.status;
-
-export const userSelector = {
-  info: selectUser,
-  requestStatus: selectUserRequestStatus,
-  status: selectUserStatus,
-};
 
 export const userActions = { ...userSlice.actions, checkAuth, login, logout };

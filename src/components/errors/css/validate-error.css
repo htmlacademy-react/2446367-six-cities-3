@@ -17,7 +17,7 @@
   animation: shake 0.5s ease-in-out;
 }
 
-.error-message {
+.validate__error {
   color: red;
   font-size: 14px;
   margin-bottom: 15px;

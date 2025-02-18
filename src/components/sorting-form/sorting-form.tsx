@@ -1,15 +1,16 @@
-import { useEffect } from 'react';
-import useBoolean from '../../hooks/boolean';
+import { memo, useEffect } from 'react';
+import { useBoolean } from '../../hooks/boolean';
+
+import classNames from 'classnames';
 
 import { SORT_OPTIONS, SortOption } from '../../utils/data';
-import classNames from 'classnames';
 
 type SortingFormProps = {
   current: SortOption;
   setter: (option: SortOption) => void;
 };
 
-export default function SortingForm({ current, setter }: SortingFormProps) {
+function BaseSortingForm({ current, setter }: SortingFormProps) {
   const { isOn, off, toggle } = useBoolean(false);
 
   useEffect(() => {
@@ -60,3 +61,5 @@ export default function SortingForm({ current, setter }: SortingFormProps) {
     </form>
   );
 }
+
+export const SortingForm = memo(BaseSortingForm);

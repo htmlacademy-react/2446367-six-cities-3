@@ -5,8 +5,8 @@ import type { MouseEvent } from 'react';
 import type { CityName } from '../../../types/city';
 import type { ServerOffer } from '../../../types/offer';
 
-import SortingForm from '../../../components/sorting-form/sorting-form';
-import OfferList from '../../../components/offer-list/offer-list';
+import { OfferList } from '../../../components/offer-list/offer-list';
+import { SortingForm } from '../../../components/sorting-form/sorting-form';
 
 import { SortOption } from '../../../utils/data';
 import { offersActions } from '../../../store/slices/offers';
@@ -16,7 +16,7 @@ type FilledMainSectionProps = {
   city: CityName;
 };
 
-export default function FilledMainSection({
+export function FilledMainSection({
   offers,
   city,
 }: FilledMainSectionProps) {

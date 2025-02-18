@@ -1,7 +1,7 @@
 import { useActionCreators } from '../../hooks/store';
 import { useAuth } from '../../hooks/user-authorization';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 
 import classNames from 'classnames';
 
@@ -19,7 +19,7 @@ const enum Default {
   HeightCoefficient = 18 / 17,
 }
 
-export default function FavoriteButton({
+function BaseFavoriteButton({
   className = 'place-card',
   isFavorite: isFavoriteProp = false,
   offerID,
@@ -43,7 +43,7 @@ export default function FavoriteButton({
 
   const { changeFavorite } = useActionCreators(favoritesActions);
 
-  function handleClick() {
+  const handleClick = useCallback(() => {
     if (!isAuthorized) {
       return navigate(AppRoute.Login);
     }
@@ -54,7 +54,7 @@ export default function FavoriteButton({
     });
 
     setIsFavorite((prev) => !prev);
-  }
+  }, [changeFavorite, isAuthorized, isFavorite, navigate, offerID]);
 
   return (
     <button className={favoriteClass} onClick={handleClick} type="button">
@@ -69,3 +69,5 @@ export default function FavoriteButton({
     </button>
   );
 }
+
+export const FavoriteButton = memo(BaseFavoriteButton);

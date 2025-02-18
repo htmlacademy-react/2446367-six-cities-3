@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { capitalizeFirstLetter } from '../../../utils/utils';
 
 type FeaturesProps = {
@@ -6,7 +8,7 @@ type FeaturesProps = {
   maxAdults: number;
 };
 
-export default function Features({ type, bedrooms, maxAdults }: FeaturesProps) {
+function BaseFeatures({ type, bedrooms, maxAdults }: FeaturesProps) {
   return (
     <ul className="offer__features">
       <li className="offer__feature offer__feature--entire">
@@ -21,3 +23,5 @@ export default function Features({ type, bedrooms, maxAdults }: FeaturesProps) {
     </ul>
   );
 }
+
+export const Features = memo(BaseFeatures);

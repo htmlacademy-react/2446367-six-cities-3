@@ -1,8 +1,14 @@
-import { useState, ReactEventHandler, FormEvent } from 'react';
+import {
+  useState,
+  ReactEventHandler,
+  FormEvent,
+  memo,
+  useCallback,
+} from 'react';
 import { useError } from '../../../hooks/use-error';
 import { useActionCreators } from '../../../hooks/store';
 
-import ValidateError from '../../../components/errors/validate-error';
+import { ValidateError } from '../../../components/errors/validate-error';
 
 import { userActions } from '../../../store/slices/user';
 import { validatePassword } from '../../../utils/utils';
@@ -14,7 +20,7 @@ type HTMLLoginForm = HTMLFormElement & {
 
 type ChangeHandler = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 
-export default function LoginForm() {
+function BaseLoginForm() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -23,25 +29,32 @@ export default function LoginForm() {
 
   const { login } = useActionCreators(userActions);
 
-  const handleChange: ChangeHandler = (evt) => {
-    const { name, value } = evt.currentTarget;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const handleChange = useCallback<ChangeHandler>(
+    (evt) => {
+      const { name, value } = evt.currentTarget;
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    },
+    [formData],
+  );
 
-  function handleSubmit(event: FormEvent<HTMLLoginForm>) {
-    event.preventDefault();
+  const handleSubmit = useCallback(
+    (event: FormEvent<HTMLLoginForm>) => {
+      event.preventDefault();
 
-    if (!validatePassword(formData.password)) {
-      setError('Пароль должен состоять минимум из одной буквы и цифры');
-      return;
-    }
+      if (!validatePassword(formData.password)) {
+        setError('Пароль должен состоять минимум из одной буквы и цифры');
+        return;
+      }
 
-    setError(null);
-    login(formData);
-  }
+      setError(null);
+      login(formData);
+    },
+    [formData, login, setError],
+  );
+
   return (
     <form
       className="login__form form"
@@ -80,3 +93,5 @@ export default function LoginForm() {
     </form>
   );
 }
+
+export const LoginForm = memo(BaseLoginForm);

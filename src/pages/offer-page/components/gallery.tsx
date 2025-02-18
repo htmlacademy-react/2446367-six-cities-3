@@ -1,8 +1,10 @@
+import { memo } from 'react';
+
 type GalleryProps = {
   images: string[];
 };
 
-export default function Gallery({ images }: GalleryProps) {
+function BaseGallery({ images }: GalleryProps) {
   return (
     <div className="offer__gallery">
       {images.map((image) => (
@@ -13,3 +15,5 @@ export default function Gallery({ images }: GalleryProps) {
     </div>
   );
 }
+
+export const Gallery = memo(BaseGallery);

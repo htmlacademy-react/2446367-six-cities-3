@@ -1,12 +1,13 @@
-import Logo from './components/logo';
-import LoggedNav from './components/logged-nav';
+import { Logo } from './components/logo';
+import { LoggedNav } from './components/logged-nav';
+import { memo } from 'react';
 
 type HeaderProps = {
   headerOnMainPage: boolean;
   headerOnLoginPage: boolean;
 };
 
-export default function Header({
+function BaseHeader({
   headerOnMainPage,
   headerOnLoginPage,
 }: HeaderProps) {
@@ -23,3 +24,5 @@ export default function Header({
     </header>
   );
 }
+
+export const Header = memo(BaseHeader);
