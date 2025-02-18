@@ -8,7 +8,7 @@ type usePageLayoutProps = {
   offersLength?: number;
 };
 
-export default function usePageLayout({
+export function usePageLayout({
   favoritesLength,
   offersLength,
 }: usePageLayoutProps) {

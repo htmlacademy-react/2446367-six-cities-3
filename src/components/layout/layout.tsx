@@ -1,4 +1,4 @@
-import usePageLayout from '../../hooks/use-page-layout';
+import { usePageLayout } from '../../hooks/use-page-layout';
 import { useAppSelector } from '../../hooks/store';
 
 import { Header } from '../header/header';

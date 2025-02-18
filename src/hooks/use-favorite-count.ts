@@ -4,7 +4,7 @@ import { useActionCreators, useAppSelector } from './store';
 import { favoritesActions, favoritesSelector } from '../store/slices/favorites';
 import { RequestStatus } from '../utils/data';
 
-export default function useFavoriteCount() {
+export function useFavoriteCount() {
   const status = useAppSelector(favoritesSelector.status);
   const count = useAppSelector(favoritesSelector.favorites).length;
   const { fetchFavorites } = useActionCreators(favoritesActions);

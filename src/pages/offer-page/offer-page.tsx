@@ -4,7 +4,7 @@ import { useActionCreators, useAppSelector } from '../../hooks/store';
 
 import NotFoundPage from '../not-found-page/not-found-page';
 import { Map } from '../../components/map/map';
-import Spinner from '../../components/spinner/spinner';
+import { Spinner } from '../../components/spinner/spinner';
 import Goods from './components/goods';
 import Gallery from './components/gallery';
 import Nearby from './components/nearby';
