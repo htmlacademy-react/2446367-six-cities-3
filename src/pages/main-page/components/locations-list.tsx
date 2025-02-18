@@ -3,7 +3,7 @@ import { useActionCreators, useAppSelector } from '../../../hooks/store';
 import { offersActions, offersSelector } from '../../../store/slices/offers';
 import { CITIES } from '../../../utils/data';
 
-export default function LocationsList() {
+export function LocationsList() {
   const currentCity = useAppSelector(offersSelector.city);
   const { setCity } = useActionCreators(offersActions);
 

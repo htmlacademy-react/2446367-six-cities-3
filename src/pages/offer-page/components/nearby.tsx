@@ -6,7 +6,7 @@ type NearbyProps = {
   nearOffers: ServerOffer[];
 };
 
-export default function Nearby({ nearOffers }: NearbyProps) {
+export function Nearby({ nearOffers }: NearbyProps) {
   return (
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>

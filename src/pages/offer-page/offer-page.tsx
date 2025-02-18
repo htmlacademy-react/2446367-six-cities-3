@@ -2,28 +2,29 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useActionCreators, useAppSelector } from '../../hooks/store';
 
-import NotFoundPage from '../not-found-page/not-found-page';
+import { NotFoundPage } from '../not-found-page/not-found-page';
 import { Map } from '../../components/map/map';
 import { Spinner } from '../../components/spinner/spinner';
-import Goods from './components/goods';
-import Gallery from './components/gallery';
-import Nearby from './components/nearby';
-import Host from './components/host';
-import Reviews from './components/reviews';
-import Features from './components/features';
+import { Goods } from './components/goods';
+import { Gallery } from './components/gallery';
+import { Nearby } from './components/nearby';
+import { Host } from './components/host';
+import { Reviews } from './components/reviews';
+import { Features } from './components/features';
 
 import { RequestStatus } from '../../utils/data';
 import { offerActions, offerSelector } from '../../store/slices/offer';
 import { reviewsActions, reviewsSelector } from '../../store/slices/review';
 import { FavoriteButton } from '../../components/favorite-button/favorite-button';
 
-export default function OfferPage() {
+export function OfferPage() {
   const { id } = useParams();
 
   const offer = useAppSelector(offerSelector.offer);
   const status = useAppSelector(offerSelector.status);
   const nearbyOffers = useAppSelector(offerSelector.nearby);
   const reviews = useAppSelector(reviewsSelector.items);
+
   const { fetchNearBy, fetchOffer } = useActionCreators(offerActions);
   const { fetchComments } = useActionCreators(reviewsActions);
 

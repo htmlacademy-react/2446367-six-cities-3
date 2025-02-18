@@ -14,7 +14,7 @@ type HTMLLoginForm = HTMLFormElement & {
 
 type ChangeHandler = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 
-export default function LoginForm() {
+export function LoginForm() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',

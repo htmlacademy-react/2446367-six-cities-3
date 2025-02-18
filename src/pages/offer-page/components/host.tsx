@@ -5,7 +5,7 @@ type HostProps = {
   host: FullOffer['host'];
 };
 
-export default function Host({ description, host }: HostProps) {
+export function Host({ description, host }: HostProps) {
   return (
     <div className="offer__host">
       <h2 className="offer__host-title">Meet the host</h2>

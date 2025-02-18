@@ -16,7 +16,7 @@ type FilledMainSectionProps = {
   city: CityName;
 };
 
-export default function FilledMainSection({
+export function FilledMainSection({
   offers,
   city,
 }: FilledMainSectionProps) {

@@ -3,15 +3,15 @@ import { useAuth } from '../../../hooks/user-authorization';
 import type { Review } from '../../../types/review';
 
 import { PostReviewError } from '../../../components/errors/post-review-error';
-import ReviewItem from './review-item';
-import ReviewForm from './review-form';
+import { ReviewItem } from './review-item';
+import { ReviewForm } from './review-form';
 
 type ReviewsProps = {
   currentReviews: Review[];
   offerID: string;
 };
 
-export default function Reviews({ currentReviews, offerID }: ReviewsProps) {
+export function Reviews({ currentReviews, offerID }: ReviewsProps) {
   const isAuthorized = useAuth();
   return (
     <section className="offer__reviews reviews">

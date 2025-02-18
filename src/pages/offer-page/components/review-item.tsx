@@ -8,7 +8,7 @@ type ReviewItemProps = {
   review: Review;
 };
 
-export default function ReviewItem({ review }: ReviewItemProps) {
+export function ReviewItem({ review }: ReviewItemProps) {
   const {
     date,
     user: { avatarUrl, name },

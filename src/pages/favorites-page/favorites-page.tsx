@@ -5,7 +5,7 @@ import { FilledFavoritesSection } from './components/filled-favorites-section';
 
 import { favoritesSelector } from '../../store/slices/favorites';
 
-function BaseFavoritesPage() {
+export function FavoritesPage() {
   const favorites = useAppSelector(favoritesSelector.favorites);
   const favoritesLength = favorites.length;
 
@@ -21,5 +21,3 @@ function BaseFavoritesPage() {
     </div>
   );
 }
-
-export const FavoritesPage = BaseFavoritesPage;
