@@ -1,4 +1,5 @@
 import { memo } from 'react';
+
 import './css/validate-error.css';
 
 export function BaseValidateError() {

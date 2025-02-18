@@ -5,8 +5,9 @@ import useFavoriteCount from '../../../hooks/use-favorite-count';
 
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../utils/data';
+import { memo } from 'react';
 
-export default function LoggedNav() {
+function BaseLoggedNav() {
   const isAuthorized = useAuth();
   const user = useAppSelector(userSelector.info);
   const { logout } = useActionCreators(userActions);
@@ -50,3 +51,5 @@ export default function LoggedNav() {
     </nav>
   );
 }
+
+export const LoggedNav = memo(BaseLoggedNav);

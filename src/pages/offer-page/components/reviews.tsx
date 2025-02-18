@@ -2,9 +2,9 @@ import { useAuth } from '../../../hooks/user-authorization';
 
 import type { Review } from '../../../types/review';
 
+import { PostReviewError } from '../../../components/errors/post-review-error';
 import ReviewItem from './review-item';
 import ReviewForm from './review-form';
-import { PostReviewError } from '../../../components/errors/post-review-error';
 
 type ReviewsProps = {
   currentReviews: Review[];

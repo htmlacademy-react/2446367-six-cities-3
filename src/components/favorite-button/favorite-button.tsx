@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import { favoritesActions } from '../../store/slices/favorites';
 import { AppRoute } from '../../utils/data';
 
-type BaseFavoriteButtonProps = {
+type FavoriteButtonProps = {
   className: 'offer' | 'place-card';
   isFavorite?: boolean;
   offerID: string;
@@ -19,12 +19,12 @@ const enum Default {
   HeightCoefficient = 18 / 17,
 }
 
-export function BaseFavoriteButton({
+function BaseFavoriteButton({
   className = 'place-card',
   isFavorite: isFavoriteProp = false,
   offerID,
   width = 18,
-}: BaseFavoriteButtonProps) {
+}: FavoriteButtonProps) {
   const [isFavorite, setIsFavorite] = useState(isFavoriteProp);
   const isAuthorized = useAuth();
   const navigate = useNavigate();

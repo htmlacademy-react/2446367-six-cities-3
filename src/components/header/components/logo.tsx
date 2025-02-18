@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
+import { memo } from 'react';
+
 import { AppRoute } from '../../../utils/data';
 
 type LogoProps = {
   isLink: boolean;
 };
 
-export default function Logo({ isLink }: LogoProps) {
+function BaseLogo({ isLink }: LogoProps) {
   return isLink ? (
     <a className="header__logo-link">
       <img
@@ -31,3 +33,5 @@ export default function Logo({ isLink }: LogoProps) {
     </Link>
   );
 }
+
+export const Logo = memo(BaseLogo);

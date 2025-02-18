@@ -1,7 +1,7 @@
 import usePageLayout from '../../hooks/use-page-layout';
 import { useAppSelector } from '../../hooks/store';
 
-import Header from '../header/header';
+import { Header } from '../header/header';
 import { Footer } from '../footer/footer';
 
 import { Outlet } from 'react-router-dom';
