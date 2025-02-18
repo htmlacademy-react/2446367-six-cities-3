@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import type { Review } from '../../types/review';
-import type { RootState } from '../../types/store';
 
 import { RequestStatus } from '../../utils/data';
 import { commentsThunks } from '../thunks/comments';
@@ -43,14 +42,6 @@ export const reviewSlice = createSlice({
   name: 'reviews',
   reducers: {},
 });
-
-const selectReviews = (state: RootState) => state.reviews.items;
-const selectReviewsStatus = (state: RootState) => state.reviews.status;
-
-export const reviewsSelector = {
-  items: selectReviews,
-  status: selectReviewsStatus,
-};
 
 export const reviewsActions = {
   ...reviewSlice.actions,

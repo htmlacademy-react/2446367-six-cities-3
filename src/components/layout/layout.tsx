@@ -5,11 +5,11 @@ import { Header } from '../header/header';
 import { Footer } from '../footer/footer';
 
 import { Outlet } from 'react-router-dom';
-import { offersSelector } from '../../store/slices/offers';
 import { useFavoriteCount } from '../../hooks/use-favorite-count';
+import { selectCityOffers } from '../../store/selectors/offers';
 
 function BaseLayout() {
-  const offers = useAppSelector(offersSelector.cityOffers);
+  const offers = useAppSelector(selectCityOffers);
   const offersLength = offers.length;
 
   const favoritesLength = useFavoriteCount();

@@ -5,7 +5,7 @@ import type { ReactNode } from 'react';
 import type { Location } from 'react-router-dom';
 
 import { AppRoute } from '../../utils/data';
-import { userSelector } from '../../store/slices/user';
+import { selectUser } from '../../store/selectors/user';
 
 type ProtectedRouteProps = {
   children: ReactNode;
@@ -19,7 +19,7 @@ type FromState = {
 function BaseProtectedRoute({ children, onlyUnAuth }: ProtectedRouteProps) {
   const location: Location<FromState> = useLocation() as Location<FromState>;
 
-  const user = useAppSelector(userSelector.info);
+  const user = useAppSelector(selectUser);
 
   if (onlyUnAuth && user) {
     const from = location.state?.from || { pathname: AppRoute.Root };

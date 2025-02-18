@@ -3,10 +3,10 @@ import { useAppSelector } from '../../hooks/store';
 import { useEffect, useRef } from 'react';
 
 import { Icon, Marker, layerGroup } from 'leaflet';
-import { offersSelector } from '../../store/slices/offers';
 import { CITIES } from '../../utils/data';
 import { CityName } from '../../types/city';
 import { ServerOffer } from '../../types/offer';
+import { selectActiveId } from '../../store/selectors/offers';
 
 type MapProps = {
   className?: string;
@@ -27,7 +27,7 @@ const currentCustomIcon = new Icon({
 });
 
 function BaseMap({ offers, city, className }: MapProps) {
-  const activeOffer = useAppSelector(offersSelector.activeId);
+  const activeOffer = useAppSelector(selectActiveId);
 
   const cityLocation = CITIES.find((item) => item.name === city)!.location;
 

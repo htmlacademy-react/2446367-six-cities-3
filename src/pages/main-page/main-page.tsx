@@ -6,14 +6,18 @@ import { Map } from '../../components/map/map';
 import { LocationsList } from './components/locations-list';
 import { Spinner } from '../../components/spinner/spinner';
 
-import { offersSelector } from '../../store/slices/offers';
 import { RequestStatus } from '../../utils/data';
+import {
+  selectCity,
+  selectCityOffers,
+  selectOffersStatus,
+} from '../../store/selectors/offers';
 
 export function MainPage() {
-  const city = useAppSelector(offersSelector.city);
-  const status = useAppSelector(offersSelector.status);
+  const city = useAppSelector(selectCity);
+  const status = useAppSelector(selectOffersStatus);
 
-  const offers = useAppSelector(offersSelector.cityOffers);
+  const offers = useAppSelector(selectCityOffers);
   const offersLength = offers.length;
 
   const isEmpty = offersLength === 0;

@@ -1,11 +1,12 @@
 import { memo } from 'react';
 import { useActionCreators, useAppSelector } from '../../../hooks/store';
 
-import { offersActions, offersSelector } from '../../../store/slices/offers';
+import { offersActions } from '../../../store/slices/offers';
 import { CITIES } from '../../../utils/data';
+import { selectCity } from '../../../store/selectors/offers';
 
 function BaseLocationsList() {
-  const currentCity = useAppSelector(offersSelector.city);
+  const currentCity = useAppSelector(selectCity);
   const { setCity } = useActionCreators(offersActions);
 
   return (
@@ -31,4 +32,4 @@ function BaseLocationsList() {
   );
 }
 
-export const LocationList = memo(BaseLocationsList);
+export const LocationsList = memo(BaseLocationsList);

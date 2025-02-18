@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import type { RootState } from '../../types/store';
 import type { FullOffer, ServerOffer } from '../../types/offer';
 
 import { RequestStatus } from '../../utils/data';
@@ -44,15 +43,5 @@ export const offerSlice = createSlice({
     },
   },
 });
-
-const selectNearby = (state: RootState) => state.offer.nearby;
-const selectOffer = (state: RootState) => state.offer.info;
-const selectStatus = (state: RootState) => state.offer.status;
-
-export const offerSelector = {
-  nearby: selectNearby,
-  offer: selectOffer,
-  status: selectStatus,
-};
 
 export const offerActions = { ...offerSlice.actions, fetchNearBy, fetchOffer };

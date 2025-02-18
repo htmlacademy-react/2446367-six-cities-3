@@ -13,17 +13,23 @@ import { Reviews } from './components/reviews';
 import { Features } from './components/features';
 
 import { RequestStatus } from '../../utils/data';
-import { offerActions, offerSelector } from '../../store/slices/offer';
-import { reviewsActions, reviewsSelector } from '../../store/slices/review';
+import { offerActions } from '../../store/slices/offer';
+import { reviewsActions } from '../../store/slices/review';
 import { FavoriteButton } from '../../components/favorite-button/favorite-button';
+import {
+  selectNearby,
+  selectOffer,
+  selectOfferStatus,
+} from '../../store/selectors/offer';
+import { selectReviews } from '../../store/selectors/review';
 
 export function OfferPage() {
   const { id } = useParams();
 
-  const offer = useAppSelector(offerSelector.offer);
-  const status = useAppSelector(offerSelector.status);
-  const nearbyOffers = useAppSelector(offerSelector.nearby);
-  const reviews = useAppSelector(reviewsSelector.items);
+  const offer = useAppSelector(selectOffer);
+  const status = useAppSelector(selectOfferStatus);
+  const nearbyOffers = useAppSelector(selectNearby);
+  const reviews = useAppSelector(selectReviews);
 
   const { fetchNearBy, fetchOffer } = useActionCreators(offerActions);
   const { fetchComments } = useActionCreators(reviewsActions);

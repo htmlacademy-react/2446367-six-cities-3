@@ -1,9 +1,9 @@
-import { userSelector } from '../store/slices/user';
+import { selectUserStatus } from '../store/selectors/user';
 import { AuthorizationStatus } from '../utils/data';
 import { useAppSelector } from './store';
 
 export function useAuth() {
-  const status = useAppSelector(userSelector.status);
+  const status = useAppSelector(selectUserStatus);
 
   return status === AuthorizationStatus.Auth;
 }

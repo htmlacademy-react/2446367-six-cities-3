@@ -1,15 +1,16 @@
+import { memo } from 'react';
 import { useAuth } from '../../../hooks/user-authorization';
-import { userActions, userSelector } from '../../../store/slices/user';
 import { useActionCreators, useAppSelector } from '../../../hooks/store';
 import { useFavoriteCount } from '../../../hooks/use-favorite-count';
 
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../utils/data';
-import { memo } from 'react';
+import { userActions } from '../../../store/slices/user';
+import { selectUser } from '../../../store/selectors/user';
 
 function BaseLoggedNav() {
   const isAuthorized = useAuth();
-  const user = useAppSelector(userSelector.info);
+  const user = useAppSelector(selectUser);
   const { logout } = useActionCreators(userActions);
   const favoritesCount = useFavoriteCount();
 
