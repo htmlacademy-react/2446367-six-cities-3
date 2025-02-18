@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useActionCreators } from './hooks/store';
 
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
-import FavoritesPage from './pages/favorites-page/favorites-page';
+import { FavoritesPage } from './pages/favorites-page/favorites-page';
 import LoginPage from './pages/login-page/login-page';
 import MainPage from './pages/main-page/main-page';
 import OfferPage from './pages/offer-page/offer-page';

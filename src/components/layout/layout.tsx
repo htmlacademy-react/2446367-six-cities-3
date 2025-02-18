@@ -6,10 +6,13 @@ import { Footer } from '../footer/footer';
 
 import { Outlet } from 'react-router-dom';
 import { offersSelector } from '../../store/slices/offers';
+import { useFavoriteCount } from '../../hooks/use-favorite-count';
 
 function BaseLayout() {
   const offers = useAppSelector(offersSelector.cityOffers);
   const offersLength = offers.length;
+
+  const favoritesLength = useFavoriteCount();
 
   const {
     headerOnMainPage,
@@ -17,7 +20,7 @@ function BaseLayout() {
     rootClassName,
     mainClassName,
     onFavoritesPage,
-  } = usePageLayout({ offersLength });
+  } = usePageLayout({ offersLength, favoritesLength });
 
   return (
     <div className={`page${rootClassName}`}>

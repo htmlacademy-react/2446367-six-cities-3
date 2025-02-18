@@ -1,6 +1,6 @@
 import type { ServerOffer } from '../../../types/offer';
 
-import OfferCard from '../../../components/offer-card/offer-card';
+import { OfferCard } from '../../../components/offer-card/offer-card';
 
 import { favoritesByCity } from '../../../utils/utils';
 
@@ -8,7 +8,7 @@ type FilledFavoritesSectionProps = {
   favorites: ServerOffer[];
 };
 
-export default function FilledFavoritesSection({
+function BaseFilledFavoritesSection({
   favorites,
 }: FilledFavoritesSectionProps) {
   const groupedFavorites = favoritesByCity(favorites);
@@ -44,3 +44,5 @@ export default function FilledFavoritesSection({
     </section>
   );
 }
+
+export const FilledFavoritesSection = BaseFilledFavoritesSection;

@@ -1,4 +1,3 @@
-import { usePageLayout } from '../../hooks/use-page-layout';
 import { useAppSelector } from '../../hooks/store';
 
 import EmptyMainSection from './components/empty-main-section';
@@ -12,14 +11,12 @@ import { RequestStatus } from '../../utils/data';
 
 export default function MainPage() {
   const city = useAppSelector(offersSelector.city);
+  const status = useAppSelector(offersSelector.status);
 
   const offers = useAppSelector(offersSelector.cityOffers);
   const offersLength = offers.length;
-  const status = useAppSelector(offersSelector.status);
 
-  const { emptyMain, emptyPageContainerClassName } = usePageLayout({
-    offersLength,
-  });
+  const isEmpty = offersLength === 0;
 
   if (status === RequestStatus.Loading) {
     return <Spinner />;
@@ -35,15 +32,15 @@ export default function MainPage() {
       </div>
       <div className="cities">
         <div
-          className={`cities__places-container container ${emptyPageContainerClassName}`}
+          className={`cities__places-container container ${isEmpty ? 'cities__places-container--empty' : ''}`}
         >
-          {emptyMain ? (
+          {isEmpty ? (
             <EmptyMainSection city={city} />
           ) : (
             <FilledMainSection offers={offers} city={city} />
           )}
           <div className="cities__right-section">
-            {!emptyMain && (
+            {!isEmpty && (
               <Map className="cities__map" city={city} offers={offers} />
             )}
           </div>

@@ -1,4 +1,4 @@
-export default function EmptyFavoritesSection() {
+function BaseEmptyFavoritesSection() {
   return (
     <section className="favorites favorites--empty">
       <h1 className="visually-hidden">Favorites (empty)</h1>
@@ -11,3 +11,5 @@ export default function EmptyFavoritesSection() {
     </section>
   );
 }
+
+export const EmptyFavoritesSection = BaseEmptyFavoritesSection;
