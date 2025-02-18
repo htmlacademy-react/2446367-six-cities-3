@@ -1,6 +1,6 @@
 import type { ServerOffer } from '../../../types/offer';
 
-import OfferCard from '../../../components/offer-card/offer-card';
+import { OfferCard } from '../../../components/offer-card/offer-card';
 
 type NearbyProps = {
   nearOffers: ServerOffer[];

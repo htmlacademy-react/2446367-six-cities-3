@@ -1,9 +1,11 @@
-import { Navigate, useLocation } from 'react-router-dom';
-import { AppRoute } from '../../utils/data';
-import { ReactNode } from 'react';
 import { useAppSelector } from '../../hooks/store';
+import { Navigate, useLocation } from 'react-router-dom';
+
+import type { ReactNode } from 'react';
+import type { Location } from 'react-router-dom';
+
+import { AppRoute } from '../../utils/data';
 import { userSelector } from '../../store/slices/user';
-import { Location } from 'react-router-dom';
 
 type ProtectedRouteProps = {
   children: ReactNode;
@@ -14,10 +16,7 @@ type FromState = {
   from?: Location;
 };
 
-export default function ProtectedRoute({
-  children,
-  onlyUnAuth,
-}: ProtectedRouteProps) {
+function BaseProtectedRoute({ children, onlyUnAuth }: ProtectedRouteProps) {
   const location: Location<FromState> = useLocation() as Location<FromState>;
 
   const user = useAppSelector(userSelector.info);
@@ -33,3 +32,5 @@ export default function ProtectedRoute({
 
   return children;
 }
+
+export const ProtectedRoute = BaseProtectedRoute;

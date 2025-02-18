@@ -7,7 +7,7 @@ import LoginPage from './pages/login-page/login-page';
 import MainPage from './pages/main-page/main-page';
 import OfferPage from './pages/offer-page/offer-page';
 import NotFoundPage from './pages/not-found-page/not-found-page';
-import ProtectedRoute from './components/private-route/private-route';
+import { ProtectedRoute } from './components/private-route/private-route';
 import { Layout } from './components/layout/layout';
 
 import { AppRoute } from './utils/data';

@@ -9,13 +9,17 @@ type OfferListProps = {
   handleActiveOff: MouseEventHandler<HTMLElement>;
 };
 
-export default function OfferList({ offers, handleActiveOn, handleActiveOff }: OfferListProps) {
+function BaseOfferList({
+  offers,
+  handleActiveOn,
+  handleActiveOff,
+}: OfferListProps) {
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => (
         <OfferCard
           offer={offer}
-          pageClassName='cities'
+          pageClassName="cities"
           key={offer.id}
           handleActiveOn={handleActiveOn}
           handleActiveOff={handleActiveOff}
@@ -24,3 +28,5 @@ export default function OfferList({ offers, handleActiveOn, handleActiveOff }: O
     </div>
   );
 }
+
+export const OfferList = BaseOfferList;

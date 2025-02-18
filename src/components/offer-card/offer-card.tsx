@@ -1,10 +1,12 @@
-import PremiumMark from '../premium-mark/premium-mark';
-import { capitalizeFirstLetter } from '../../utils/utils';
-import { Link } from 'react-router-dom';
-import { AppRoute } from '../../utils/data';
 import { memo, MouseEventHandler } from 'react';
-import { ServerOffer } from '../../types/offer';
+
+import type { ServerOffer } from '../../types/offer';
+import { Link } from 'react-router-dom';
+import { PremiumMark } from '../premium-mark/premium-mark';
 import { FavoriteButton } from '../favorite-button/favorite-button';
+
+import { capitalizeFirstLetter } from '../../utils/utils';
+import { AppRoute } from '../../utils/data';
 
 type OfferCardProps = {
   offer: ServerOffer;

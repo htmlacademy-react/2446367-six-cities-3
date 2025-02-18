@@ -5,7 +5,7 @@ import EmptyMainSection from './components/empty-main-section';
 import FilledMainSection from './components/filled-main-section';
 import { Map } from '../../components/map/map';
 import LocationsList from './components/locations-list';
-import Spinner from '../../components/spinner/spinner';
+import { Spinner } from '../../components/spinner/spinner';
 
 import { offersSelector } from '../../store/slices/offers';
 import { RequestStatus } from '../../utils/data';
