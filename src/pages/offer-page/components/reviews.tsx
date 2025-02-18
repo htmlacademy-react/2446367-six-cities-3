@@ -4,7 +4,7 @@ import type { Review } from '../../../types/review';
 
 import ReviewItem from './review-item';
 import ReviewForm from './review-form';
-import PostReviewError from '../../../components/errors/post-review-error';
+import { PostReviewError } from '../../../components/errors/post-review-error';
 
 type ReviewsProps = {
   currentReviews: Review[];

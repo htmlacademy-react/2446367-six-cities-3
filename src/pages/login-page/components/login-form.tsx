@@ -2,7 +2,7 @@ import { useState, ReactEventHandler, FormEvent } from 'react';
 import { useError } from '../../../hooks/use-error';
 import { useActionCreators } from '../../../hooks/store';
 
-import ValidateError from '../../../components/errors/validate-error';
+import { ValidateError } from '../../../components/errors/validate-error';
 
 import { userActions } from '../../../store/slices/user';
 import { validatePassword } from '../../../utils/utils';
