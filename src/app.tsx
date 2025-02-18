@@ -8,7 +8,7 @@ import MainPage from './pages/main-page/main-page';
 import OfferPage from './pages/offer-page/offer-page';
 import NotFoundPage from './pages/not-found-page/not-found-page';
 import ProtectedRoute from './components/private-route/private-route';
-import Layout from './components/layout/layout';
+import { Layout } from './components/layout/layout';
 
 import { AppRoute } from './utils/data';
 import { userActions } from './store/slices/user';

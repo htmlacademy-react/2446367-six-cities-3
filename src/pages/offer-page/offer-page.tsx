@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useActionCreators, useAppSelector } from '../../hooks/store';
 
 import NotFoundPage from '../not-found-page/not-found-page';
-import Map from '../../components/map/map';
+import { Map } from '../../components/map/map';
 import Spinner from '../../components/spinner/spinner';
 import Goods from './components/goods';
 import Gallery from './components/gallery';
@@ -15,6 +15,7 @@ import Features from './components/features';
 import { RequestStatus } from '../../utils/data';
 import { offerActions, offerSelector } from '../../store/slices/offer';
 import { reviewsActions, reviewsSelector } from '../../store/slices/review';
+import { FavoriteButton } from '../../components/favorite-button/favorite-button';
 
 export default function OfferPage() {
   const { id } = useParams();
@@ -73,15 +74,12 @@ export default function OfferPage() {
             )}
             <div className="offer__name-wrapper">
               <h1 className="offer__name">{title}</h1>
-              <button
-                className={`offer__bookmark-button ${isFavorite && 'offer__bookmark-button--active'} button`}
-                type="button"
-              >
-                <svg className="offer__bookmark-icon" width="31" height="33">
-                  <use xlinkHref="#icon-bookmark"></use>
-                </svg>
-                <span className="visually-hidden">To bookmarks</span>
-              </button>
+              <FavoriteButton
+                className="offer"
+                offerID={id as string}
+                isFavorite={isFavorite}
+                width={31}
+              />
             </div>
             <div className="offer__rating rating">
               <div className="offer__stars rating__stars">

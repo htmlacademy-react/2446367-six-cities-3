@@ -5,7 +5,7 @@ import type { Location } from '../types/location';
 import { Map, TileLayer } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-export default function useMap(
+export function useMap(
   mapRef: MutableRefObject<HTMLElement | null>,
   cityLocation: Location,
 ): Map | null {

@@ -3,7 +3,7 @@ import { useAppSelector } from '../../hooks/store';
 
 import EmptyMainSection from './components/empty-main-section';
 import FilledMainSection from './components/filled-main-section';
-import Map from '../../components/map/map';
+import { Map } from '../../components/map/map';
 import LocationsList from './components/locations-list';
 import Spinner from '../../components/spinner/spinner';
 
@@ -44,11 +44,7 @@ export default function MainPage() {
           )}
           <div className="cities__right-section">
             {!emptyMain && (
-              <Map
-                className="cities__map"
-                city={city}
-                offers={offers}
-              />
+              <Map className="cities__map" city={city} offers={offers} />
             )}
           </div>
         </div>

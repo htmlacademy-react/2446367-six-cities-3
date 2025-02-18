@@ -1,10 +1,10 @@
-import useMap from '../../hooks/use-map';
+import { useMap } from '../../hooks/use-map';
 import { useAppSelector } from '../../hooks/store';
 import { useEffect, useRef } from 'react';
 
 import { Icon, Marker, layerGroup } from 'leaflet';
 import { offersSelector } from '../../store/slices/offers';
-import { CITIES} from '../../utils/data';
+import { CITIES } from '../../utils/data';
 import { CityName } from '../../types/city';
 import { ServerOffer } from '../../types/offer';
 
@@ -26,7 +26,7 @@ const currentCustomIcon = new Icon({
   iconAnchor: [14, 40],
 });
 
-export default function Map({ offers, city, className }: MapProps) {
+function BaseMap({ offers, city, className }: MapProps) {
   const activeOffer = useAppSelector(offersSelector.activeId);
 
   const cityLocation = CITIES.find((item) => item.name === city)!.location;
@@ -36,7 +36,6 @@ export default function Map({ offers, city, className }: MapProps) {
 
   useEffect(() => {
     if (map) {
-
       const markerLayer = layerGroup().addTo(map);
 
       offers.forEach(({ id, location }) => {
@@ -62,3 +61,5 @@ export default function Map({ offers, city, className }: MapProps) {
 
   return <section className={`map ${className}`} ref={mapRef} />;
 }
+
+export const Map = BaseMap;
