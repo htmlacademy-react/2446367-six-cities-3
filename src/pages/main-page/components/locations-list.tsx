@@ -1,9 +1,10 @@
+import { memo } from 'react';
 import { useActionCreators, useAppSelector } from '../../../hooks/store';
 
 import { offersActions, offersSelector } from '../../../store/slices/offers';
 import { CITIES } from '../../../utils/data';
 
-export function LocationsList() {
+function BaseLocationsList() {
   const currentCity = useAppSelector(offersSelector.city);
   const { setCity } = useActionCreators(offersActions);
 
@@ -29,3 +30,5 @@ export function LocationsList() {
     </ul>
   );
 }
+
+export const LocationList = memo(BaseLocationsList);
