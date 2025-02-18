@@ -8,8 +8,10 @@ import { favoritesSelector } from '../../store/slices/favorites';
 
 export default function FavoritesPage() {
   const favorites = useAppSelector(favoritesSelector.favorites);
+  const favoritesLength = favorites.length;
+
   const { emptyFavorites } = usePageLayout({
-    favorites,
+    favoritesLength,
   });
 
   return (

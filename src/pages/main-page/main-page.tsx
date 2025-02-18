@@ -12,11 +12,13 @@ import { RequestStatus } from '../../utils/data';
 
 export default function MainPage() {
   const city = useAppSelector(offersSelector.city);
+
   const offers = useAppSelector(offersSelector.cityOffers);
+  const offersLength = offers.length;
   const status = useAppSelector(offersSelector.status);
 
   const { emptyMain, emptyPageContainerClassName } = usePageLayout({
-    offers,
+    offersLength,
   });
 
   if (status === RequestStatus.Loading) {

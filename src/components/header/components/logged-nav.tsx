@@ -11,6 +11,7 @@ export default function LoggedNav() {
   const user = useAppSelector(userSelector.info);
   const { logout } = useActionCreators(userActions);
   const favoritesCount = useFavoriteCount();
+
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">
