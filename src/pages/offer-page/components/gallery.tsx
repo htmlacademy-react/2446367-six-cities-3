@@ -4,12 +4,14 @@ type GalleryProps = {
   images: string[];
 };
 
-function BaseGallery({ images }: GalleryProps) {
-  const slicedImages = images.slice(0, 6);
+const enum GalleryDefault {
+  Max = 6,
+}
 
+function BaseGallery({ images }: GalleryProps) {
   return (
     <div className="offer__gallery">
-      {slicedImages.map((image) => (
+      {images.slice(0, GalleryDefault.Max).map((image) => (
         <div className="offer__image-wrapper" key={image}>
           <img className="offer__image" src={image} alt="Photo studio" />
         </div>
