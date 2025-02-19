@@ -3,7 +3,7 @@ import { useAppSelector } from '../../hooks/store';
 import { EmptyMainSection } from './components/empty-main-section';
 import { FilledMainSection } from './components/filled-main-section';
 import { Map } from '../../components/map/map';
-import { LocationsList } from './components/locations-list';
+import { LocationsList } from '../../components/locations-list/locations-list';
 import { Spinner } from '../../components/spinner/spinner';
 
 import { RequestStatus } from '../../utils/data';

@@ -1,4 +1,5 @@
 import { LoginForm } from './components/login-form';
+import { RandomCity } from './components/random-city';
 
 export function LoginPage() {
   return (
@@ -7,13 +8,7 @@ export function LoginPage() {
         <h1 className="login__title">Sign in</h1>
         <LoginForm />
       </section>
-      <section className="locations locations--login locations--current">
-        <div className="locations__item">
-          <a className="locations__item-link" href="#">
-            <span>Amsterdam</span>
-          </a>
-        </div>
-      </section>
+      <RandomCity />
     </div>
   );
 }

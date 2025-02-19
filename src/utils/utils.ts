@@ -38,3 +38,8 @@ export function favoritesByCity(
 export function pluralize(count: number, word: string): string {
   return count === 1 ? `${count} ${word}` : `${count} ${word}s`;
 }
+
+// получение случайного элемента массива
+export function randomIndex<T>(data: readonly T[]) {
+  return Math.floor(Math.random() * data.length);
+}
