@@ -1,6 +1,6 @@
 import { useMap } from '../../hooks/use-map';
 import { useAppSelector } from '../../hooks/store';
-import { useEffect, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 
 import { Icon, Marker, layerGroup } from 'leaflet';
 import { CITIES } from '../../utils/data';
@@ -62,4 +62,4 @@ function BaseMap({ offers, city, className }: MapProps) {
   return <section className={`map ${className}`} ref={mapRef} />;
 }
 
-export const Map = BaseMap;
+export const Map = memo(BaseMap);
