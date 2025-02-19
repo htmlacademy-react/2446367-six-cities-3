@@ -1,8 +1,13 @@
 import { memo } from 'react';
 
-function BasePremiumMark() {
+type PremiumMarkProps = {
+  bemBlock: 'offer' | 'place-card';
+};
+
+function BasePremiumMark({ bemBlock = 'place-card' }: PremiumMarkProps) {
+  const className = `${bemBlock}__mark`;
   return (
-    <div className="place-card__mark">
+    <div className={className}>
       <span>Premium</span>
     </div>
   );

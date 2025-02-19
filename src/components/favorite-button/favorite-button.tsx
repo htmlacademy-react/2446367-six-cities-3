@@ -9,7 +9,7 @@ import { favoritesActions } from '../../store/slices/favorites';
 import { AppRoute } from '../../utils/data';
 
 type FavoriteButtonProps = {
-  className: 'offer' | 'place-card';
+  bemBlock: 'offer' | 'place-card';
   isFavorite?: boolean;
   offerID: string;
   width?: number;
@@ -20,7 +20,7 @@ const enum Default {
 }
 
 function BaseFavoriteButton({
-  className = 'place-card',
+  bemBlock = 'place-card',
   isFavorite: isFavoriteProp = false,
   offerID,
   width = 18,
@@ -32,7 +32,7 @@ function BaseFavoriteButton({
   const isActiveButton = isAuthorized && isFavorite;
 
   const favoriteLabel = `${isFavoriteProp ? 'In' : 'To'} bookmarks`;
-  const buttonClass = `${className}__bookmark-button`;
+  const buttonClass = `${bemBlock}__bookmark-button`;
   const favoriteClass = classNames(
     buttonClass,
     { [`${buttonClass}--active`]: isActiveButton },
@@ -59,7 +59,7 @@ function BaseFavoriteButton({
   return (
     <button className={favoriteClass} onClick={handleClick} type="button">
       <svg
-        className={`${className}__bookmark-icon`}
+        className={`${bemBlock}__bookmark-icon`}
         width={width}
         height={height}
       >

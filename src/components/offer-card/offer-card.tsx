@@ -45,7 +45,7 @@ function BaseOfferCard({
       onMouseLeave={handleActiveOff}
       data-id={id}
     >
-      {isPremium && <PremiumMark />}
+      {isPremium && <PremiumMark bemBlock="place-card" />}
       <div className={imageWrapperClassName}>
         <Link to={`${AppRoute.Offer.replace('/:id', '')}/${id}`}>
           <img
@@ -64,7 +64,7 @@ function BaseOfferCard({
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <FavoriteButton
-            className="place-card"
+            bemBlock="place-card"
             offerID={id}
             isFavorite={isFavorite}
           />
