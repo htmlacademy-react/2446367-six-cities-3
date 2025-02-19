@@ -108,6 +108,7 @@ export function OfferPage() {
           className="offer__map"
           city={city.name}
           offers={[...nearbyOffers, offer]}
+          isOfferPage
         />
       </section>
       <div className="container">
