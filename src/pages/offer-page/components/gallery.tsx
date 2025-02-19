@@ -5,9 +5,11 @@ type GalleryProps = {
 };
 
 function BaseGallery({ images }: GalleryProps) {
+  const slicedImages = images.slice(0, 6);
+
   return (
     <div className="offer__gallery">
-      {images.map((image) => (
+      {slicedImages.map((image) => (
         <div className="offer__image-wrapper" key={image}>
           <img className="offer__image" src={image} alt="Photo studio" />
         </div>
