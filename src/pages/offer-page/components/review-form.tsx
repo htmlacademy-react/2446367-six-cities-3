@@ -22,6 +22,13 @@ export function ReviewForm({ offerID }: ReviewFormProps) {
   const { postComment } = useActionCreators(reviewsActions);
   const [comment, setComment] = useState({ comment: '', rating: 0 });
 
+  const [isFormDisabled, setFormDisabled] = useState(false);
+
+  const isValidComment =
+    comment.comment.length >= 50 &&
+    comment.comment.length <= 300 &&
+    comment.rating !== 0;
+
   const handleReviewChange = useCallback<ChangeReviewHandler>(
     (evt) => {
       const { name, value } = evt.currentTarget;
@@ -36,7 +43,8 @@ export function ReviewForm({ offerID }: ReviewFormProps) {
   const handleSubmit = useCallback(
     (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      if (comment.comment.length >= 50 && comment.rating !== 0) {
+      setFormDisabled(true);
+      if (isValidComment) {
         postComment({
           body: {
             comment: comment.comment,
@@ -45,10 +53,11 @@ export function ReviewForm({ offerID }: ReviewFormProps) {
           offerID,
         }).then(() => {
           setComment({ rating: 0, comment: '' });
+          setFormDisabled(false);
         });
       }
     },
-    [comment, offerID, postComment],
+    [comment, isValidComment, offerID, postComment],
   );
 
   return (
@@ -72,6 +81,7 @@ export function ReviewForm({ offerID }: ReviewFormProps) {
               type="radio"
               onChange={handleReviewChange}
               checked={comment.rating === value}
+              disabled={isFormDisabled}
             />
             <label
               htmlFor={`${value}-stars`}
@@ -92,6 +102,7 @@ export function ReviewForm({ offerID }: ReviewFormProps) {
         placeholder="Tell how was your stay, what you like and what can be improved"
         onChange={handleReviewChange}
         value={comment.comment}
+        disabled={isFormDisabled}
       >
       </textarea>
       <div className="reviews__button-wrapper">
@@ -103,7 +114,7 @@ export function ReviewForm({ offerID }: ReviewFormProps) {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={comment.comment.length < 50 || comment.rating === 0}
+          disabled={!isValidComment || isFormDisabled}
         >
           Submit
         </button>
