@@ -9,6 +9,7 @@ import {
 
 import { rating } from '../../../utils/data';
 import { reviewsActions } from '../../../store/slices/review';
+import { toast } from 'react-toastify';
 
 type ReviewFormProps = {
   offerID: string;
@@ -51,10 +52,21 @@ export function ReviewForm({ offerID }: ReviewFormProps) {
             rating: Number(comment.rating),
           },
           offerID,
-        }).then(() => {
-          setComment({ rating: 0, comment: '' });
-          setFormDisabled(false);
-        });
+        })
+          .unwrap()
+          .then(() => {
+            toast.success('Review posted!');
+          })
+          .then(() => {
+            setComment({ rating: 0, comment: '' });
+            setFormDisabled(false);
+          })
+          .catch(() => {
+            toast.error('Error posting review');
+          })
+          .finally(() => {
+            setFormDisabled(false);
+          });
       }
     },
     [comment, isValidComment, offerID, postComment],

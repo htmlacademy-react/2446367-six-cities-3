@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useActionCreators } from './hooks/store';
 
+import { ToastContainer } from 'react-toastify';
+
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { FavoritesPage } from './pages/favorites-page/favorites-page';
 import { LoginPage } from './pages/login-page/login-page';
@@ -55,6 +57,7 @@ export function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
+      <ToastContainer />
     </BrowserRouter>
   );
 }
