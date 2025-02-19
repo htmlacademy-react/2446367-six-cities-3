@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { capitalizeFirstLetter } from '../../../utils/utils';
+import { capitalizeFirstLetter, pluralize } from '../../../utils/utils';
 
 type FeaturesProps = {
   type: string;
@@ -9,17 +9,17 @@ type FeaturesProps = {
 };
 
 function BaseFeatures({ type, bedrooms, maxAdults }: FeaturesProps) {
+  const bedroomsCount = pluralize(bedrooms, 'Bedroom');
+  const adultsCount = `Max ${pluralize(maxAdults, 'adult')}`;
   return (
     <ul className="offer__features">
       <li className="offer__feature offer__feature--entire">
         {capitalizeFirstLetter(type)}
       </li>
       <li className="offer__feature offer__feature--bedrooms">
-        {bedrooms} Bedrooms
+        {bedroomsCount}
       </li>
-      <li className="offer__feature offer__feature--adults">
-        Max {maxAdults} adults
-      </li>
+      <li className="offer__feature offer__feature--adults">{adultsCount}</li>
     </ul>
   );
 }

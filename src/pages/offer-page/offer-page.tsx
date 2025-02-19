@@ -91,7 +91,7 @@ export function OfferPage() {
                 <span className="visually-hidden">Rating</span>
               </div>
               <span className="offer__rating-value rating__value">
-                {Math.round(rating)}
+                {rating}
               </span>
             </div>
             <Features type={type} bedrooms={bedrooms} maxAdults={maxAdults} />

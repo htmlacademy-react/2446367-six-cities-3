@@ -33,3 +33,8 @@ export function favoritesByCity(
     {} as Record<string, ServerOffer[]>,
   );
 }
+
+// расчет единственного/множественного числа
+export function pluralize(count: number, word: string): string {
+  return count === 1 ? `${count} ${word}` : `${count} ${word}s`;
+}
