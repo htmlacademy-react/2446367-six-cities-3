@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import type { Review } from '../../types/review';
+import type { Review } from '../../../types/review';
 
-import { RequestStatus } from '../../utils/data';
-import { commentsThunks } from '../thunks/comments';
+import { RequestStatus } from '../../../utils/data';
+import { commentsThunks } from '../../thunks/comments/comments';
 
 type ReviewSlice = {
   items: Review[];

@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import type { User } from '../../types/user';
+import type { User } from '../../../types/user';
 
-import { AuthorizationStatus, RequestStatus } from '../../utils/data';
-import { checkAuth, login, logout } from '../thunks/user';
+import { AuthorizationStatus, RequestStatus } from '../../../utils/data';
+import { checkAuth, login, logout } from '../../thunks/user/user';
 
 type UserSlice = {
   info: User | null;

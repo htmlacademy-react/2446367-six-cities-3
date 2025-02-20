@@ -1,8 +1,8 @@
 import { describe } from 'vitest';
-import { offerSlice } from './offer';
-import { RequestStatus } from '../../utils/data';
-import { fetchNearBy, fetchOffer } from '../thunks/offers';
-import { mockFullOffer, mockNearbyOffer } from '../../utils/mock-data';
+import { offerSlice } from '././offer';
+import { RequestStatus } from '../../../utils/data';
+import { fetchNearBy, fetchOffer } from '../../thunks/offers/offers';
+import { mockFullOffer, mockNearbyOffer } from '../../../utils/mock-data';
 
 describe('offersSlice', () => {
   it('should return initial state', () => {

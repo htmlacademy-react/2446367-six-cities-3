@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { useActionCreators, useAppSelector } from '../../hooks/store';
 
-import { offersActions } from '../../store/slices/offers';
+import { offersActions } from '../../store/slices/offers/offers';
 import { CITIES } from '../../utils/data';
 import { selectCity } from '../../store/selectors/offers';
 

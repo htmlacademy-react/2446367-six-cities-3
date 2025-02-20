@@ -9,7 +9,7 @@ import { useActionCreators } from '../../../hooks/store';
 
 import { toast } from 'react-toastify';
 
-import { userActions } from '../../../store/slices/user';
+import { userActions } from '../../../store/slices/user/user';
 import { validatePassword } from '../../../utils/utils';
 
 type HTMLLoginForm = HTMLFormElement & {

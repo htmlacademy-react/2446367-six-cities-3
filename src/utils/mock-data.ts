@@ -1,6 +1,9 @@
+import { Action, ThunkDispatch } from '@reduxjs/toolkit';
 import type { FullOffer, ServerOffer } from '../types/offer';
 import type { Review } from '../types/review';
 import type { User } from '../types/user';
+import { createApi } from '../services/api';
+import { store } from '../store';
 
 export const mockOffer: ServerOffer = {
   city: {
@@ -13,6 +16,30 @@ export const mockOffer: ServerOffer = {
   },
   id: '03323',
   isFavorite: false,
+  isPremium: true,
+  location: {
+    latitude: 50.211,
+    longitude: 20.232,
+    zoom: 13,
+  },
+  previewImage: 'https://htmalacademy/',
+  price: 222,
+  rating: 3.4,
+  title: 'Test title',
+  type: 'test',
+};
+
+export const mockOfferFav: ServerOffer = {
+  city: {
+    location: {
+      latitude: 50.23323,
+      longitude: 20.323,
+      zoom: 13,
+    },
+    name: 'Amsterdam',
+  },
+  id: '03323',
+  isFavorite: true,
   isPremium: true,
   location: {
     latitude: 50.211,
@@ -103,3 +130,14 @@ export const mockUser: User = {
   name: 'Test name',
   token: 'test',
 };
+
+export type State = ReturnType<typeof store.getState>;
+
+export type AppThunkDispatch = ThunkDispatch<
+  State,
+  ReturnType<typeof createApi>,
+  Action
+>;
+
+export const extractActionsTypes = (actions: Action<string>[]) =>
+  actions.map(({ type }) => type);

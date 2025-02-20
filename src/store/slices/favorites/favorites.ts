@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import type { ServerOffer } from '../../types/offer';
+import type { ServerOffer } from '../../../types/offer';
 
-import { RequestStatus, FavoriteStatus } from '../../utils/data';
-import { changeFavorite, fetchFavorites } from '../thunks/favorites';
+import { RequestStatus, FavoriteStatus } from '../../../utils/data';
+import { changeFavorite, fetchFavorites } from '../../thunks/favorites/favorites';
 
 type FavoritesSlice = {
   items: ServerOffer[];

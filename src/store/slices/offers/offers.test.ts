@@ -1,7 +1,7 @@
-import { RequestStatus } from '../../utils/data';
-import { mockOffer } from '../../utils/mock-data';
-import { fetchAllOffers } from '../thunks/offers';
-import { offersSlice } from './offers';
+import { RequestStatus } from '../../../utils/data';
+import { mockOffer } from '../../../utils/mock-data';
+import { fetchAllOffers } from '../../thunks/offers/offers';
+import { offersSlice } from '././offers';
 
 describe('offersSlice', () => {
   it('should return initial state', () => {

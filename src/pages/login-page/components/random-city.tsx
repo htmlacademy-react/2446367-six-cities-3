@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useActionCreators } from '../../../hooks/store';
-import { offersActions } from '../../../store/slices/offers';
+import { offersActions } from '../../../store/slices/offers/offers';
 import { AppRoute, CITIES } from '../../../utils/data';
 import { randomIndex } from '../../../utils/utils';
 

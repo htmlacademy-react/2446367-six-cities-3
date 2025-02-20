@@ -13,8 +13,8 @@ import { Reviews } from './components/reviews';
 import { Features } from './components/features';
 
 import { RequestStatus } from '../../utils/data';
-import { offerActions } from '../../store/slices/offer';
-import { reviewsActions } from '../../store/slices/review';
+import { offerActions } from '../../store/slices/offer/offer';
+import { reviewsActions } from '../../store/slices/review/review';
 import { FavoriteButton } from '../../components/favorite-button/favorite-button';
 import {
   selectNearby,

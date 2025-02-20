@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
-import { offersSlice } from './slices/offers';
+import { offersSlice } from './slices/offers/offers';
 import { offerSlice } from './slices/offer';
 import { createApi } from '../services/api';
 import { reviewSlice } from './slices/review';

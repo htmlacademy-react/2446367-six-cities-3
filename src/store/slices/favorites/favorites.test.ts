@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
 import { favoritesSlice } from './favorites';
-import { FavoriteStatus, RequestStatus } from '../../utils/data';
-import { changeFavorite, fetchFavorites } from '../thunks/favorites';
-import { mockOffer } from '../../utils/mock-data';
+import { FavoriteStatus, RequestStatus } from '../../../utils/data';
+import { changeFavorite, fetchFavorites } from '../../thunks/favorites/favorites';
+import { mockOffer } from '../../../utils/mock-data';
 
 describe('favoritesSlice', () => {
   it('should return initial state', () => {
