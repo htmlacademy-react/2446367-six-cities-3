@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import './css/spinner.css';
 
 export function BaseSpinner() {
@@ -8,4 +10,4 @@ export function BaseSpinner() {
   );
 }
 
-export const Spinner = BaseSpinner;
+export const Spinner = memo(BaseSpinner);

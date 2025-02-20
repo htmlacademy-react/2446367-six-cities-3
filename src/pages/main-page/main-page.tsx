@@ -9,15 +9,15 @@ import { Spinner } from '../../components/spinner/spinner';
 import { RequestStatus } from '../../utils/data';
 import {
   selectCity,
-  selectCityOffers,
   selectOffersStatus,
 } from '../../store/selectors/offers';
+import { useOffers } from '../../hooks/use-offers';
 
 export function MainPage() {
   const city = useAppSelector(selectCity);
   const status = useAppSelector(selectOffersStatus);
 
-  const offers = useAppSelector(selectCityOffers);
+  const offers = useOffers();
   const offersLength = offers.length;
 
   const isEmpty = offersLength === 0;
