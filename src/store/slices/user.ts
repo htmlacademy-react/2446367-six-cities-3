@@ -43,6 +43,7 @@ export const userSlice = createSlice({
       .addCase(login.pending, processLoading)
       .addCase(logout.fulfilled, (state) => {
         state.info = null;
+        state.requestStatus = RequestStatus.Idle;
         state.status = AuthorizationStatus.NoAuth;
       });
   },

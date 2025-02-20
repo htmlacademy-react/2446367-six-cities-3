@@ -40,6 +40,7 @@ export const offerSlice = createSlice({
     clear(state) {
       state.info = null;
       state.nearby = [];
+      state.status = RequestStatus.Idle;
     },
   },
 });
