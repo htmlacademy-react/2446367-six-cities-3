@@ -5,10 +5,9 @@ import {
   memo,
   useCallback,
 } from 'react';
-import { useError } from '../../../hooks/use-error';
 import { useActionCreators } from '../../../hooks/store';
 
-import { ValidateError } from '../../../components/errors/validate-error';
+import { toast } from 'react-toastify';
 
 import { userActions } from '../../../store/slices/user';
 import { validatePassword } from '../../../utils/utils';
@@ -25,7 +24,7 @@ function BaseLoginForm() {
     email: '',
     password: '',
   });
-  const { error, setError } = useError();
+  const [error, setError] = useState<string | null>(null);
 
   const { login } = useActionCreators(userActions);
 
@@ -45,7 +44,12 @@ function BaseLoginForm() {
       event.preventDefault();
 
       if (!validatePassword(formData.password)) {
-        setError('Пароль должен состоять минимум из одной буквы и цифры');
+        setError(
+          'The password must contain at least one letter and one number',
+        );
+        toast.error(
+          'The password must contain at least one letter and one number',
+        );
         return;
       }
 
@@ -85,7 +89,6 @@ function BaseLoginForm() {
           value={formData.password}
           required
         />
-        {error && <ValidateError />}
       </div>
       <button className="login__submit form__submit button" type="submit">
         Sign in

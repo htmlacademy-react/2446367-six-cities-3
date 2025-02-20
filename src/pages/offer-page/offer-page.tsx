@@ -22,6 +22,7 @@ import {
   selectOfferStatus,
 } from '../../store/selectors/offer';
 import { selectReviews } from '../../store/selectors/review';
+import { PremiumMark } from '../../components/premium-mark/premium-mark';
 
 export function OfferPage() {
   const { id } = useParams();
@@ -74,15 +75,11 @@ export function OfferPage() {
         </div>
         <div className="offer__container container">
           <div className="offer__wrapper">
-            {isPremium && (
-              <div className="offer__mark">
-                <span>Premium</span>
-              </div>
-            )}
+            {isPremium && <PremiumMark bemBlock="offer" />}
             <div className="offer__name-wrapper">
               <h1 className="offer__name">{title}</h1>
               <FavoriteButton
-                className="offer"
+                bemBlock="offer"
                 offerID={id as string}
                 isFavorite={isFavorite}
                 width={31}
@@ -94,7 +91,7 @@ export function OfferPage() {
                 <span className="visually-hidden">Rating</span>
               </div>
               <span className="offer__rating-value rating__value">
-                {Math.round(rating)}
+                {rating}
               </span>
             </div>
             <Features type={type} bedrooms={bedrooms} maxAdults={maxAdults} />
@@ -111,6 +108,7 @@ export function OfferPage() {
           className="offer__map"
           city={city.name}
           offers={[...nearbyOffers, offer]}
+          isOfferPage
         />
       </section>
       <div className="container">

@@ -7,17 +7,20 @@ import {
   selectFavorites,
   selectFavoriteStatus,
 } from '../store/selectors/favorites';
+import { useAuth } from './user-authorization';
 
 export function useFavoriteCount() {
   const status = useAppSelector(selectFavoriteStatus);
   const count = useAppSelector(selectFavorites).length;
+
   const { fetchFavorites } = useActionCreators(favoritesActions);
+  const isAuthorized = useAuth();
 
   useEffect(() => {
-    if (status === RequestStatus.Idle) {
+    if (isAuthorized && status === RequestStatus.Idle) {
       fetchFavorites();
     }
-  }, [status, fetchFavorites]);
+  }, [status, isAuthorized, fetchFavorites]);
 
-  return count;
+  return isAuthorized ? count : 0;
 }

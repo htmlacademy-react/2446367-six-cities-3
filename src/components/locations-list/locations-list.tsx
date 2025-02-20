@@ -1,9 +1,9 @@
 import { memo } from 'react';
-import { useActionCreators, useAppSelector } from '../../../hooks/store';
+import { useActionCreators, useAppSelector } from '../../hooks/store';
 
-import { offersActions } from '../../../store/slices/offers';
-import { CITIES } from '../../../utils/data';
-import { selectCity } from '../../../store/selectors/offers';
+import { offersActions } from '../../store/slices/offers';
+import { CITIES } from '../../utils/data';
+import { selectCity } from '../../store/selectors/offers';
 
 function BaseLocationsList() {
   const currentCity = useAppSelector(selectCity);

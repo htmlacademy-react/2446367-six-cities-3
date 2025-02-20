@@ -1,4 +1,5 @@
 import { useAppSelector } from '../../hooks/store';
+
 import { selectFavorites } from '../../store/selectors/favorites';
 
 import { EmptyFavoritesSection } from './components/empty-favorites-section';

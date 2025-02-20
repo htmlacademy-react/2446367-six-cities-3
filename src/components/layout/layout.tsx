@@ -1,15 +1,14 @@
 import { usePageLayout } from '../../hooks/use-page-layout';
-import { useAppSelector } from '../../hooks/store';
+import { useFavoriteCount } from '../../hooks/use-favorite-count';
+import { useOffers } from '../../hooks/use-offers';
 
 import { Header } from '../header/header';
 import { Footer } from '../footer/footer';
 
 import { Outlet } from 'react-router-dom';
-import { useFavoriteCount } from '../../hooks/use-favorite-count';
-import { selectCityOffers } from '../../store/selectors/offers';
 
 function BaseLayout() {
-  const offers = useAppSelector(selectCityOffers);
+  const offers = useOffers();
   const offersLength = offers.length;
 
   const favoritesLength = useFavoriteCount();

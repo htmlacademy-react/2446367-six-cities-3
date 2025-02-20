@@ -1,17 +1,19 @@
 import { useMap } from '../../hooks/use-map';
 import { useAppSelector } from '../../hooks/store';
-import { useEffect, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 
 import { Icon, Marker, layerGroup } from 'leaflet';
 import { CITIES } from '../../utils/data';
 import { CityName } from '../../types/city';
 import { ServerOffer } from '../../types/offer';
 import { selectActiveId } from '../../store/selectors/offers';
+import { useParams } from 'react-router-dom';
 
 type MapProps = {
   className?: string;
   offers: ServerOffer[];
   city: CityName;
+  isOfferPage?: boolean;
 };
 
 const defaultCustomIcon = new Icon({
@@ -26,8 +28,13 @@ const currentCustomIcon = new Icon({
   iconAnchor: [14, 40],
 });
 
-function BaseMap({ offers, city, className }: MapProps) {
-  const activeOffer = useAppSelector(selectActiveId);
+function BaseMap({ offers, city, className, isOfferPage = false }: MapProps) {
+  let activeOffer = useAppSelector(selectActiveId);
+  const params = useParams();
+
+  if (isOfferPage) {
+    activeOffer = params.id;
+  }
 
   const cityLocation = CITIES.find((item) => item.name === city)!.location;
 
@@ -57,9 +64,9 @@ function BaseMap({ offers, city, className }: MapProps) {
         };
       });
     }
-  }, [activeOffer, map, offers]);
+  }, [activeOffer, map, offers, isOfferPage]);
 
   return <section className={`map ${className}`} ref={mapRef} />;
 }
 
-export const Map = BaseMap;
+export const Map = memo(BaseMap);

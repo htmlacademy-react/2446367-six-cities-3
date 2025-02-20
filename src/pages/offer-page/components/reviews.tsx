@@ -11,6 +11,10 @@ type ReviewsProps = {
   offerID: string;
 };
 
+const enum CommentDefault {
+  Max = 10,
+}
+
 export function Reviews({ currentReviews, offerID }: ReviewsProps) {
   const isAuthorized = useAuth();
   return (
@@ -20,7 +24,7 @@ export function Reviews({ currentReviews, offerID }: ReviewsProps) {
         <span className="reviews__amount">{currentReviews.length}</span>
       </h2>
       <ul className="reviews__list">
-        {currentReviews.map((review) => (
+        {currentReviews.slice(0, CommentDefault.Max).map((review) => (
           <ReviewItem review={review} key={review.id} />
         ))}
       </ul>
