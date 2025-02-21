@@ -5,7 +5,7 @@ import { useFavoriteCount } from '../../../hooks/use-favorite-count';
 
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../utils/data';
-import { userActions } from '../../../store/slices/user';
+import { userActions } from '../../../store/slices/user/user';
 import { selectUser } from '../../../store/selectors/user';
 
 function BaseLoggedNav() {

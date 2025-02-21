@@ -5,7 +5,7 @@ import { memo, useCallback, useState } from 'react';
 
 import classNames from 'classnames';
 
-import { favoritesActions } from '../../store/slices/favorites';
+import { favoritesActions } from '../../store/slices/favorites/favorites';
 import { AppRoute } from '../../utils/data';
 
 type FavoriteButtonProps = {
