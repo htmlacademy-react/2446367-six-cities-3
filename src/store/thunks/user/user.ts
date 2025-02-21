@@ -1,9 +1,9 @@
-import { createAppAsyncThunk } from '../../hooks/store';
+import { createAppAsyncThunk } from '../../../hooks/store';
 
-import type { User } from '../../types/user';
+import type { User } from '../../../types/user';
 
-import { Endpoint } from '../../utils/data';
-import { dropToken, saveToken } from '../../services/token';
+import { Endpoint } from '../../../utils/data/data';
+import { dropToken, saveToken } from '../../../services/token';
 
 export const checkAuth = createAppAsyncThunk<User, undefined>(
   'auth/checkAuth',

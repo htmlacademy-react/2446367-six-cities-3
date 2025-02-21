@@ -12,9 +12,9 @@ import { Host } from './components/host';
 import { Reviews } from './components/reviews';
 import { Features } from './components/features';
 
-import { RequestStatus } from '../../utils/data';
-import { offerActions } from '../../store/slices/offer';
-import { reviewsActions } from '../../store/slices/review';
+import { RequestStatus } from '../../utils/data/data';
+import { offerActions } from '../../store/slices/offer/offer';
+import { reviewsActions } from '../../store/slices/review/review';
 import { FavoriteButton } from '../../components/favorite-button/favorite-button';
 import {
   selectNearby,
@@ -24,14 +24,19 @@ import {
 import { selectReviews } from '../../store/selectors/review';
 import { PremiumMark } from '../../components/premium-mark/premium-mark';
 
+const enum NearbyDefault {
+  Max = 3,
+}
+
 export function OfferPage() {
   const { id } = useParams();
 
   const offer = useAppSelector(selectOffer);
   const status = useAppSelector(selectOfferStatus);
-  const nearbyOffers = useAppSelector(selectNearby);
-  const reviews = useAppSelector(selectReviews);
+  const nearbyOffers = useAppSelector(selectNearby)
+    .slice(0, NearbyDefault.Max);
 
+  const reviews = useAppSelector(selectReviews);
   const { fetchNearBy, fetchOffer } = useActionCreators(offerActions);
   const { fetchComments } = useActionCreators(reviewsActions);
 

@@ -1,10 +1,10 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import type { CityName } from '../../types/city';
-import type { FullOffer, ServerOffer } from '../../types/offer';
+import type { CityName } from '../../../types/city';
+import type { FullOffer, ServerOffer } from '../../../types/offer';
 
-import { CITIES, RequestStatus } from '../../utils/data';
-import { fetchAllOffers } from '../thunks/offers';
+import { CITIES, RequestStatus } from '../../../utils/data/data';
+import { fetchAllOffers, fetchNearBy, fetchOffer } from '../../thunks/offers/offers';
 
 type OffersSlice = {
   city: CityName;
@@ -48,4 +48,9 @@ export const offersSlice = createSlice({
   },
 });
 
-export const offersActions = { ...offersSlice.actions, fetchAllOffers };
+export const offersActions = {
+  ...offersSlice.actions,
+  fetchAllOffers,
+  fetchOffer,
+  fetchNearBy,
+};

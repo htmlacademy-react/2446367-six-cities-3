@@ -1,8 +1,8 @@
-import { createAppAsyncThunk } from '../../hooks/store';
+import { createAppAsyncThunk } from '../../../hooks/store';
 
-import type { ServerOffer } from '../../types/offer';
+import type { ServerOffer } from '../../../types/offer';
 
-import { Endpoint, FavoriteStatus } from '../../utils/data';
+import { Endpoint, FavoriteStatus } from '../../../utils/data/data';
 
 export const fetchFavorites = createAppAsyncThunk<ServerOffer[], undefined>(
   'favorite/fetchAll',

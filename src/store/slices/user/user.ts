@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import type { User } from '../../types/user';
+import type { User } from '../../../types/user';
 
-import { AuthorizationStatus, RequestStatus } from '../../utils/data';
-import { checkAuth, login, logout } from '../thunks/user';
+import { AuthorizationStatus, RequestStatus } from '../../../utils/data/data';
+import { checkAuth, login, logout } from '../../thunks/user/user';
 
 type UserSlice = {
   info: User | null;
@@ -43,6 +43,7 @@ export const userSlice = createSlice({
       .addCase(login.pending, processLoading)
       .addCase(logout.fulfilled, (state) => {
         state.info = null;
+        state.requestStatus = RequestStatus.Idle;
         state.status = AuthorizationStatus.NoAuth;
       });
   },

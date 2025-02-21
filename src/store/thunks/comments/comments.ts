@@ -1,9 +1,9 @@
-import { createAppAsyncThunk } from '../../hooks/store';
+import { createAppAsyncThunk } from '../../../hooks/store';
 
-import type { FullOffer } from '../../types/offer';
-import type { Review } from '../../types/review';
+import type { FullOffer } from '../../../types/offer';
+import type { Review } from '../../../types/review';
 
-import { Endpoint } from '../../utils/data';
+import { Endpoint } from '../../../utils/data/data';
 
 const fetchComments = createAppAsyncThunk<Review[], FullOffer['id']>(
   'comments/fetch',

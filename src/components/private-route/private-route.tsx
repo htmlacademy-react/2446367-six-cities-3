@@ -4,7 +4,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import type { Location } from 'react-router-dom';
 
-import { AppRoute } from '../../utils/data';
+import { AppRoute } from '../../utils/data/data';
 import { selectUser } from '../../store/selectors/user';
 
 type ProtectedRouteProps = {

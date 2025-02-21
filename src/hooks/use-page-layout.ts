@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { useMemo } from 'react';
 
-import { AppRoute } from '../utils/data';
+import { AppRoute } from '../utils/data/data';
 
 type usePageLayoutProps = {
   favoritesLength?: number;
@@ -57,8 +57,10 @@ export function usePageLayout({
         }
         break;
 
-      case AppRoute.Offer:
-        state.mainClassName = ' page__main--offer';
+      default:
+        if (pathname.startsWith('/offer')) {
+          state.mainClassName = ' page__main--offer';
+        }
         break;
     }
 

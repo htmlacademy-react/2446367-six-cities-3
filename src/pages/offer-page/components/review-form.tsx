@@ -7,8 +7,8 @@ import {
   useState,
 } from 'react';
 
-import { rating } from '../../../utils/data';
-import { reviewsActions } from '../../../store/slices/review';
+import { rating } from '../../../utils/data/data';
+import { reviewsActions } from '../../../store/slices/review/review';
 import { toast } from 'react-toastify';
 
 type ReviewFormProps = {

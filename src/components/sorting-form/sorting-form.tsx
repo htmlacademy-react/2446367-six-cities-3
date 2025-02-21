@@ -3,7 +3,7 @@ import { useBoolean } from '../../hooks/boolean';
 
 import classNames from 'classnames';
 
-import { SORT_OPTIONS, SortOption } from '../../utils/data';
+import { SORT_OPTIONS, SortOption } from '../../utils/data/data';
 
 type SortingFormProps = {
   current: SortOption;

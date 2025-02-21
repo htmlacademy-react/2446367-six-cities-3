@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { memo } from 'react';
 
-import { AppRoute } from '../../../utils/data';
+import { AppRoute } from '../../../utils/data/data';
 
 type LogoProps = {
   isLink: boolean;

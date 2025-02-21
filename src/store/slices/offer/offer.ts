@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import type { FullOffer, ServerOffer } from '../../types/offer';
+import type { FullOffer, ServerOffer } from '../../../types/offer';
 
-import { RequestStatus } from '../../utils/data';
-import { fetchNearBy, fetchOffer } from '../thunks/offers';
+import { RequestStatus } from '../../../utils/data/data';
+import { fetchNearBy, fetchOffer } from '../../thunks/offers/offers';
 
 type OfferSlice = {
   info: FullOffer | null;
@@ -31,7 +31,7 @@ export const offerSlice = createSlice({
         state.status = RequestStatus.Loading;
       })
       .addCase(fetchNearBy.fulfilled, (state, action) => {
-        state.nearby = action.payload.slice(0, 3);
+        state.nearby = action.payload;
       });
   },
   initialState,
@@ -40,6 +40,7 @@ export const offerSlice = createSlice({
     clear(state) {
       state.info = null;
       state.nearby = [];
+      state.status = RequestStatus.Idle;
     },
   },
 });

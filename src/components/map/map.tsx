@@ -3,7 +3,7 @@ import { useAppSelector } from '../../hooks/store';
 import { memo, useEffect, useRef } from 'react';
 
 import { Icon, Marker, layerGroup } from 'leaflet';
-import { CITIES } from '../../utils/data';
+import { CITIES } from '../../utils/data/data';
 import { CityName } from '../../types/city';
 import { ServerOffer } from '../../types/offer';
 import { selectActiveId } from '../../store/selectors/offers';
@@ -44,6 +44,8 @@ function BaseMap({ offers, city, className, isOfferPage = false }: MapProps) {
   useEffect(() => {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
+
+      markerLayer.clearLayers();
 
       offers.forEach(({ id, location }) => {
         const marker = new Marker({

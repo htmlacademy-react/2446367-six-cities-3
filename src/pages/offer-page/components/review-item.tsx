@@ -3,8 +3,6 @@ import { format } from 'date-fns';
 
 import type { Review } from '../../../types/review';
 
-import { convertStarToWidth, getUserName } from '../../../utils/utils';
-
 type ReviewItemProps = {
   review: Review;
 };
@@ -16,6 +14,7 @@ function BaseReviewItem({ review }: ReviewItemProps) {
     comment,
     rating,
   } = review;
+
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
@@ -28,12 +27,12 @@ function BaseReviewItem({ review }: ReviewItemProps) {
             alt="Reviews avatar"
           />
         </div>
-        <span className="reviews__user-name">{getUserName(name)}</span>
+        <span className="reviews__user-name">{name}</span>
       </div>
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{ width: convertStarToWidth(rating) }}></span>
+            <span style={{ width: `${Math.round(rating) * 20}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

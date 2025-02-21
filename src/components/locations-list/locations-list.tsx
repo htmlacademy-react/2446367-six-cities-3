@@ -1,9 +1,10 @@
 import { memo } from 'react';
 import { useActionCreators, useAppSelector } from '../../hooks/store';
 
-import { offersActions } from '../../store/slices/offers';
-import { CITIES } from '../../utils/data';
+import { offersActions } from '../../store/slices/offers/offers';
+import { AppRoute, CITIES } from '../../utils/data/data';
 import { selectCity } from '../../store/selectors/offers';
+import { Link } from 'react-router-dom';
 
 function BaseLocationsList() {
   const currentCity = useAppSelector(selectCity);
@@ -20,12 +21,13 @@ function BaseLocationsList() {
             setCity(name);
           }}
         >
-          <a
+          <Link
             className={`locations__item-link tabs__item ${name === currentCity ? 'tabs__item--active' : ''}`}
             {...(name === currentCity ? {} : { href: '#' })}
+            to={AppRoute.Root}
           >
             <span>{name}</span>
-          </a>
+          </Link>
         </li>
       ))}
     </ul>
