@@ -1,7 +1,7 @@
 import { useActionCreators } from '../../hooks/store';
 import { useAuth } from '../../hooks/user-authorization';
 import { useNavigate } from 'react-router-dom';
-import { memo, useCallback, useState } from 'react';
+import { memo, useState } from 'react';
 
 import classNames from 'classnames';
 
@@ -26,12 +26,14 @@ function BaseFavoriteButton({
   width = 18,
 }: FavoriteButtonProps) {
   const [isFavorite, setIsFavorite] = useState(isFavoriteProp);
+
+  const { changeFavorite } = useActionCreators(favoritesActions);
   const isAuthorized = useAuth();
   const navigate = useNavigate();
 
   const isActiveButton = isAuthorized && isFavorite;
 
-  const favoriteLabel = `${isFavoriteProp ? 'In' : 'To'} bookmarks`;
+  const favoriteLabel = `${isActiveButton ? 'In' : 'To'} bookmarks`;
   const buttonClass = `${bemBlock}__bookmark-button`;
   const favoriteClass = classNames(
     buttonClass,
@@ -41,9 +43,7 @@ function BaseFavoriteButton({
 
   const height = width * Default.HeightCoefficient;
 
-  const { changeFavorite } = useActionCreators(favoritesActions);
-
-  const handleClick = useCallback(() => {
+  const handleClick = () => {
     if (!isAuthorized) {
       return navigate(AppRoute.Login);
     }
@@ -54,7 +54,7 @@ function BaseFavoriteButton({
     });
 
     setIsFavorite((prev) => !prev);
-  }, [changeFavorite, isAuthorized, isFavorite, navigate, offerID]);
+  };
 
   return (
     <button className={favoriteClass} onClick={handleClick} type="button">

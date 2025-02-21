@@ -24,12 +24,17 @@ import {
 import { selectReviews } from '../../store/selectors/review';
 import { PremiumMark } from '../../components/premium-mark/premium-mark';
 
+const enum NearbyDefault {
+  Max = 3,
+}
+
 export function OfferPage() {
   const { id } = useParams();
 
   const offer = useAppSelector(selectOffer);
   const status = useAppSelector(selectOfferStatus);
-  const nearbyOffers = useAppSelector(selectNearby).slice(0, 3);
+  const nearbyOffers = useAppSelector(selectNearby)
+    .slice(0, NearbyDefault.Max);
 
   const reviews = useAppSelector(selectReviews);
   const { fetchNearBy, fetchOffer } = useActionCreators(offerActions);
