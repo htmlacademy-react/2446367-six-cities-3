@@ -29,9 +29,9 @@ export function OfferPage() {
 
   const offer = useAppSelector(selectOffer);
   const status = useAppSelector(selectOfferStatus);
-  const nearbyOffers = useAppSelector(selectNearby);
-  const reviews = useAppSelector(selectReviews);
+  const nearbyOffers = useAppSelector(selectNearby).slice(0, 3);
 
+  const reviews = useAppSelector(selectReviews);
   const { fetchNearBy, fetchOffer } = useActionCreators(offerActions);
   const { fetchComments } = useActionCreators(reviewsActions);
 

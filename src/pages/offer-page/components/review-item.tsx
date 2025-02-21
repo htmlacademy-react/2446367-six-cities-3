@@ -3,8 +3,6 @@ import { format } from 'date-fns';
 
 import type { Review } from '../../../types/review';
 
-import { getUserName } from '../../../utils/utils/get-user-name';
-
 type ReviewItemProps = {
   review: Review;
 };
@@ -29,7 +27,7 @@ function BaseReviewItem({ review }: ReviewItemProps) {
             alt="Reviews avatar"
           />
         </div>
-        <span className="reviews__user-name">{getUserName(name)}</span>
+        <span className="reviews__user-name">{name}</span>
       </div>
       <div className="reviews__info">
         <div className="reviews__rating rating">

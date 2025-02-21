@@ -3,10 +3,13 @@ import { useActionCreators } from '../../../hooks/store';
 import { offersActions } from '../../../store/slices/offers/offers';
 import { AppRoute, CITIES } from '../../../utils/data/data';
 import { randomArrayIndex } from '../../../utils/utils/random-array-index';
+import { memo } from 'react';
 
-export function RandomCity() {
+function BaseRandomCity() {
   const { name } = CITIES[randomArrayIndex(CITIES)];
   const { setCity } = useActionCreators(offersActions);
+
+  const cityName = name;
 
   return (
     <section className="locations locations--login locations--current">
@@ -16,9 +19,11 @@ export function RandomCity() {
           onClick={() => setCity(name)}
           to={AppRoute.Root}
         >
-          <span>{name}</span>
+          <span>{cityName}</span>
         </Link>
       </div>
     </section>
   );
 }
+
+export const RandomCity = memo(BaseRandomCity);

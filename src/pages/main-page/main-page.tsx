@@ -7,10 +7,7 @@ import { LocationsList } from '../../components/locations-list/locations-list';
 import { Spinner } from '../../components/spinner/spinner';
 
 import { RequestStatus } from '../../utils/data/data';
-import {
-  selectCity,
-  selectOffersStatus,
-} from '../../store/selectors/offers';
+import { selectCity, selectOffersStatus } from '../../store/selectors/offers';
 import { useOffers } from '../../hooks/use-offers';
 
 export function MainPage() {

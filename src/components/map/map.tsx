@@ -45,6 +45,8 @@ function BaseMap({ offers, city, className, isOfferPage = false }: MapProps) {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
 
+      markerLayer.clearLayers();
+
       offers.forEach(({ id, location }) => {
         const marker = new Marker({
           lat: location.latitude,

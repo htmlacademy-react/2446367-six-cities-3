@@ -57,8 +57,10 @@ export function usePageLayout({
         }
         break;
 
-      case AppRoute.Offer:
-        state.mainClassName = ' page__main--offer';
+      default:
+        if (pathname.startsWith('/offer')) {
+          state.mainClassName = ' page__main--offer';
+        }
         break;
     }
 

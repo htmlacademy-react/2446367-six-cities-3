@@ -31,7 +31,7 @@ export const offerSlice = createSlice({
         state.status = RequestStatus.Loading;
       })
       .addCase(fetchNearBy.fulfilled, (state, action) => {
-        state.nearby = action.payload.slice(0, 3);
+        state.nearby = action.payload;
       });
   },
   initialState,

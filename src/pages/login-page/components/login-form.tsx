@@ -11,6 +11,8 @@ import { toast } from 'react-toastify';
 
 import { userActions } from '../../../store/slices/user/user';
 import { validatePassword } from '../../../utils/utils/validate-password';
+import { useNavigate } from 'react-router-dom';
+import { AppRoute } from '../../../utils/data/data';
 
 type HTMLLoginForm = HTMLFormElement & {
   email: HTMLInputElement;
@@ -20,6 +22,7 @@ type HTMLLoginForm = HTMLFormElement & {
 type ChangeHandler = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 
 function BaseLoginForm() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -54,9 +57,14 @@ function BaseLoginForm() {
       }
 
       setError(null);
-      login(formData);
+      login(formData)
+        .then((response) => {
+          if (response.meta.requestStatus === 'fulfilled') {
+            navigate(AppRoute.Root);
+          }
+        });
     },
-    [formData, login, setError],
+    [formData, login, setError, navigate],
   );
 
   return (
