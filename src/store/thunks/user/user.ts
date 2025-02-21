@@ -2,7 +2,7 @@ import { createAppAsyncThunk } from '../../../hooks/store';
 
 import type { User } from '../../../types/user';
 
-import { Endpoint } from '../../../utils/data';
+import { Endpoint } from '../../../utils/data/data';
 import { dropToken, saveToken } from '../../../services/token';
 
 export const checkAuth = createAppAsyncThunk<User, undefined>(

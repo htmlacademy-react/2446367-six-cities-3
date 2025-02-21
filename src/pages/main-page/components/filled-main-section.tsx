@@ -8,7 +8,7 @@ import type { ServerOffer } from '../../../types/offer';
 import { OfferList } from '../../../components/offer-list/offer-list';
 import { SortingForm } from '../../../components/sorting-form/sorting-form';
 
-import { SortOption } from '../../../utils/data';
+import { SortOption } from '../../../utils/data/data';
 import { offersActions } from '../../../store/slices/offers/offers';
 
 type FilledMainSectionProps = {

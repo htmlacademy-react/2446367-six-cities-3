@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import type { ServerOffer } from '../../../types/offer';
 
-import { RequestStatus, FavoriteStatus } from '../../../utils/data';
+import { RequestStatus, FavoriteStatus } from '../../../utils/data/data';
 import { changeFavorite, fetchFavorites } from '../../thunks/favorites/favorites';
 
 type FavoritesSlice = {

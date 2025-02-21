@@ -1,5 +1,5 @@
 import { selectUserStatus } from '../store/selectors/user';
-import { AuthorizationStatus } from '../utils/data';
+import { AuthorizationStatus } from '../utils/data/data';
 import { useAppSelector } from './store';
 
 export function useAuth() {

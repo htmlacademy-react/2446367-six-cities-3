@@ -1,8 +1,8 @@
 import { describe } from 'vitest';
 import { userSlice } from '././user';
-import { AuthorizationStatus, RequestStatus } from '../../../utils/data';
+import { AuthorizationStatus, RequestStatus } from '../../../utils/data/data';
 import { checkAuth, logout } from '../../thunks/user/user';
-import { mockUser } from '../../../utils/mock-data';
+import { mockUser } from '../../../utils/mock-data/mock-data';
 
 describe('userSlice', () => {
   it('should return initial state', () => {

@@ -1,4 +1,4 @@
-import { CITIES } from '../utils/data';
+import { CITIES } from '../utils/data/data';
 import { Location } from './location';
 
 export type CityName = (typeof CITIES)[number]['name'];

@@ -1,6 +1,7 @@
+import { memo } from 'react';
+
 import { Logo } from './components/logo';
 import { LoggedNav } from './components/logged-nav';
-import { memo } from 'react';
 
 type HeaderProps = {
   headerOnMainPage: boolean;

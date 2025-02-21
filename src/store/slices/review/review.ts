@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import type { Review } from '../../../types/review';
 
-import { RequestStatus } from '../../../utils/data';
+import { RequestStatus } from '../../../utils/data/data';
 import { commentsThunks } from '../../thunks/comments/comments';
 
 type ReviewSlice = {

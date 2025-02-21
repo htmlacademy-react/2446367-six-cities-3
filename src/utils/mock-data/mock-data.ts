@@ -1,9 +1,10 @@
 import { Action, ThunkDispatch } from '@reduxjs/toolkit';
-import type { FullOffer, ServerOffer } from '../types/offer';
-import type { Review } from '../types/review';
-import type { User } from '../types/user';
-import { createApi } from '../services/api';
-import { store } from '../store';
+import type { FullOffer, ServerOffer } from '../../types/offer';
+import type { Review } from '../../types/review';
+import type { User } from '../../types/user';
+import { createApi } from '../../services/api';
+import { store } from '../../store';
+import { CityName } from '../../types/city';
 
 export const mockOffer: ServerOffer = {
   city: {
@@ -141,3 +142,36 @@ export type AppThunkDispatch = ThunkDispatch<
 
 export const extractActionsTypes = (actions: Action<string>[]) =>
   actions.map(({ type }) => type);
+
+export const makeFakeOffer = (cityName: CityName): ServerOffer => ({
+  id: '1',
+  title: 'Test Offer',
+  type: 'apartment',
+  price: 100,
+  city: {
+    name: cityName,
+    location: {
+      latitude: 48.85661,
+      longitude: 2.351499,
+      zoom: 13,
+    },
+  },
+  location: {
+    latitude: 48.85661,
+    longitude: 2.351499,
+    zoom: 13,
+  },
+  isFavorite: true,
+  isPremium: false,
+  previewImage: 'img/test.jpg',
+  rating: 4.5,
+});
+
+export const fakeFavorites: ServerOffer[] = [
+  makeFakeOffer('Paris'),
+  makeFakeOffer('Paris'),
+  makeFakeOffer('Cologne'),
+  makeFakeOffer('Cologne'),
+  makeFakeOffer('Amsterdam'),
+  makeFakeOffer('Dusseldorf'),
+];

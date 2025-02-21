@@ -13,7 +13,7 @@ import { ProtectedRoute } from './components/private-route/private-route';
 import { OffersProvider } from './contexts/offers-context';
 import { Layout } from './components/layout/layout';
 
-import { AppRoute } from './utils/data';
+import { AppRoute } from './utils/data/data';
 import { userActions } from './store/slices/user/user';
 import { getToken } from './services/token';
 import { offersActions } from './store/slices/offers/offers';

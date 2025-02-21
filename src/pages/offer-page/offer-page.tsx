@@ -12,7 +12,7 @@ import { Host } from './components/host';
 import { Reviews } from './components/reviews';
 import { Features } from './components/features';
 
-import { RequestStatus } from '../../utils/data';
+import { RequestStatus } from '../../utils/data/data';
 import { offerActions } from '../../store/slices/offer/offer';
 import { reviewsActions } from '../../store/slices/review/review';
 import { FavoriteButton } from '../../components/favorite-button/favorite-button';

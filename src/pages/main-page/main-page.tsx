@@ -6,7 +6,7 @@ import { Map } from '../../components/map/map';
 import { LocationsList } from '../../components/locations-list/locations-list';
 import { Spinner } from '../../components/spinner/spinner';
 
-import { RequestStatus } from '../../utils/data';
+import { RequestStatus } from '../../utils/data/data';
 import {
   selectCity,
   selectOffersStatus,

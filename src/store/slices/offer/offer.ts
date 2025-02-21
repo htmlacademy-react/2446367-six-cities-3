@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import type { FullOffer, ServerOffer } from '../../../types/offer';
 
-import { RequestStatus } from '../../../utils/data';
+import { RequestStatus } from '../../../utils/data/data';
 import { fetchNearBy, fetchOffer } from '../../thunks/offers/offers';
 
 type OfferSlice = {

@@ -21,15 +21,6 @@ export const Endpoint = {
   Offers: '/offers',
 };
 
-// перечисление преобразования звезд рейтинга
-export enum WidthRating {
-  '20%' = 1,
-  '40%',
-  '60%',
-  '80%',
-  '100%',
-}
-
 // массив значений рейтинга
 export const rating = [
   { value: 5, label: 'perfect' },

@@ -1,17 +1,17 @@
 import thunk from 'redux-thunk';
 import MockAdapter from 'axios-mock-adapter';
 
-import type { State } from '../../../utils/mock-data';
+import type { State } from '../../../utils/mock-data/mock-data';
 import type { Action } from '@reduxjs/toolkit';
 import type { ServerOffer } from '../../../types/offer';
 
 import { describe } from 'vitest';
 import { createApi } from '../../../services/api';
 import { configureMockStore } from '@jedmao/redux-mock-store';
-import { AppThunkDispatch, mockOfferFav } from '../../../utils/mock-data';
-import { Endpoint, FavoriteStatus } from '../../../utils/data';
+import { AppThunkDispatch, mockOfferFav } from '../../../utils/mock-data/mock-data';
+import { Endpoint, FavoriteStatus } from '../../../utils/data/data';
 import { favoritesActions } from '../../slices/favorites/favorites';
-import { extractActionsTypes } from '../../../utils/mock-data';
+import { extractActionsTypes } from '../../../utils/mock-data/mock-data';
 import { fetchFavorites, changeFavorite } from './favorites';
 
 describe('Offers async', () => {

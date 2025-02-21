@@ -1,17 +1,17 @@
 import thunk from 'redux-thunk';
 import MockAdapter from 'axios-mock-adapter';
 
-import type { State } from '../../../utils/mock-data';
+import type { State } from '../../../utils/mock-data/mock-data';
 import type { Action } from '@reduxjs/toolkit';
 import type { Review } from '../../../types/review';
 
 import { describe } from 'vitest';
 import { createApi } from '../../../services/api';
 import { configureMockStore } from '@jedmao/redux-mock-store';
-import { AppThunkDispatch, mockReview } from '../../../utils/mock-data';
-import { Endpoint } from '../../../utils/data';
+import { AppThunkDispatch, mockReview } from '../../../utils/mock-data/mock-data';
+import { Endpoint } from '../../../utils/data/data';
 import { commentsThunks } from './comments';
-import { extractActionsTypes } from '../../../utils/mock-data';
+import { extractActionsTypes } from '../../../utils/mock-data/mock-data';
 
 describe('Offers async', () => {
   const axios = createApi();

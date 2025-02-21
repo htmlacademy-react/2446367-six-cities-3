@@ -1,7 +1,7 @@
 import thunk from 'redux-thunk';
 import MockAdapter from 'axios-mock-adapter';
 
-import type { State } from '../../../utils/mock-data';
+import type { State } from '../../../utils/mock-data/mock-data';
 import type { Action } from '@reduxjs/toolkit';
 import type { FullOffer, ServerOffer } from '../../../types/offer';
 
@@ -14,8 +14,8 @@ import {
   mockFullOffer,
   mockNearbyOffer,
   mockOffer,
-} from '../../../utils/mock-data';
-import { Endpoint } from '../../../utils/data';
+} from '../../../utils/mock-data/mock-data';
+import { Endpoint } from '../../../utils/data/data';
 import { offersActions } from '../../slices/offers/offers';
 import { fetchAllOffers, fetchNearBy, fetchOffer } from '../offers/offers';
 

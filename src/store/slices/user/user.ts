@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import type { User } from '../../../types/user';
 
-import { AuthorizationStatus, RequestStatus } from '../../../utils/data';
+import { AuthorizationStatus, RequestStatus } from '../../../utils/data/data';
 import { checkAuth, login, logout } from '../../thunks/user/user';
 
 type UserSlice = {

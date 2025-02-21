@@ -1,6 +1,7 @@
 import { memo } from 'react';
 
-import { capitalizeFirstLetter, pluralize } from '../../../utils/utils';
+import { capitalizeFirstLetter } from '../../../utils/utils/capitalize-first-letter';
+import { pluralize } from '../../../utils/utils/pluralize';
 
 type FeaturesProps = {
   type: string;

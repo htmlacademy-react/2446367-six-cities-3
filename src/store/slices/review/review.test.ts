@@ -1,8 +1,8 @@
 import { describe } from 'vitest';
 import { reviewSlice } from '././review';
-import { RequestStatus } from '../../../utils/data';
+import { RequestStatus } from '../../../utils/data/data';
 import { commentsThunks } from '../../thunks/comments/comments';
-import { mockReview } from '../../../utils/mock-data';
+import { mockReview } from '../../../utils/mock-data/mock-data';
 
 describe('reviewSlice', () => {
   it('should return initial state', () => {

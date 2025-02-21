@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { useMemo } from 'react';
 
-import { AppRoute } from '../utils/data';
+import { AppRoute } from '../utils/data/data';
 
 type usePageLayoutProps = {
   favoritesLength?: number;

@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { useActionCreators, useAppSelector } from '../../hooks/store';
 
 import { offersActions } from '../../store/slices/offers/offers';
-import { CITIES } from '../../utils/data';
+import { CITIES } from '../../utils/data/data';
 import { selectCity } from '../../store/selectors/offers';
 
 function BaseLocationsList() {

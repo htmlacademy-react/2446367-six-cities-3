@@ -1,5 +1,5 @@
-import { RequestStatus } from '../../../utils/data';
-import { mockOffer } from '../../../utils/mock-data';
+import { RequestStatus } from '../../../utils/data/data';
+import { mockOffer } from '../../../utils/mock-data/mock-data';
 import { fetchAllOffers } from '../../thunks/offers/offers';
 import { offersSlice } from '././offers';
 

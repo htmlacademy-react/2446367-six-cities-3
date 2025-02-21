@@ -6,7 +6,7 @@ import { memo, useCallback, useState } from 'react';
 import classNames from 'classnames';
 
 import { favoritesActions } from '../../store/slices/favorites/favorites';
-import { AppRoute } from '../../utils/data';
+import { AppRoute } from '../../utils/data/data';
 
 type FavoriteButtonProps = {
   bemBlock: 'offer' | 'place-card';
