@@ -45,8 +45,6 @@ function BaseMap({ offers, city, className, isOfferPage = false }: MapProps) {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
 
-      markerLayer.clearLayers();
-
       offers.forEach(({ id, location }) => {
         const marker = new Marker({
           lat: location.latitude,
@@ -60,11 +58,10 @@ function BaseMap({ offers, city, className, isOfferPage = false }: MapProps) {
               : defaultCustomIcon,
           )
           .addTo(markerLayer);
-
-        return () => {
-          map.removeLayer(markerLayer);
-        };
       });
+      return () => {
+        map.removeLayer(markerLayer);
+      };
     }
   }, [activeOffer, map, offers, isOfferPage]);
 
