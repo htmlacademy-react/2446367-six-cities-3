@@ -2,39 +2,41 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useActionCreators, useAppSelector } from '../../hooks/store';
 
-import { NotFoundPage } from '../not-found-page/not-found-page';
-import { Map } from '../../components/map/map';
-import { Spinner } from '../../components/spinner/spinner';
-import { Goods } from './components/goods';
-import { Gallery } from './components/gallery';
-import { Nearby } from './components/nearby';
-import { Host } from './components/host';
-import { Reviews } from './components/reviews';
-import { Features } from './components/features';
+import NotFoundPage from '../not-found-page/not-found-page';
+import Map from '../../components/map/map';
+import Spinner from '../../components/spinner/spinner';
+import Goods from './components/goods';
+import Gallery from './components/gallery';
+import Nearby from './components/nearby';
+import Host from './components/host';
+import Reviews from './components/reviews';
+import Features from './components/features';
+import FavoriteButton from '../../components/favorite-button/favorite-button';
+import PremiumMark from '../../components/premium-mark/premium-mark';
 
 import { RequestStatus } from '../../utils/data/data';
 import { offerActions } from '../../store/slices/offer/offer';
 import { reviewsActions } from '../../store/slices/review/review';
-import { FavoriteButton } from '../../components/favorite-button/favorite-button';
 import {
   selectNearby,
   selectOffer,
   selectOfferStatus,
 } from '../../store/selectors/offer';
 import { selectReviews } from '../../store/selectors/review';
-import { PremiumMark } from '../../components/premium-mark/premium-mark';
 
 const enum NearbyDefault {
-  Max = 3,
+  MaxCount = 3,
 }
 
-export function OfferPage() {
+function BaseOfferPage() {
   const { id } = useParams();
 
   const offer = useAppSelector(selectOffer);
   const status = useAppSelector(selectOfferStatus);
-  const nearbyOffers = useAppSelector(selectNearby)
-    .slice(0, NearbyDefault.Max);
+  const nearbyOffers = useAppSelector(selectNearby).slice(
+    0,
+    NearbyDefault.MaxCount,
+  );
 
   const reviews = useAppSelector(selectReviews);
   const { fetchNearBy, fetchOffer } = useActionCreators(offerActions);
@@ -122,3 +124,7 @@ export function OfferPage() {
     </>
   );
 }
+
+const OfferPage = BaseOfferPage;
+
+export default OfferPage;

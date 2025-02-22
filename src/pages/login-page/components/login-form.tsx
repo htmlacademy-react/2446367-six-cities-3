@@ -6,13 +6,16 @@ import {
   useCallback,
 } from 'react';
 import { useActionCreators } from '../../../hooks/store';
+import { useNavigate } from 'react-router-dom';
 
 import { toast } from 'react-toastify';
 
 import { userActions } from '../../../store/slices/user/user';
-import { validatePassword } from '../../../utils/utils/validate-password';
-import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../../utils/data/data';
+
+import { validatePassword } from '../../../utils/utils/validate-password';
+
+import '../css/shake-effect.css';
 
 type HTMLLoginForm = HTMLFormElement & {
   email: HTMLInputElement;
@@ -105,4 +108,6 @@ function BaseLoginForm() {
   );
 }
 
-export const LoginForm = memo(BaseLoginForm);
+const LoginForm = memo(BaseLoginForm);
+
+export default LoginForm;

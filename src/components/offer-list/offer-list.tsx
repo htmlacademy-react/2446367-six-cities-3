@@ -1,7 +1,9 @@
+import { memo } from 'react';
+
 import type { MouseEventHandler } from 'react';
 import type { ServerOffer } from '../../types/offer';
 
-import { OfferCard } from '../offer-card/offer-card';
+import OfferCard from '../offer-card/offer-card';
 
 type OfferListProps = {
   offers: ServerOffer[];
@@ -29,4 +31,6 @@ function BaseOfferList({
   );
 }
 
-export const OfferList = BaseOfferList;
+const OfferList = memo(BaseOfferList);
+
+export default OfferList;

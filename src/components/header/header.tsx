@@ -1,17 +1,14 @@
 import { memo } from 'react';
 
-import { Logo } from './components/logo';
-import { LoggedNav } from './components/logged-nav';
+import Logo from './components/logo';
+import LoggedNav from './components/logged-nav';
 
 type HeaderProps = {
   headerOnMainPage: boolean;
   headerOnLoginPage: boolean;
 };
 
-function BaseHeader({
-  headerOnMainPage,
-  headerOnLoginPage,
-}: HeaderProps) {
+function BaseHeader({ headerOnMainPage, headerOnLoginPage }: HeaderProps) {
   return (
     <header className="header">
       <div className="container">
@@ -26,4 +23,6 @@ function BaseHeader({
   );
 }
 
-export const Header = memo(BaseHeader);
+const Header = memo(BaseHeader);
+
+export default Header;

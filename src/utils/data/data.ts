@@ -1,4 +1,3 @@
-// перечисление маршрутов страниц приложения
 export enum AppRoute {
   Root = '/',
   Login = '/login',
@@ -6,7 +5,6 @@ export enum AppRoute {
   Offer = '/offer/:id',
 }
 
-// перечисление статуса авторизации
 export enum AuthorizationStatus {
   Auth = 'Auth',
   NoAuth = 'NoAuth',
@@ -21,7 +19,6 @@ export const Endpoint = {
   Offers: '/offers',
 };
 
-// массив значений рейтинга
 export const rating = [
   { value: 5, label: 'perfect' },
   { value: 4, label: 'good' },
@@ -30,7 +27,6 @@ export const rating = [
   { value: 1, label: 'terribly' },
 ];
 
-// массив наименований городов
 export const CITIES = [
   {
     id: 'paris',
@@ -64,7 +60,6 @@ export const CITIES = [
   },
 ] as const;
 
-// перечисления статусов
 export const enum RequestStatus {
   Idle,
   Loading,
@@ -77,7 +72,6 @@ export const enum FavoriteStatus {
   Added,
 }
 
-// опции сортировки
 export const SORT_OPTIONS = [
   'Popular',
   'Price: low to high',

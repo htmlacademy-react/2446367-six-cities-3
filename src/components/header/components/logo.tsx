@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
 import { memo } from 'react';
+
+import { Link } from 'react-router-dom';
 
 import { AppRoute } from '../../../utils/data/data';
 
@@ -34,4 +35,6 @@ function BaseLogo({ isLink }: LogoProps) {
   );
 }
 
-export const Logo = memo(BaseLogo);
+const Logo = memo(BaseLogo);
+
+export default Logo;

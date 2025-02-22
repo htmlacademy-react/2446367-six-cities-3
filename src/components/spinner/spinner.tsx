@@ -2,7 +2,7 @@ import { memo } from 'react';
 
 import './css/spinner.css';
 
-export function BaseSpinner() {
+function BaseSpinner() {
   return (
     <div className="spinner-container" role="status">
       <div className="spinner"></div>
@@ -10,4 +10,6 @@ export function BaseSpinner() {
   );
 }
 
-export const Spinner = memo(BaseSpinner);
+const Spinner = memo(BaseSpinner);
+
+export default Spinner;

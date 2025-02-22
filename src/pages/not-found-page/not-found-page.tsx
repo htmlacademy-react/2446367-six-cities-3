@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import './css/not-found-page.css';
 
-export function NotFoundPage() {
+function BaseNotFoundPage() {
   return (
     <div className="not-found__container">
       <div className="not-found">
@@ -14,3 +14,7 @@ export function NotFoundPage() {
     </div>
   );
 }
+
+const NotFoundPage = BaseNotFoundPage;
+
+export default NotFoundPage;

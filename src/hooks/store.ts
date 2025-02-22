@@ -2,16 +2,18 @@
 import { useMemo } from 'react';
 import { useDispatch, useSelector, useStore } from 'react-redux';
 
-import { TypedUseSelectorHook } from 'react-redux';
 import {
   ActionCreatorsMapObject,
   AsyncThunk,
   bindActionCreators,
   createAsyncThunk,
 } from '@reduxjs/toolkit';
-import { AppDispatch, RootState } from '../types/store';
+
+import type { TypedUseSelectorHook } from 'react-redux';
+import type { AppDispatch, RootState } from '../types/store';
+import type { AxiosInstance } from 'axios';
+
 import { store } from '../store';
-import { AxiosInstance } from 'axios';
 
 type BoundActions<Actions extends ActionCreatorsMapObject> = {
   [key in keyof Actions]: Actions[key] extends AsyncThunk<any, any, any>

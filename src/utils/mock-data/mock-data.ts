@@ -30,7 +30,7 @@ export const mockOffer: ServerOffer = {
   type: 'test',
 };
 
-export const mockOfferFav: ServerOffer = {
+export const mockOfferFavorite: ServerOffer = {
   city: {
     location: {
       latitude: 50.23323,

@@ -19,4 +19,6 @@ function BaseGoods({ goods }: GoodsProps) {
   );
 }
 
-export const Goods = memo(BaseGoods);
+const Goods = memo(BaseGoods);
+
+export default Goods;

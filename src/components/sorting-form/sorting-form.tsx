@@ -62,4 +62,6 @@ function BaseSortingForm({ current, setter }: SortingFormProps) {
   );
 }
 
-export const SortingForm = memo(BaseSortingForm);
+const SortingForm = memo(BaseSortingForm);
+
+export default SortingForm;

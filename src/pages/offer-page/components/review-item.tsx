@@ -45,4 +45,6 @@ function BaseReviewItem({ review }: ReviewItemProps) {
   );
 }
 
-export const ReviewItem = memo(BaseReviewItem);
+const ReviewItem = memo(BaseReviewItem);
+
+export default ReviewItem;

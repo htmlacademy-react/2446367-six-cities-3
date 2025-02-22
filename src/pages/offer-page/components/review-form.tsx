@@ -7,9 +7,10 @@ import {
   useState,
 } from 'react';
 
-import { rating } from '../../../utils/data/data';
-import { reviewsActions } from '../../../store/slices/review/review';
 import { toast } from 'react-toastify';
+
+import { reviewsActions } from '../../../store/slices/review/review';
+import { rating } from '../../../utils/data/data';
 
 type ReviewFormProps = {
   offerID: string;
@@ -19,7 +20,7 @@ type ChangeReviewHandler = ReactEventHandler<
   HTMLInputElement | HTMLTextAreaElement
 >;
 
-export function ReviewForm({ offerID }: ReviewFormProps) {
+function BaseReviewForm({ offerID }: ReviewFormProps) {
   const { postComment } = useActionCreators(reviewsActions);
   const [comment, setComment] = useState({ comment: '', rating: 0 });
 
@@ -134,3 +135,7 @@ export function ReviewForm({ offerID }: ReviewFormProps) {
     </form>
   );
 }
+
+const ReviewForm = BaseReviewForm;
+
+export default ReviewForm;

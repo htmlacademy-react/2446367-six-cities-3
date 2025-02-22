@@ -1,12 +1,12 @@
-import { memo, MouseEventHandler } from 'react';
-
 import type { ServerOffer } from '../../types/offer';
-import { Link } from 'react-router-dom';
-import { PremiumMark } from '../premium-mark/premium-mark';
-import { FavoriteButton } from '../favorite-button/favorite-button';
+import type { MouseEventHandler } from 'react';
 
-import { capitalizeFirstLetter } from '../../utils/utils/capitalize-first-letter';
+import PremiumMark from '../premium-mark/premium-mark';
+import FavoriteButton from '../favorite-button/favorite-button';
+import { Link } from 'react-router-dom';
+
 import { AppRoute } from '../../utils/data/data';
+import { capitalizeFirstLetter } from '../../utils/utils/capitalize-first-letter';
 
 type OfferCardProps = {
   offer: ServerOffer;
@@ -86,4 +86,6 @@ function BaseOfferCard({
   );
 }
 
-export const OfferCard = memo(BaseOfferCard);
+const OfferCard = BaseOfferCard;
+
+export default OfferCard;

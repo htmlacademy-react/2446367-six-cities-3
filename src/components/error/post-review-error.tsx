@@ -10,4 +10,6 @@ function BasePostReviewError() {
   );
 }
 
-export const PostReviewError = memo(BasePostReviewError);
+const PostReviewError = memo(BasePostReviewError);
+
+export default PostReviewError;

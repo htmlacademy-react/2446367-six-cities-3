@@ -1,4 +1,5 @@
 import { useMap } from '../../hooks/use-map';
+import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/store';
 import { memo, useEffect, useRef } from 'react';
 
@@ -7,7 +8,6 @@ import { CITIES } from '../../utils/data/data';
 import { CityName } from '../../types/city';
 import { ServerOffer } from '../../types/offer';
 import { selectActiveId } from '../../store/selectors/offers';
-import { useParams } from 'react-router-dom';
 
 type MapProps = {
   className?: string;
@@ -68,4 +68,6 @@ function BaseMap({ offers, city, className, isOfferPage = false }: MapProps) {
   return <section className={`map ${className}`} ref={mapRef} />;
 }
 
-export const Map = memo(BaseMap);
+const Map = memo(BaseMap);
+
+export default Map;

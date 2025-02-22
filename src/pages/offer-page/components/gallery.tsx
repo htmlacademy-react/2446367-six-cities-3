@@ -5,13 +5,13 @@ type GalleryProps = {
 };
 
 const enum GalleryDefault {
-  Max = 6,
+  MaxCount = 6,
 }
 
 function BaseGallery({ images }: GalleryProps) {
   return (
     <div className="offer__gallery">
-      {images.slice(0, GalleryDefault.Max).map((image) => (
+      {images.slice(0, GalleryDefault.MaxCount).map((image) => (
         <div className="offer__image-wrapper" key={image}>
           <img className="offer__image" src={image} alt="Photo studio" />
         </div>
@@ -20,4 +20,6 @@ function BaseGallery({ images }: GalleryProps) {
   );
 }
 
-export const Gallery = memo(BaseGallery);
+const Gallery = memo(BaseGallery);
+
+export default Gallery;

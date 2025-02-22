@@ -13,4 +13,6 @@ function BasePremiumMark({ bemBlock = 'place-card' }: PremiumMarkProps) {
   );
 }
 
-export const PremiumMark = memo(BasePremiumMark);
+const PremiumMark = memo(BasePremiumMark);
+
+export default PremiumMark;

@@ -25,4 +25,6 @@ function BaseFeatures({ type, bedrooms, maxAdults }: FeaturesProps) {
   );
 }
 
-export const Features = memo(BaseFeatures);
+const Features = memo(BaseFeatures);
+
+export default Features;

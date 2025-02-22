@@ -4,15 +4,17 @@ import { useActionCreators, useAppSelector } from '../../../hooks/store';
 import { useFavoriteCount } from '../../../hooks/use-favorite-count';
 
 import { Link } from 'react-router-dom';
+
 import { AppRoute } from '../../../utils/data/data';
 import { userActions } from '../../../store/slices/user/user';
 import { selectUser } from '../../../store/selectors/user';
 
 function BaseLoggedNav() {
   const isAuthorized = useAuth();
+  const favoritesCount = useFavoriteCount();
+
   const user = useAppSelector(selectUser);
   const { logout } = useActionCreators(userActions);
-  const favoritesCount = useFavoriteCount();
 
   return (
     <nav className="header__nav">
@@ -53,4 +55,6 @@ function BaseLoggedNav() {
   );
 }
 
-export const LoggedNav = memo(BaseLoggedNav);
+const LoggedNav = memo(BaseLoggedNav);
+
+export default LoggedNav;

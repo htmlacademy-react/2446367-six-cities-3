@@ -33,4 +33,6 @@ function BaseHost({ description, host }: HostProps) {
   );
 }
 
-export const Host = memo(BaseHost);
+const Host = memo(BaseHost);
+
+export default Host;

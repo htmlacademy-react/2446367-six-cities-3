@@ -1,10 +1,11 @@
 import { memo } from 'react';
 import { useActionCreators, useAppSelector } from '../../hooks/store';
 
+import { Link } from 'react-router-dom';
+
 import { offersActions } from '../../store/slices/offers/offers';
 import { AppRoute, CITIES } from '../../utils/data/data';
 import { selectCity } from '../../store/selectors/offers';
-import { Link } from 'react-router-dom';
 
 function BaseLocationsList() {
   const currentCity = useAppSelector(selectCity);
@@ -34,4 +35,6 @@ function BaseLocationsList() {
   );
 }
 
-export const LocationsList = memo(BaseLocationsList);
+const LocationsList = memo(BaseLocationsList);
+
+export default LocationsList;

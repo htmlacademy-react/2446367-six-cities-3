@@ -1,4 +1,5 @@
 import { memo } from 'react';
+
 import { Link } from 'react-router-dom';
 
 import { AppRoute } from '../../utils/data/data';
@@ -19,4 +20,6 @@ function BaseFooter() {
   );
 }
 
-export const Footer = memo(BaseFooter);
+const Footer = memo(BaseFooter);
+
+export default Footer;

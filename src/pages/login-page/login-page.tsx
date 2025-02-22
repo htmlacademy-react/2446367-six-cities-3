@@ -1,7 +1,7 @@
-import { LoginForm } from './components/login-form';
-import { RandomCity } from './components/random-city';
+import LoginForm from './components/login-form';
+import RandomCity from './components/random-city';
 
-export function LoginPage() {
+function BaseLoginPage() {
   return (
     <div className="page__login-container container">
       <section className="login">
@@ -12,3 +12,7 @@ export function LoginPage() {
     </div>
   );
 }
+
+const LoginPage = BaseLoginPage;
+
+export default LoginPage;

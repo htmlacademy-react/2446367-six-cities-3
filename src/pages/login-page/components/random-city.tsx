@@ -26,4 +26,6 @@ function BaseRandomCity() {
   );
 }
 
-export const RandomCity = memo(BaseRandomCity);
+const RandomCity = memo(BaseRandomCity);
+
+export default RandomCity;
