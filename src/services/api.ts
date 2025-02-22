@@ -2,8 +2,9 @@ import axios from 'axios';
 
 import type { AxiosError, AxiosInstance } from 'axios';
 
-import { getToken } from './token';
 import { toast } from 'react-toastify';
+
+import { getToken } from './token';
 
 const enum Default {
   BaseUrl = 'https://15.design.htmlacademy.pro/six-cities',

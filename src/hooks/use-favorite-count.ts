@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useAuth } from './user-authorization';
 import { useActionCreators, useAppSelector } from './store';
 
 import { favoritesActions } from '../store/slices/favorites/favorites';
@@ -7,7 +8,6 @@ import {
   selectFavorites,
   selectFavoriteStatus,
 } from '../store/selectors/favorites';
-import { useAuth } from './user-authorization';
 
 export function useFavoriteCount() {
   const status = useAppSelector(selectFavoriteStatus);

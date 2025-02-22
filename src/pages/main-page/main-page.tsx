@@ -1,16 +1,16 @@
+import { useOffers } from '../../hooks/use-offers';
 import { useAppSelector } from '../../hooks/store';
 
-import { EmptyMainSection } from './components/empty-main-section';
-import { FilledMainSection } from './components/filled-main-section';
-import { Map } from '../../components/map/map';
-import { LocationsList } from '../../components/locations-list/locations-list';
-import { Spinner } from '../../components/spinner/spinner';
+import EmptyMainSection from './components/empty-main-section';
+import FilledMainSection from './components/filled-main-section';
+import Map from '../../components/map/map';
+import LocationsList from '../../components/locations-list/locations-list';
+import Spinner from '../../components/spinner/spinner';
 
 import { RequestStatus } from '../../utils/data/data';
 import { selectCity, selectOffersStatus } from '../../store/selectors/offers';
-import { useOffers } from '../../hooks/use-offers';
 
-export function MainPage() {
+export default function MainPage() {
   const city = useAppSelector(selectCity);
   const status = useAppSelector(selectOffersStatus);
 

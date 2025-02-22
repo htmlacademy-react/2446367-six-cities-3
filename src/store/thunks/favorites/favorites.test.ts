@@ -6,13 +6,17 @@ import type { Action } from '@reduxjs/toolkit';
 import type { ServerOffer } from '../../../types/offer';
 
 import { describe } from 'vitest';
-import { createApi } from '../../../services/api';
-import { configureMockStore } from '@jedmao/redux-mock-store';
-import { AppThunkDispatch, mockOfferFav } from '../../../utils/mock-data/mock-data';
+import {
+  AppThunkDispatch,
+  mockOfferFavorite,
+} from '../../../utils/mock-data/mock-data';
 import { Endpoint, FavoriteStatus } from '../../../utils/data/data';
 import { favoritesActions } from '../../slices/favorites/favorites';
-import { extractActionsTypes } from '../../../utils/mock-data/mock-data';
 import { fetchFavorites, changeFavorite } from './favorites';
+
+import { extractActionsTypes } from '../../../utils/mock-data/mock-data';
+import { configureMockStore } from '@jedmao/redux-mock-store';
+import { createApi } from '../../../services/api';
 
 describe('Offers async', () => {
   const axios = createApi();
@@ -30,7 +34,7 @@ describe('Offers async', () => {
   });
 
   it('should fetch favorites with "fetchFavorites.fulfilled"', async () => {
-    const mockFavorites: ServerOffer[] = [mockOfferFav, mockOfferFav];
+    const mockFavorites: ServerOffer[] = [mockOfferFavorite, mockOfferFavorite];
 
     mockAxiosAdapter.onGet(Endpoint.Favorite).reply(200, mockFavorites);
 
@@ -63,7 +67,7 @@ describe('Offers async', () => {
   it('should change favorite with "changeFavorite.fulfilled"', async () => {
     const offerID = '1';
     const status = FavoriteStatus.Added;
-    const favoriteMockOffer: ServerOffer = mockOfferFav;
+    const favoriteMockOffer: ServerOffer = mockOfferFavorite;
 
     mockAxiosAdapter
       .onPost(`${Endpoint.Favorite}/${offerID}/${status}`)

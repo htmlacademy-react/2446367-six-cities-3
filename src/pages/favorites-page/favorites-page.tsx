@@ -1,11 +1,11 @@
 import { useAppSelector } from '../../hooks/store';
 
+import EmptyFavoritesSection from './components/empty-favorites-section';
+import FilledFavoritesSection from './components/filled-favorites-section';
+
 import { selectFavorites } from '../../store/selectors/favorites';
 
-import { EmptyFavoritesSection } from './components/empty-favorites-section';
-import { FilledFavoritesSection } from './components/filled-favorites-section';
-
-export function FavoritesPage() {
+export default function FavoritesPage() {
   const favorites = useAppSelector(selectFavorites);
   const favoritesLength = favorites.length;
 

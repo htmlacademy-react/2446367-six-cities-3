@@ -10,7 +10,7 @@ type SortingFormProps = {
   setter: (option: SortOption) => void;
 };
 
-function BaseSortingForm({ current, setter }: SortingFormProps) {
+function SortingFormInner({ current, setter }: SortingFormProps) {
   const { isOn, off, toggle } = useBoolean(false);
 
   useEffect(() => {
@@ -62,4 +62,6 @@ function BaseSortingForm({ current, setter }: SortingFormProps) {
   );
 }
 
-export const SortingForm = memo(BaseSortingForm);
+const SortingForm = memo(SortingFormInner);
+
+export default SortingForm;

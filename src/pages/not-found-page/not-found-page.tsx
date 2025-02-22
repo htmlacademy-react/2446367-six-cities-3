@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import './css/not-found-page.css';
 
-export function NotFoundPage() {
+export default function NotFoundPage() {
   return (
     <div className="not-found__container">
       <div className="not-found">

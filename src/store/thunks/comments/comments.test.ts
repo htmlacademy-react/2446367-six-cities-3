@@ -6,11 +6,12 @@ import type { Action } from '@reduxjs/toolkit';
 import type { Review } from '../../../types/review';
 
 import { describe } from 'vitest';
-import { createApi } from '../../../services/api';
-import { configureMockStore } from '@jedmao/redux-mock-store';
 import { AppThunkDispatch, mockReview } from '../../../utils/mock-data/mock-data';
 import { Endpoint } from '../../../utils/data/data';
 import { commentsThunks } from './comments';
+
+import { createApi } from '../../../services/api';
+import { configureMockStore } from '@jedmao/redux-mock-store';
 import { extractActionsTypes } from '../../../utils/mock-data/mock-data';
 
 describe('Offers async', () => {

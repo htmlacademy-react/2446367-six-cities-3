@@ -4,7 +4,7 @@ type EmptyMainSectionProps = {
   city: CityName;
 };
 
-export function EmptyMainSection({ city }: EmptyMainSectionProps) {
+export default function EmptyMainSection({ city }: EmptyMainSectionProps) {
   return (
     <section className="cities__no-places">
       <div className="cities__status-wrapper tabs__content">

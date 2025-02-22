@@ -1,13 +1,15 @@
 import { useMap } from '../../hooks/use-map';
+import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/store';
 import { memo, useEffect, useRef } from 'react';
 
-import { Icon, Marker, layerGroup } from 'leaflet';
+import { Marker, layerGroup } from 'leaflet';
 import { CITIES } from '../../utils/data/data';
 import { CityName } from '../../types/city';
 import { ServerOffer } from '../../types/offer';
 import { selectActiveId } from '../../store/selectors/offers';
-import { useParams } from 'react-router-dom';
+
+import { currentCustomIcon, defaultCustomIcon } from './data/data';
 
 type MapProps = {
   className?: string;
@@ -16,19 +18,7 @@ type MapProps = {
   isOfferPage?: boolean;
 };
 
-const defaultCustomIcon = new Icon({
-  iconUrl: '/img/pin.svg',
-  iconSize: [28, 40],
-  iconAnchor: [14, 40],
-});
-
-const currentCustomIcon = new Icon({
-  iconUrl: '/img/pin-active.svg',
-  iconSize: [28, 40],
-  iconAnchor: [14, 40],
-});
-
-function BaseMap({ offers, city, className, isOfferPage = false }: MapProps) {
+function MapInner({ offers, city, className, isOfferPage = false }: MapProps) {
   let activeOffer = useAppSelector(selectActiveId);
   const params = useParams();
 
@@ -45,8 +35,6 @@ function BaseMap({ offers, city, className, isOfferPage = false }: MapProps) {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
 
-      markerLayer.clearLayers();
-
       offers.forEach(({ id, location }) => {
         const marker = new Marker({
           lat: location.latitude,
@@ -60,15 +48,16 @@ function BaseMap({ offers, city, className, isOfferPage = false }: MapProps) {
               : defaultCustomIcon,
           )
           .addTo(markerLayer);
-
-        return () => {
-          map.removeLayer(markerLayer);
-        };
       });
+      return () => {
+        map.removeLayer(markerLayer);
+      };
     }
   }, [activeOffer, map, offers, isOfferPage]);
 
   return <section className={`map ${className}`} ref={mapRef} />;
 }
 
-export const Map = memo(BaseMap);
+const Map = memo(MapInner);
+
+export default Map;

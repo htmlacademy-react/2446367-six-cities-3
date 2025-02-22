@@ -2,9 +2,9 @@ import { useAuth } from '../../../hooks/user-authorization';
 
 import type { Review } from '../../../types/review';
 
-import { PostReviewError } from '../../../components/errors/post-review-error';
-import { ReviewItem } from './review-item';
-import { ReviewForm } from './review-form';
+import PostReviewError from '../../../components/error/post-review-error';
+import ReviewItem from './review-item';
+import ReviewForm from './review-form';
 
 type ReviewsProps = {
   currentReviews: Review[];
@@ -12,10 +12,10 @@ type ReviewsProps = {
 };
 
 const enum CommentDefault {
-  Max = 10,
+  MaxCount = 10,
 }
 
-export function Reviews({ currentReviews, offerID }: ReviewsProps) {
+export default function Reviews({ currentReviews, offerID }: ReviewsProps) {
   const isAuthorized = useAuth();
   return (
     <section className="offer__reviews reviews">
@@ -24,7 +24,7 @@ export function Reviews({ currentReviews, offerID }: ReviewsProps) {
         <span className="reviews__amount">{currentReviews.length}</span>
       </h2>
       <ul className="reviews__list">
-        {currentReviews.slice(0, CommentDefault.Max).map((review) => (
+        {currentReviews.slice(0, CommentDefault.MaxCount).map((review) => (
           <ReviewItem review={review} key={review.id} />
         ))}
       </ul>

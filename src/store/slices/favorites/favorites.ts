@@ -3,7 +3,10 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { ServerOffer } from '../../../types/offer';
 
 import { RequestStatus, FavoriteStatus } from '../../../utils/data/data';
-import { changeFavorite, fetchFavorites } from '../../thunks/favorites/favorites';
+import {
+  changeFavorite,
+  fetchFavorites,
+} from '../../thunks/favorites/favorites';
 
 type FavoritesSlice = {
   items: ServerOffer[];
@@ -19,8 +22,12 @@ export const favoritesSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchFavorites.fulfilled, (state, action) => {
-        state.items = action.payload;
-        state.status = RequestStatus.Success;
+        if (action.payload) {
+          state.items = action.payload;
+          state.status = RequestStatus.Success;
+        } else {
+          state.status = RequestStatus.Failed;
+        }
       })
       .addCase(fetchFavorites.rejected, (state) => {
         state.status = RequestStatus.Failed;
@@ -37,6 +44,7 @@ export const favoritesSlice = createSlice({
             state.items = state.items.filter(
               ({ id }) => id !== action.payload.offer.id,
             );
+            break;
         }
       })
       .addCase(changeFavorite.rejected, (state) => {

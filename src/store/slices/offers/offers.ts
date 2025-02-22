@@ -3,8 +3,17 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import type { CityName } from '../../../types/city';
 import type { FullOffer, ServerOffer } from '../../../types/offer';
 
-import { CITIES, RequestStatus } from '../../../utils/data/data';
-import { fetchAllOffers, fetchNearBy, fetchOffer } from '../../thunks/offers/offers';
+import {
+  CITIES,
+  FavoriteStatus,
+  RequestStatus,
+} from '../../../utils/data/data';
+import {
+  fetchAllOffers,
+  fetchNearBy,
+  fetchOffer,
+} from '../../thunks/offers/offers';
+import { changeFavorite } from '../../thunks/favorites/favorites';
 
 type OffersSlice = {
   city: CityName;
@@ -32,6 +41,21 @@ export const offersSlice = createSlice({
       })
       .addCase(fetchAllOffers.rejected, (state) => {
         state.status = RequestStatus.Failed;
+      })
+      .addCase(changeFavorite.fulfilled, (state, action) => {
+        const changedFavoriteIndex = state.offers.findIndex(
+          (offer) => offer.id === action.payload.offer.id,
+        );
+        if (state.offers[changedFavoriteIndex]) {
+          switch (action.payload.status) {
+            case FavoriteStatus.Added:
+              state.offers[changedFavoriteIndex].isFavorite = true;
+              break;
+            case FavoriteStatus.Removed:
+              state.offers[changedFavoriteIndex].isFavorite = false;
+              break;
+          }
+        }
       }),
   initialState,
   name: 'offers',

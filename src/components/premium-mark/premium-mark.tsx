@@ -1,10 +1,10 @@
-import { memo } from 'react';
-
 type PremiumMarkProps = {
   bemBlock: 'offer' | 'place-card';
 };
 
-function BasePremiumMark({ bemBlock = 'place-card' }: PremiumMarkProps) {
+export default function PremiumMark({
+  bemBlock = 'place-card',
+}: PremiumMarkProps) {
   const className = `${bemBlock}__mark`;
   return (
     <div className={className}>
@@ -12,5 +12,3 @@ function BasePremiumMark({ bemBlock = 'place-card' }: PremiumMarkProps) {
     </div>
   );
 }
-
-export const PremiumMark = memo(BasePremiumMark);

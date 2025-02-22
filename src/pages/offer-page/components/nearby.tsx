@@ -2,13 +2,13 @@ import { memo } from 'react';
 
 import type { ServerOffer } from '../../../types/offer';
 
-import { OfferCard } from '../../../components/offer-card/offer-card';
+import OfferCard from '../../../components/offer-card/offer-card';
 
 type NearbyProps = {
   nearOffers: ServerOffer[];
 };
 
-function BaseNearby({ nearOffers }: NearbyProps) {
+function NearbyInner({ nearOffers }: NearbyProps) {
   return (
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
@@ -21,4 +21,6 @@ function BaseNearby({ nearOffers }: NearbyProps) {
   );
 }
 
-export const Nearby = memo(BaseNearby);
+const Nearby = memo(NearbyInner);
+
+export default Nearby;

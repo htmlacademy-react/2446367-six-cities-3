@@ -1,7 +1,7 @@
-import { LoginForm } from './components/login-form';
-import { RandomCity } from './components/random-city';
+import LoginForm from './components/login-form';
+import RandomCity from './components/random-city';
 
-export function LoginPage() {
+export default function LoginPage() {
   return (
     <div className="page__login-container container">
       <section className="login">

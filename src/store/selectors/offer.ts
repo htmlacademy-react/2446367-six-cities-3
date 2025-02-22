@@ -1,5 +1,6 @@
-import { createSelector } from '@reduxjs/toolkit';
 import type { RootState } from '../../types/store';
+
+import { createSelector } from '@reduxjs/toolkit';
 
 const selectOfferState = (state: RootState) => state.offer;
 

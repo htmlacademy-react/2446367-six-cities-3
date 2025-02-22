@@ -1,13 +1,12 @@
+import { useOffers } from '../../hooks/use-offers';
 import { usePageLayout } from '../../hooks/use-page-layout';
 import { useFavoriteCount } from '../../hooks/use-favorite-count';
-import { useOffers } from '../../hooks/use-offers';
 
-import { Header } from '../header/header';
-import { Footer } from '../footer/footer';
-
+import Header from '../header/header';
+import Footer from '../footer/footer';
 import { Outlet } from 'react-router-dom';
 
-function BaseLayout() {
+function LayoutInner() {
   const offers = useOffers();
   const offersLength = offers.length;
 
@@ -35,4 +34,6 @@ function BaseLayout() {
   );
 }
 
-export const Layout = BaseLayout;
+const Layout = LayoutInner;
+
+export default Layout;
