@@ -20,7 +20,7 @@ type ChangeReviewHandler = ReactEventHandler<
   HTMLInputElement | HTMLTextAreaElement
 >;
 
-function BaseReviewForm({ offerID }: ReviewFormProps) {
+export default function ReviewForm({ offerID }: ReviewFormProps) {
   const { postComment } = useActionCreators(reviewsActions);
   const [comment, setComment] = useState({ comment: '', rating: 0 });
 
@@ -135,7 +135,3 @@ function BaseReviewForm({ offerID }: ReviewFormProps) {
     </form>
   );
 }
-
-const ReviewForm = BaseReviewForm;
-
-export default ReviewForm;

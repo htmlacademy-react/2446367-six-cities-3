@@ -8,7 +8,7 @@ type FilledFavoritesSectionProps = {
   favorites: ServerOffer[];
 };
 
-function BaseFilledFavoritesSection({
+export default function FilledFavoritesSection({
   favorites,
 }: FilledFavoritesSectionProps) {
   const groupedFavorites = favoritesByCity(favorites);
@@ -44,7 +44,3 @@ function BaseFilledFavoritesSection({
     </section>
   );
 }
-
-const FilledFavoritesSection = BaseFilledFavoritesSection;
-
-export default FilledFavoritesSection;

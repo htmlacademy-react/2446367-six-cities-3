@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { format } from 'date-fns';
 
 import type { Review } from '../../../types/review';
@@ -7,7 +6,7 @@ type ReviewItemProps = {
   review: Review;
 };
 
-function BaseReviewItem({ review }: ReviewItemProps) {
+export default function ReviewItem({ review }: ReviewItemProps) {
   const {
     date,
     user: { avatarUrl, name },
@@ -44,7 +43,3 @@ function BaseReviewItem({ review }: ReviewItemProps) {
     </li>
   );
 }
-
-const ReviewItem = memo(BaseReviewItem);
-
-export default ReviewItem;

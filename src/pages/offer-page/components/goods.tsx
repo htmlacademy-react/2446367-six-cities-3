@@ -4,7 +4,7 @@ type GoodsProps = {
   goods: string[];
 };
 
-function BaseGoods({ goods }: GoodsProps) {
+function GoodsInner({ goods }: GoodsProps) {
   return (
     <div className="offer__inside">
       <h2 className="offer__inside-title">What&apos;s inside</h2>
@@ -19,6 +19,6 @@ function BaseGoods({ goods }: GoodsProps) {
   );
 }
 
-const Goods = memo(BaseGoods);
+const Goods = memo(GoodsInner);
 
 export default Goods;

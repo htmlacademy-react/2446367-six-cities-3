@@ -24,7 +24,7 @@ type HTMLLoginForm = HTMLFormElement & {
 
 type ChangeHandler = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 
-function BaseLoginForm() {
+function LoginFormInner() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
@@ -108,6 +108,6 @@ function BaseLoginForm() {
   );
 }
 
-const LoginForm = memo(BaseLoginForm);
+const LoginForm = memo(LoginFormInner);
 
 export default LoginForm;

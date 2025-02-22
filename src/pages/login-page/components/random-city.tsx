@@ -5,7 +5,7 @@ import { AppRoute, CITIES } from '../../../utils/data/data';
 import { randomArrayIndex } from '../../../utils/utils/random-array-index';
 import { memo } from 'react';
 
-function BaseRandomCity() {
+function RandomCityInner() {
   const { name } = CITIES[randomArrayIndex(CITIES)];
   const { setCity } = useActionCreators(offersActions);
 
@@ -26,6 +26,6 @@ function BaseRandomCity() {
   );
 }
 
-const RandomCity = memo(BaseRandomCity);
+const RandomCity = memo(RandomCityInner);
 
 export default RandomCity;

@@ -6,7 +6,7 @@ import Header from '../header/header';
 import Footer from '../footer/footer';
 import { Outlet } from 'react-router-dom';
 
-function BaseLayout() {
+function LayoutInner() {
   const offers = useOffers();
   const offersLength = offers.length;
 
@@ -34,6 +34,6 @@ function BaseLayout() {
   );
 }
 
-const Layout = BaseLayout;
+const Layout = LayoutInner;
 
 export default Layout;

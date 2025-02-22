@@ -44,6 +44,7 @@ export const favoritesSlice = createSlice({
             state.items = state.items.filter(
               ({ id }) => id !== action.payload.offer.id,
             );
+            break;
         }
       })
       .addCase(changeFavorite.rejected, (state) => {

@@ -18,7 +18,7 @@ type OfferCardProps = {
   handleActiveOff?: MouseEventHandler<HTMLElement>;
 };
 
-function BaseOfferCard({
+export default function OfferCard({
   offer,
   pageClassName,
   imageWrapperClassName = `${pageClassName}__image-wrapper place-card__image-wrapper`,
@@ -85,7 +85,3 @@ function BaseOfferCard({
     </article>
   );
 }
-
-const OfferCard = BaseOfferCard;
-
-export default OfferCard;

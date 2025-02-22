@@ -23,22 +23,22 @@ import {
   selectOfferStatus,
 } from '../../store/selectors/offer';
 import { selectReviews } from '../../store/selectors/review';
+import { shuffle } from '../../utils/utils/shuffle';
 
 const enum NearbyDefault {
   MaxCount = 3,
 }
 
-function BaseOfferPage() {
+export default function OfferPage() {
   const { id } = useParams();
 
   const offer = useAppSelector(selectOffer);
   const status = useAppSelector(selectOfferStatus);
-  const nearbyOffers = useAppSelector(selectNearby).slice(
-    0,
-    NearbyDefault.MaxCount,
-  );
-
   const reviews = useAppSelector(selectReviews);
+
+  const nearbyOffers = useAppSelector(selectNearby);
+  const shuffledNearby = shuffle(nearbyOffers).slice(0, NearbyDefault.MaxCount);
+
   const { fetchNearBy, fetchOffer } = useActionCreators(offerActions);
   const { fetchComments } = useActionCreators(reviewsActions);
 
@@ -114,17 +114,13 @@ function BaseOfferPage() {
         <Map
           className="offer__map"
           city={city.name}
-          offers={[...nearbyOffers, offer]}
+          offers={[...shuffledNearby, offer]}
           isOfferPage
         />
       </section>
       <div className="container">
-        <Nearby nearOffers={nearbyOffers} />
+        <Nearby nearOffers={shuffledNearby} />
       </div>
     </>
   );
 }
-
-const OfferPage = BaseOfferPage;
-
-export default OfferPage;

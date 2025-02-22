@@ -11,12 +11,17 @@ import SortingForm from '../../../components/sorting-form/sorting-form';
 import { SortOption } from '../../../utils/data/data';
 import { offersActions } from '../../../store/slices/offers/offers';
 
+import { pluralize } from '../../../utils/utils/pluralize';
+
 type FilledMainSectionProps = {
   offers: ServerOffer[];
   city: CityName;
 };
 
-function BaseFilledMainSection({ offers, city }: FilledMainSectionProps) {
+export default function FilledMainSection({
+  offers,
+  city,
+}: FilledMainSectionProps) {
   const { setActiveId } = useActionCreators(offersActions);
 
   const [activeSort, setActiveSort] = useState(SortOption.Popular);
@@ -49,7 +54,7 @@ function BaseFilledMainSection({ offers, city }: FilledMainSectionProps) {
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
       <b className="places__found">
-        {offers.length} place{offers.length > 1 && 's'} to stay in {city}
+        {offers.length} {pluralize(offers.length, 'place')} to stay in {city}
       </b>
       <SortingForm current={activeSort} setter={setActiveSort} />
       <OfferList
@@ -60,7 +65,3 @@ function BaseFilledMainSection({ offers, city }: FilledMainSectionProps) {
     </section>
   );
 }
-
-const FilledMainSection = BaseFilledMainSection;
-
-export default FilledMainSection;

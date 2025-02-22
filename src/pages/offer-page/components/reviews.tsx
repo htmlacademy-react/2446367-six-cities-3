@@ -15,7 +15,7 @@ const enum CommentDefault {
   MaxCount = 10,
 }
 
-function BaseReviews({ currentReviews, offerID }: ReviewsProps) {
+export default function Reviews({ currentReviews, offerID }: ReviewsProps) {
   const isAuthorized = useAuth();
   return (
     <section className="offer__reviews reviews">
@@ -32,7 +32,3 @@ function BaseReviews({ currentReviews, offerID }: ReviewsProps) {
     </section>
   );
 }
-
-const Reviews = BaseReviews;
-
-export default Reviews;

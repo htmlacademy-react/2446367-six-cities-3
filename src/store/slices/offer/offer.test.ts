@@ -2,7 +2,10 @@ import { describe } from 'vitest';
 import { offerSlice } from '././offer';
 import { FavoriteStatus, RequestStatus } from '../../../utils/data/data';
 import { fetchNearBy, fetchOffer } from '../../thunks/offers/offers';
-import { mockFullOffer, mockNearbyOffer } from '../../../utils/mock-data/mock-data';
+import {
+  mockFullOffer,
+  mockNearbyOffer,
+} from '../../../utils/mock-data/mock-data';
 import { changeFavorite } from '../../thunks/favorites/favorites';
 
 describe('offersSlice', () => {
@@ -10,7 +13,6 @@ describe('offersSlice', () => {
     info: null,
     nearby: [],
     status: RequestStatus.Idle,
-    changeFavoriteStatus: RequestStatus.Idle,
   };
 
   it('should return initial state', () => {
@@ -61,16 +63,7 @@ describe('offersSlice', () => {
     });
   });
 
-  it('should handle changeFavorite.pending', () => {
-    const action = { type: changeFavorite.pending.type };
-    const state = offerSlice.reducer(initialState, action);
-    expect(state).toEqual({
-      ...initialState,
-      changeFavoriteStatus: RequestStatus.Loading,
-    });
-  });
-
-  it('should handle changeFavorite.fulfilled - update info', () => {
+  it('should handle changeFavorite.fulfilled - update info (added to favorites)', () => {
     const initialStateWithInfo = {
       ...initialState,
       info: { ...mockFullOffer, isFavorite: false },
@@ -83,11 +76,26 @@ describe('offersSlice', () => {
     expect(state).toEqual({
       ...initialStateWithInfo,
       info: { ...mockFullOffer, isFavorite: true },
-      changeFavoriteStatus: RequestStatus.Idle,
     });
   });
 
-  it('should handle changeFavorite.fulfilled - update nearby', () => {
+  it('should handle changeFavorite.fulfilled - update info (removed from favorites)', () => {
+    const initialStateWithInfo = {
+      ...initialState,
+      info: { ...mockFullOffer, isFavorite: true },
+    };
+    const action = {
+      type: changeFavorite.fulfilled.type,
+      payload: { offer: mockFullOffer, status: FavoriteStatus.Removed },
+    };
+    const state = offerSlice.reducer(initialStateWithInfo, action);
+    expect(state).toEqual({
+      ...initialStateWithInfo,
+      info: { ...mockFullOffer, isFavorite: false },
+    });
+  });
+
+  it('should handle changeFavorite.fulfilled - update nearby (added to favorites)', () => {
     const initialStateWithNearby = {
       ...initialState,
       nearby: [{ ...mockNearbyOffer, isFavorite: false }],
@@ -100,16 +108,22 @@ describe('offersSlice', () => {
     expect(state).toEqual({
       ...initialStateWithNearby,
       nearby: [{ ...mockNearbyOffer, isFavorite: true }],
-      changeFavoriteStatus: RequestStatus.Idle,
     });
   });
 
-  it('should handle changeFavorite.rejected', () => {
-    const action = { type: changeFavorite.rejected.type };
-    const state = offerSlice.reducer(initialState, action);
-    expect(state).toEqual({
+  it('should handle changeFavorite.fulfilled - update nearby (removed from favorites)', () => {
+    const initialStateWithNearby = {
       ...initialState,
-      changeFavoriteStatus: RequestStatus.Failed,
+      nearby: [{ ...mockNearbyOffer, isFavorite: true }],
+    };
+    const action = {
+      type: changeFavorite.fulfilled.type,
+      payload: { offer: mockNearbyOffer, status: FavoriteStatus.Removed },
+    };
+    const state = offerSlice.reducer(initialStateWithNearby, action);
+    expect(state).toEqual({
+      ...initialStateWithNearby,
+      nearby: [{ ...mockNearbyOffer, isFavorite: false }],
     });
   });
 
@@ -118,7 +132,6 @@ describe('offersSlice', () => {
       info: mockFullOffer,
       nearby: [mockNearbyOffer],
       status: RequestStatus.Success,
-      changeFavoriteStatus: RequestStatus.Success,
     };
     const action = offerSlice.actions.clear();
     const state = offerSlice.reducer(initialStateWithData, action);
@@ -126,7 +139,6 @@ describe('offersSlice', () => {
       info: null,
       nearby: [],
       status: RequestStatus.Idle,
-      changeFavoriteStatus: RequestStatus.Idle,
     });
   });
 });

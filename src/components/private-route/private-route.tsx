@@ -18,7 +18,10 @@ type FromState = {
   from?: Location;
 };
 
-function BaseProtectedRoute({ children, onlyUnAuth }: ProtectedRouteProps) {
+export default function ProtectedRoute({
+  children,
+  onlyUnAuth,
+}: ProtectedRouteProps) {
   const location: Location<FromState> = useLocation() as Location<FromState>;
 
   const user = useAppSelector(selectUser);
@@ -34,7 +37,3 @@ function BaseProtectedRoute({ children, onlyUnAuth }: ProtectedRouteProps) {
 
   return children;
 }
-
-const ProtectedRoute = BaseProtectedRoute;
-
-export default ProtectedRoute;

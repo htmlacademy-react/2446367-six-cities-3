@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import Logo from './components/logo';
 import LoggedNav from './components/logged-nav';
 
@@ -8,7 +6,10 @@ type HeaderProps = {
   headerOnLoginPage: boolean;
 };
 
-function BaseHeader({ headerOnMainPage, headerOnLoginPage }: HeaderProps) {
+export default function Header({
+  headerOnMainPage,
+  headerOnLoginPage,
+}: HeaderProps) {
   return (
     <header className="header">
       <div className="container">
@@ -22,7 +23,3 @@ function BaseHeader({ headerOnMainPage, headerOnLoginPage }: HeaderProps) {
     </header>
   );
 }
-
-const Header = memo(BaseHeader);
-
-export default Header;

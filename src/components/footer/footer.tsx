@@ -1,10 +1,8 @@
-import { memo } from 'react';
-
 import { Link } from 'react-router-dom';
 
 import { AppRoute } from '../../utils/data/data';
 
-function BaseFooter() {
+export default function Footer() {
   return (
     <footer className="footer container">
       <Link className="footer__logo-link" to={AppRoute.Root}>
@@ -19,7 +17,3 @@ function BaseFooter() {
     </footer>
   );
 }
-
-const Footer = memo(BaseFooter);
-
-export default Footer;

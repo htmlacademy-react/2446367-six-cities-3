@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { useAuth } from '../../hooks/user-authorization';
 import { useActionCreators } from '../../hooks/store';
 import { useNavigate } from 'react-router-dom';
@@ -19,7 +18,7 @@ const enum Default {
   HeightCoefficient = 18 / 17,
 }
 
-function BaseFavoriteButton({
+export default function FavoriteButton({
   bemBlock = 'place-card',
   isFavorite,
   offerID,
@@ -65,7 +64,3 @@ function BaseFavoriteButton({
     </button>
   );
 }
-
-const FavoriteButton = memo(BaseFavoriteButton);
-
-export default FavoriteButton;

@@ -10,14 +10,12 @@ type OfferSlice = {
   info: FullOffer | null;
   nearby: ServerOffer[];
   status: RequestStatus;
-  changeFavoriteStatus: RequestStatus;
 };
 
 const initialState: OfferSlice = {
   info: null,
   nearby: [],
   status: RequestStatus.Idle,
-  changeFavoriteStatus: RequestStatus.Idle,
 };
 
 export const offerSlice = createSlice({
@@ -36,25 +34,31 @@ export const offerSlice = createSlice({
       .addCase(fetchNearBy.fulfilled, (state, action) => {
         state.nearby = action.payload;
       })
-      .addCase(changeFavorite.pending, (state) => {
-        state.changeFavoriteStatus = RequestStatus.Loading;
-      })
       .addCase(changeFavorite.fulfilled, (state, action) => {
         if (state.info && state.info.id === action.payload.offer.id) {
-          state.info.isFavorite =
-            action.payload.status === FavoriteStatus.Added;
+          switch (action.payload.status) {
+            case FavoriteStatus.Added:
+              state.info.isFavorite = true;
+              break;
+            case FavoriteStatus.Removed:
+              state.info.isFavorite = false;
+              break;
+          }
         }
 
         const changedNearByIndex = state.nearby.findIndex(
           (offer) => offer.id === action.payload.offer.id,
         );
         if (changedNearByIndex !== -1 && state.nearby[changedNearByIndex]) {
-          state.nearby[changedNearByIndex].isFavorite =
-            action.payload.status === FavoriteStatus.Added;
+          switch (action.payload.status) {
+            case FavoriteStatus.Added:
+              state.nearby[changedNearByIndex].isFavorite = true;
+              break;
+            case FavoriteStatus.Removed:
+              state.nearby[changedNearByIndex].isFavorite = false;
+              break;
+          }
         }
-      })
-      .addCase(changeFavorite.rejected, (state) => {
-        state.changeFavoriteStatus = RequestStatus.Failed;
       });
   },
   initialState,
@@ -64,7 +68,6 @@ export const offerSlice = createSlice({
       state.info = null;
       state.nearby = [];
       state.status = RequestStatus.Idle;
-      state.changeFavoriteStatus = RequestStatus.Idle;
     },
   },
 });

@@ -7,7 +7,7 @@ type HostProps = {
   host: FullOffer['host'];
 };
 
-function BaseHost({ description, host }: HostProps) {
+function HostInner({ description, host }: HostProps) {
   return (
     <div className="offer__host">
       <h2 className="offer__host-title">Meet the host</h2>
@@ -33,6 +33,6 @@ function BaseHost({ description, host }: HostProps) {
   );
 }
 
-const Host = memo(BaseHost);
+const Host = memo(HostInner);
 
 export default Host;

@@ -11,7 +11,7 @@ type OfferListProps = {
   handleActiveOff: MouseEventHandler<HTMLElement>;
 };
 
-function BaseOfferList({
+function OfferListInner({
   offers,
   handleActiveOn,
   handleActiveOff,
@@ -31,6 +31,6 @@ function BaseOfferList({
   );
 }
 
-const OfferList = memo(BaseOfferList);
+const OfferList = memo(OfferListInner);
 
 export default OfferList;

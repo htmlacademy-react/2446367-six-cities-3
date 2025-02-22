@@ -8,7 +8,7 @@ type NearbyProps = {
   nearOffers: ServerOffer[];
 };
 
-function BaseNearby({ nearOffers }: NearbyProps) {
+function NearbyInner({ nearOffers }: NearbyProps) {
   return (
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
@@ -21,6 +21,6 @@ function BaseNearby({ nearOffers }: NearbyProps) {
   );
 }
 
-const Nearby = memo(BaseNearby);
+const Nearby = memo(NearbyInner);
 
 export default Nearby;

@@ -10,7 +10,7 @@ import Spinner from '../../components/spinner/spinner';
 import { RequestStatus } from '../../utils/data/data';
 import { selectCity, selectOffersStatus } from '../../store/selectors/offers';
 
-function BaseMainPage() {
+export default function MainPage() {
   const city = useAppSelector(selectCity);
   const status = useAppSelector(selectOffersStatus);
 
@@ -50,7 +50,3 @@ function BaseMainPage() {
     </>
   );
 }
-
-const MainPage = BaseMainPage;
-
-export default MainPage;

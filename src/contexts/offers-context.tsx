@@ -1,4 +1,4 @@
-import { createContext, memo } from 'react';
+import { createContext } from 'react';
 
 import type { ReactNode } from 'react';
 import type { ServerOffer } from '../types/offer';
@@ -10,12 +10,11 @@ type OffersProviderProps = {
   offers: ServerOffer[];
 };
 
-function BaseOffersProvider({ children, offers }: OffersProviderProps) {
+export default function OffersProvider({
+  children,
+  offers,
+}: OffersProviderProps) {
   return (
     <OffersContext.Provider value={offers}>{children}</OffersContext.Provider>
   );
 }
-
-const OffersProvider = memo(BaseOffersProvider);
-
-export default OffersProvider;

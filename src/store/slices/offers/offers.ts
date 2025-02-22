@@ -20,7 +20,6 @@ type OffersSlice = {
   activeId: FullOffer['id'] | undefined;
   offers: ServerOffer[];
   status: RequestStatus;
-  changeFavoriteStatus: RequestStatus;
 };
 
 const initialState: OffersSlice = {
@@ -28,7 +27,6 @@ const initialState: OffersSlice = {
   activeId: undefined,
   offers: [],
   status: RequestStatus.Idle,
-  changeFavoriteStatus: RequestStatus.Idle,
 };
 
 export const offersSlice = createSlice({
@@ -44,24 +42,20 @@ export const offersSlice = createSlice({
       .addCase(fetchAllOffers.rejected, (state) => {
         state.status = RequestStatus.Failed;
       })
-      .addCase(changeFavorite.pending, (state) => {
-        state.changeFavoriteStatus = RequestStatus.Loading;
-      })
       .addCase(changeFavorite.fulfilled, (state, action) => {
         const changedFavoriteIndex = state.offers.findIndex(
           (offer) => offer.id === action.payload.offer.id,
         );
-        switch (action.payload.status) {
-          case FavoriteStatus.Added:
-            state.offers[changedFavoriteIndex].isFavorite = true;
-            break;
-          case FavoriteStatus.Removed:
-            state.offers[changedFavoriteIndex].isFavorite = false;
-            break;
+        if (state.offers[changedFavoriteIndex]) {
+          switch (action.payload.status) {
+            case FavoriteStatus.Added:
+              state.offers[changedFavoriteIndex].isFavorite = true;
+              break;
+            case FavoriteStatus.Removed:
+              state.offers[changedFavoriteIndex].isFavorite = false;
+              break;
+          }
         }
-      })
-      .addCase(changeFavorite.rejected, (state) => {
-        state.changeFavoriteStatus = RequestStatus.Failed;
       }),
   initialState,
   name: 'offers',

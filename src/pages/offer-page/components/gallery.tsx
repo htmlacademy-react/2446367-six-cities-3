@@ -8,7 +8,7 @@ const enum GalleryDefault {
   MaxCount = 6,
 }
 
-function BaseGallery({ images }: GalleryProps) {
+function GalleryInner({ images }: GalleryProps) {
   return (
     <div className="offer__gallery">
       {images.slice(0, GalleryDefault.MaxCount).map((image) => (
@@ -20,6 +20,6 @@ function BaseGallery({ images }: GalleryProps) {
   );
 }
 
-const Gallery = memo(BaseGallery);
+const Gallery = memo(GalleryInner);
 
 export default Gallery;

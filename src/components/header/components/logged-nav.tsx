@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { useAuth } from '../../../hooks/user-authorization';
 import { useActionCreators, useAppSelector } from '../../../hooks/store';
 import { useFavoriteCount } from '../../../hooks/use-favorite-count';
@@ -9,7 +8,7 @@ import { AppRoute } from '../../../utils/data/data';
 import { userActions } from '../../../store/slices/user/user';
 import { selectUser } from '../../../store/selectors/user';
 
-function BaseLoggedNav() {
+export default function LoggedNav() {
   const isAuthorized = useAuth();
   const favoritesCount = useFavoriteCount();
 
@@ -54,7 +53,3 @@ function BaseLoggedNav() {
     </nav>
   );
 }
-
-const LoggedNav = memo(BaseLoggedNav);
-
-export default LoggedNav;
