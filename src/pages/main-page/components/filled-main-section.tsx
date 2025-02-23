@@ -54,7 +54,7 @@ export default function FilledMainSection({
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
       <b className="places__found">
-        {offers.length} {pluralize(offers.length, 'place')} to stay in {city}
+        {pluralize(offers.length, 'place')} to stay in {city}
       </b>
       <SortingForm current={activeSort} setter={setActiveSort} />
       <OfferList
