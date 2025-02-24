@@ -1,17 +1,17 @@
 import { useState } from 'react';
-import { useActionCreators } from '../../../hooks/store';
+import { useActionCreators } from '../../../../hooks/store';
 
 import type { MouseEvent } from 'react';
-import type { CityName } from '../../../types/city';
-import type { ServerOffer } from '../../../types/offer';
+import type { CityName } from '../../../../types/city';
+import type { ServerOffer } from '../../../../types/offer';
 
-import OfferList from '../../../components/offer-list/offer-list';
-import SortingForm from '../../../components/sorting-form/sorting-form';
+import OfferList from '../../../../components/offer-list/offer-list';
+import SortingForm from '../../../../components/sorting-form/sorting-form';
 
-import { SortOption } from '../../../utils/data/data';
-import { offersActions } from '../../../store/slices/offers/offers';
+import { SortOption } from '../../../../utils/data/data';
+import { offersActions } from '../../../../store/slices/offers/offers';
 
-import { pluralize } from '../../../utils/utils/pluralize';
+import { pluralize } from '../../../../utils/utils/pluralize';
 
 type FilledMainSectionProps = {
   offers: ServerOffer[];

@@ -1,5 +1,5 @@
-import LoginForm from './components/login-form';
-import RandomCity from './components/random-city';
+import LoginForm from './components/login-form/login-form';
+import RandomCity from './components/random-city/random-city';
 
 export default function LoginPage() {
   return (

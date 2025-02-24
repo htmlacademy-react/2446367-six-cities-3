@@ -1,10 +1,10 @@
-import { useAuth } from '../../../hooks/user-authorization';
+import { useAuth } from '../../../../hooks/user-authorization';
 
-import type { Review } from '../../../types/review';
+import type { Review } from '../../../../types/review';
 
-import PostReviewError from '../../../components/error/post-review-error';
-import ReviewItem from './review-item';
-import ReviewForm from './review-form';
+import PostReviewError from '../../../../components/error/post-review-error';
+import ReviewItem from '../review-item/review-item';
+import ReviewForm from '../review-form/review-form';
 
 type ReviewsProps = {
   currentReviews: Review[];
