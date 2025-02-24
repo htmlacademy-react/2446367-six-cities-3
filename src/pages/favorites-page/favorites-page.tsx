@@ -1,7 +1,7 @@
 import { useAppSelector } from '../../hooks/store';
 
-import EmptyFavoritesSection from './components/empty-favorites-section';
-import FilledFavoritesSection from './components/filled-favorites-section';
+import EmptyFavoritesSection from './components/empty-favorites-section/empty-favorites-section';
+import FilledFavoritesSection from './components/filled-favorites-section/filled-favorites-section';
 
 import { selectFavorites } from '../../store/selectors/favorites';
 

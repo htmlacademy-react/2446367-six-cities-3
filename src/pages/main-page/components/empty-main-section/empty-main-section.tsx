@@ -1,4 +1,4 @@
-import type { CityName } from '../../../types/city';
+import type { CityName } from '../../../../types/city';
 
 type EmptyMainSectionProps = {
   city: CityName;

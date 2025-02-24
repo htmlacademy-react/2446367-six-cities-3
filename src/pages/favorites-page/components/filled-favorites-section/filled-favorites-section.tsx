@@ -1,8 +1,8 @@
-import type { ServerOffer } from '../../../types/offer';
+import type { ServerOffer } from '../../../../types/offer';
 
-import OfferCard from '../../../components/offer-card/offer-card';
+import OfferCard from '../../../../components/offer-card/offer-card';
 
-import { favoritesByCity } from '../../../utils/utils/favorites-by-city';
+import { favoritesByCity } from '../../../../utils/utils/favorites-by-city';
 
 type FilledFavoritesSectionProps = {
   favorites: ServerOffer[];

@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 
-import type { Review } from '../../../types/review';
+import type { Review } from '../../../../types/review';
 
 type ReviewItemProps = {
   review: Review;

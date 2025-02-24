@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import type { FullOffer } from '../../../types/offer';
+import type { FullOffer } from '../../../../types/offer';
 
 type HostProps = {
   description: string;

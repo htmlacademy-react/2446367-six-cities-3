@@ -1,4 +1,4 @@
-import { useActionCreators } from '../../../hooks/store';
+import { useActionCreators } from '../../../../hooks/store';
 import {
   FormEvent,
   Fragment,
@@ -9,8 +9,8 @@ import {
 
 import { toast } from 'react-toastify';
 
-import { reviewsActions } from '../../../store/slices/review/review';
-import { rating } from '../../../utils/data/data';
+import { reviewsActions } from '../../../../store/slices/review/review';
+import { rating } from '../../../../utils/data/data';
 
 type ReviewFormProps = {
   offerID: string;

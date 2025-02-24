@@ -5,12 +5,12 @@ import { useActionCreators, useAppSelector } from '../../hooks/store';
 import NotFoundPage from '../not-found-page/not-found-page';
 import Map from '../../components/map/map';
 import Spinner from '../../components/spinner/spinner';
-import Goods from './components/goods';
-import Gallery from './components/gallery';
-import Nearby from './components/nearby';
-import Host from './components/host';
-import Reviews from './components/reviews';
-import Features from './components/features';
+import Goods from './components/goods/goods';
+import Gallery from './components/gallery/gallery';
+import Nearby from './components/nearby/nearby';
+import Host from './components/host/host';
+import Reviews from './components/reviews/reviews';
+import Features from './components/features/features';
 import FavoriteButton from '../../components/favorite-button/favorite-button';
 import PremiumMark from '../../components/premium-mark/premium-mark';
 
